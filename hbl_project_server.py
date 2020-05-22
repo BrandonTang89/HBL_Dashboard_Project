@@ -55,7 +55,11 @@ def submit_update():
     link_list = []
     
     for index in range(1, 16):
-        title = request.form['title_'+ str(index)]
+        
+        title = request.form['title_'+ str(index) + "_custom"]
+        if title == "":
+            title = request.form['title_'+ str(index)]
+            
         url = request.form["url_" + str(index)]
         desc = request.form["desc_" + str(index)]
         if title != "" or url != "":
