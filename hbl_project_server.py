@@ -1,9 +1,7 @@
 from flask import *
 import csv
 import requests
-import json
 import hashlib
-import hash_table
 from hash_table import *
 
 app = Flask(__name__)
@@ -41,14 +39,7 @@ def update_form():
 
 @app.route('/submit_update', methods=['POST'])
 def submit_update():
-    def hash_a_dict(plain_dict):
-        for item in plain_dict.items():
-            plain_dict[item[0]] =  hashlib.sha1(item[1].encode(encoding='UTF-8')).hexdigest()
-            
-        return plain_dict
-    
     def check_password(class_name, user_pass):
-
         if hash_dict[class_name] == hashlib.sha1(user_pass.encode(encoding='UTF-8')).hexdigest():
             return True
         
@@ -59,7 +50,7 @@ def submit_update():
         return ("INVALID Class")
     
     if not check_password(class_name, user_pass):
-        return ("INVALID Password")
+        return (render_template("invalid_pass.html"))
 
     link_list = []
     
@@ -82,7 +73,7 @@ def submit_update():
             writer.writerow(row)
 
 
-    return str(link_list)
+    return (render_template("success_update.html", class_name=class_name))
 
 
 if __name__ == '__main__':
