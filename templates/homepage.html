@@ -7,12 +7,15 @@
         
         <style>
             body {
-                background-color: azure;
+                
+                background-image: url("{{img_url}}");
+                background-size: 100%;
+                overflow-y:hidden;
             }
     
             .margined {
-                margin-left: 5%;
-                margin-right: 5%;
+                margin-left: 70%;
+                margin-right: 3%;
                 margin-bottom: 2%;
             }
     
@@ -20,6 +23,7 @@
                 width: 10px;
             }
         </style>
+
 	</head>
 	<body>
         <div class="margined" style="margin-top: 2%;">
@@ -29,24 +33,62 @@
                 <p>Hello! To help everyone out during this HBL time period, we have rolled out a dashboard website for classes to use. <br>
                     Here you can enjoy a timetable with a live indicator and can access common links required for ur HBL lessons. <br>
                     Do remind your CG Chairpersons to update your class's custom links! <br>
-                    Feel free to use your class's dashboard as your broswer homepage for convenience.
+                    Feel free to use your class's dashboard as your browser homepage for convenience.
                 </p>
                 <h3 class="ui dividing header">Links for Classes</h3>
                 <div class="ui cards">
 
-                    {% for class_name in class_set %}
-
-                    <a class="card" href="/{{class_name}}">
-                        <div class="content">
-                            <div class="header">
-                                {{class_name[:-2]}}/ {{class_name[-2:]}}
-                            </div>
+                    <div style="max-height: 62vh; overflow-y: scroll; padding-left: 3px; padding-right: 4px;">
+                        
+                        <h3 class="ui centered dividing header">IP</h3>
+                        <div class = "ui three cards">
+                            {% for class_name in ip_set %}
+                                <a class=" ui green centered card" href="/{{class_name}}">
+                                    <div class="content">
+                                        <div class="center aligned header">
+                                            {{class_name[:-2]}}/ {{class_name[-2:]}}
+                                        </div>
+                                    </div>
+                                </a>
+                            {% endfor %}
                         </div>
-                    </a>
 
-                    {% endfor %}
-    
+                        <h3 class="ui centered dividing header">J1</h3>
+                        <div class = "ui red three cards">
+                            {% for class_name in j1_set %}
+                                <a class=" ui centered card" href="/{{class_name}}">
+                                    <div class="content">
+                                        <div class="center aligned header">
+                                            {{class_name[:-2]}}/ {{class_name[-2:]}}
+                                        </div>
+                                    </div>
+                                </a>
+                            {% endfor %}
+                        </div>
+
+                        <h3 class="ui centered dividing header">J2</h3>
+                        <div class = "ui blue three cards">
+                            {% for class_name in j2_set %}
+                                <a class=" ui centered card" href="/{{class_name}}">
+                                    <div class="content">
+                                        <div class="center aligned header">
+                                            {{class_name[:-2]}}/ {{class_name[-2:]}}
+                                        </div>
+                                    </div>
+                                </a>
+                            {% endfor %}
+                        </div>
+
+                    </div>
+                    
                 </div>
+
+
+
+                    
+                </div>
+
+               
                     
                 
             </div>
