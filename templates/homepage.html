@@ -1,0 +1,61 @@
+<html>
+	<head>
+		<title>HBL Dashboard</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='semantic/semantic/dist/semantic.min.css') }}">
+        <script src="{{ url_for('static', filename='jquery-3.1.1.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='semantic/semantic/dist/semantic.min.js') }}"></script>
+        
+        <style>
+            body {
+                background-color: azure;
+            }
+    
+            .margined {
+                margin-left: 5%;
+                margin-right: 5%;
+                margin-bottom: 2%;
+            }
+    
+            #time_marker_image {
+                width: 10px;
+            }
+        </style>
+	</head>
+	<body>
+        <div class="margined" style="margin-top: 2%;">
+            <div class="ui segment">
+                <div class="ui huge centered header">TJC HBL Dashboards</div>
+                <h3 class="ui dividing header">About</h3>
+                <p>Hello! To help everyone out during this HBL time period, we have rolled out a dashboard website for classes to use. <br>
+                    Here you can enjoy a timetable with a live indicator and can access common links required for ur HBL lessons. <br>
+                    Do remind your CG Chairpersons to update your class's custom links! <br>
+                    Feel free to use your class's dashboard as your broswer homepage for convenience.
+                </p>
+                <h3 class="ui dividing header">Links for Classes</h3>
+                <div class="ui cards">
+
+                    {% for class_name in class_set %}
+
+                    <a class="card" href="/{{class_name}}">
+                        <div class="content">
+                            <div class="header">
+                                {{class_name[:-2]}}/ {{class_name[-2:]}}
+                            </div>
+                        </div>
+                    </a>
+
+                    {% endfor %}
+    
+                </div>
+                    
+                
+            </div>
+    
+        </div>
+
+    
+        <script>
+        </script>
+    
+    </body>
+    <html>

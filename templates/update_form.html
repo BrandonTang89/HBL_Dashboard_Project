@@ -25,192 +25,87 @@
         <div class="margined" style="margin-top: 2%;">
             <div class="ui segment">
                 <div class="ui huge centered header">Subject URL Update Page</div>
-                
-                <div class="ui form">
+                <h3 class="ui dividing header">Information</h3>
+                <p>Hello! This is the page where CG chairpersons can update information on the relevant class links.<br>
+                    If you want to view the links already stored for your class, go to your class's dashboard and click the "downlaod current links button below".<br>
+                    Passwords should have been distributed to the CG chairpersons.
+                </p>
+
+                <form class="ui form" action ="/submit_update" method="POST">
                     <h4 class="ui dividing header">Identity Information</h4>
                     <div class="field">
                         <label>Class</label>
                         <div class="four wide field">
-                            <select class="ui search dropdown">
-                                <option value="ET">Ethiopia</option>
-                                <option value="FK">Falkland Islands (Malvinas)</option>
-                                <option value="FO">Faroe Islands</option>
-                                <option value="FJ">Fiji</option>
-                                <option value="FI">Finland</option>
-                                <option value="FR">France</option>
-                                <option value="GF">French Guiana</option>
-                                <option value="PF">French Polynesia</option>
-                                <option value="TF">French Southern Territories</option>
-                                <option value="GA">Gabon</option>
-                                <option value="GM">Gambia</option>
-                                <option value="GE">Georgia</option>
-                                <option value="DE">Germany</option>
-                                <option value="GH">Ghana</option>
-                                <option value="GI">Gibraltar</option>
-                                <option value="GR">Greece</option>
-                                <option value="GL">Greenland</option>
-                                <option value="GD">Grenada</option>
-                                <option value="GP">Guadeloupe</option>
-                                <option value="GU">Guam</option>
-                                <option value="GT">Guatemala</option>
-                                <option value="GG">Guernsey</option>
-                                <option value="GN">Guinea</option>
-                                <option value="GW">Guinea-Bissau</option>
-                                <option value="GY">Guyana</option>
-                                <option value="HT">Haiti</option>
-                                <option value="HM">Heard Island and McDonald Islands</option>
-                                <option value="VA">Holy See (Vatican City State)</option>
-                                <option value="HN">Honduras</option>
-                                <option value="HK">Hong Kong</option>
-                                <option value="HU">Hungary</option>
-                                <option value="IS">Iceland</option>
-                                <option value="IN">India</option>
-                                <option value="ID">Indonesia</option>
-                                <option value="IR">Iran, Islamic Republic of</option>
-                                <option value="IQ">Iraq</option>
-                                <option value="IE">Ireland</option>
-                                <option value="IM">Isle of Man</option>
-                                <option value="IL">Israel</option>
-                                <option value="IT">Italy</option>
-                                <option value="JM">Jamaica</option>
-                                <option value="JP">Japan</option>
-                                <option value="JE">Jersey</option>
-                                <option value="JO">Jordan</option>
-                                <option value="KZ">Kazakhstan</option>
-                                <option value="KE">Kenya</option>
-                                <option value="KI">Kiribati</option>
-                                <option value="KP">Korea, Democratic People's Republic of</option>
-                                <option value="KR">Korea, Republic of</option>
-                                <option value="KW">Kuwait</option>
-                                <option value="KG">Kyrgyzstan</option>
-                                <option value="LA">Lao People's Democratic Republic</option>
-                                <option value="LV">Latvia</option>
-                                <option value="LB">Lebanon</option>
-                                <option value="LS">Lesotho</option>
-                                <option value="LR">Liberia</option>
-                                <option value="LY">Libya</option>
-                                <option value="LI">Liechtenstein</option>
-                                <option value="LT">Lithuania</option>
-                                <option value="LU">Luxembourg</option>
-                                <option value="MO">Macao</option>
-                                <option value="MK">Macedonia, the former Yugoslav Republic of</option>
-                                <option value="MG">Madagascar</option>
-                                <option value="MW">Malawi</option>
-                                <option value="MY">Malaysia</option>
-                                <option value="MV">Maldives</option>
-                                <option value="ML">Mali</option>
-                                <option value="MT">Malta</option>
-                                <option value="MH">Marshall Islands</option>
-                                <option value="MQ">Martinique</option>
-                                <option value="MR">Mauritania</option>
-                                <option value="MU">Mauritius</option>
-                                <option value="YT">Mayotte</option>
-                                <option value="MX">Mexico</option>
-                                <option value="FM">Micronesia, Federated States of</option>
-                                <option value="MD">Moldova, Republic of</option>
-                                <option value="MC">Monaco</option>
-                                <option value="MN">Mongolia</option>
-                                <option value="ME">Montenegro</option>
-                                <option value="MS">Montserrat</option>
-                                <option value="MA">Morocco</option>
-                                <option value="MZ">Mozambique</option>
-                                <option value="MM">Myanmar</option>
-                                <option value="NA">Namibia</option>
-                                <option value="NR">Nauru</option>
-                                <option value="NP">Nepal</option>
-                                <option value="NL">Netherlands</option>
-                                <option value="NC">New Caledonia</option>
-                                <option value="NZ">New Zealand</option>
-                                <option value="NI">Nicaragua</option>
-                                <option value="NE">Niger</option>
-                                <option value="NG">Nigeria</option>
-                                <option value="NU">Niue</option>
-                                <option value="NF">Norfolk Island</option>
-                                <option value="MP">Northern Mariana Islands</option>
-                                <option value="NO">Norway</option>
-                                <option value="OM">Oman</option>
-                                <option value="PK">Pakistan</option>
-                                <option value="PW">Palau</option>
-                                <option value="PS">Palestinian Territory, Occupied</option>
-                                <option value="PA">Panama</option>
-                                <option value="PG">Papua New Guinea</option>
-                                <option value="PY">Paraguay</option>
-                                <option value="PE">Peru</option>
-                                <option value="PH">Philippines</option>
-                                <option value="PN">Pitcairn</option>
-                                <option value="PL">Poland</option>
-                                <option value="PT">Portugal</option>
-                                <option value="PR">Puerto Rico</option>
-                                <option value="QA">Qatar</option>
-                                <option value="RE">Réunion</option>
-                                <option value="RO">Romania</option>
-                                <option value="RU">Russian Federation</option>
-                                <option value="RW">Rwanda</option>
-                                <option value="BL">Saint Barthélemy</option>
-                                <option value="SH">Saint Helena, Ascension and Tristan da Cunha</option>
-                                <option value="KN">Saint Kitts and Nevis</option>
-                                <option value="LC">Saint Lucia</option>
-                                <option value="MF">Saint Martin (French part)</option>
-                                <option value="PM">Saint Pierre and Miquelon</option>
-                                <option value="VC">Saint Vincent and the Grenadines</option>
-                                <option value="WS">Samoa</option>
-                                <option value="SM">San Marino</option>
-                                <option value="ST">Sao Tome and Principe</option>
-                                <option value="SA">Saudi Arabia</option>
-                                <option value="SN">Senegal</option>
-                                <option value="RS">Serbia</option>
-                                <option value="SC">Seychelles</option>
-                                <option value="SL">Sierra Leone</option>
-                                <option value="SG">Singapore</option>
-                                <option value="SX">Sint Maarten (Dutch part)</option>
-                                <option value="SK">Slovakia</option>
-                                <option value="SI">Slovenia</option>
-                                <option value="SB">Solomon Islands</option>
-                                <option value="SO">Somalia</option>
-                                <option value="ZA">South Africa</option>
-                                <option value="GS">South Georgia and the South Sandwich Islands</option>
-                                <option value="SS">South Sudan</option>
-                                <option value="ES">Spain</option>
-                                <option value="LK">Sri Lanka</option>
-                                <option value="SD">Sudan</option>
-                                <option value="SR">Suriname</option>
-                                <option value="SJ">Svalbard and Jan Mayen</option>
-                                <option value="SZ">Swaziland</option>
-                                <option value="SE">Sweden</option>
-                                <option value="CH">Switzerland</option>
-                                <option value="SY">Syrian Arab Republic</option>
-                                <option value="TW">Taiwan, Province of China</option>
-                                <option value="TJ">Tajikistan</option>
-                                <option value="TZ">Tanzania, United Republic of</option>
-                                <option value="TH">Thailand</option>
-                                <option value="TL">Timor-Leste</option>
-                                <option value="TG">Togo</option>
-                                <option value="TK">Tokelau</option>
-                                <option value="TO">Tonga</option>
-                                <option value="TT">Trinidad and Tobago</option>
-                                <option value="TN">Tunisia</option>
-                                <option value="TR">Turkey</option>
-                                <option value="TM">Turkmenistan</option>
-                                <option value="TC">Turks and Caicos Islands</option>
-                                <option value="TV">Tuvalu</option>
-                                <option value="UG">Uganda</option>
-                                <option value="UA">Ukraine</option>
-                                <option value="AE">United Arab Emirates</option>
-                                <option value="GB">United Kingdom</option>
-                                <option value="US">United States</option>
-                                <option value="UM">United States Minor Outlying Islands</option>
-                                <option value="UY">Uruguay</option>
-                                <option value="UZ">Uzbekistan</option>
-                                <option value="VU">Vanuatu</option>
-                                <option value="VE">Venezuela, Bolivarian Republic of</option>
-                                <option value="VN">Viet Nam</option>
-                                <option value="VG">Virgin Islands, British</option>
-                                <option value="VI">Virgin Islands, U.S.</option>
-                                <option value="WF">Wallis and Futuna</option>
-                                <option value="EH">Western Sahara</option>
-                                <option value="YE">Yemen</option>
-                                <option value="ZM">Zambia</option>
-                                <option value="ZW">Zimbabwe</option>
+                            <select class="ui search dropdown" name="class_name">
+                                <option value="">Class</option>
+                                <option value="1A20">1A/20</option>
+                                <option value="1B20">1B/20</option>
+                                <option value="1C20">1C/20</option>
+                                <option value="1D20">1D/20</option>
+                                <option value="1E20">1E/20</option>
+                                <option value="2A19">2A/19</option>
+                                <option value="2B19">2B/19</option>
+                                <option value="2C19">2C/19</option>
+                                <option value="2D19">2D/19</option>
+                                <option value="2E19">2E/19</option>
+                                <option value="3A20">3A/20</option>
+                                <option value="3B20">3B/20</option>
+                                <option value="3C20">3C/20</option>
+                                <option value="3D20">3D/20</option>
+                                <option value="3E20">3E/20</option>
+                                <option value="4A19">4A/19</option>
+                                <option value="4B19">4B/19</option>
+                                <option value="4C19">4C/19</option>
+                                <option value="4D19">4D/19</option>
+                                <option value="4E19">4E/19</option>
+                                <option value="0120">01/20</option>
+                                <option value="0220">02/20</option>
+                                <option value="0320">03/20</option>
+                                <option value="0420">04/20</option>
+                                <option value="0520">05/20</option>
+                                <option value="0620">06/20</option>
+                                <option value="0720">07/20</option>
+                                <option value="0820">08/20</option>
+                                <option value="0920">09/20</option>
+                                <option value="1020">10/20</option>
+                                <option value="1120">11/20</option>
+                                <option value="1220">12/20</option>
+                                <option value="1320">13/20</option>
+                                <option value="1420">14/20</option>
+                                <option value="1520">15/20</option>
+                                <option value="1620">16/20</option>
+                                <option value="1720">17/20</option>
+                                <option value="1820">18/20</option>
+                                <option value="1920">19/20</option>
+                                <option value="2020">20/20</option>
+                                <option value="2120">21/20</option>
+                                <option value="2220">22/20</option>
+                                <option value="2320">23/20</option>
+                                <option value="2420">24/20</option>
+                                <option value="0119">01/19</option>
+                                <option value="0219">02/19</option>
+                                <option value="0319">03/19</option>
+                                <option value="0419">04/19</option>
+                                <option value="0519">05/19</option>
+                                <option value="0619">06/19</option>
+                                <option value="0719">07/19</option>
+                                <option value="0819">08/19</option>
+                                <option value="0919">09/19</option>
+                                <option value="1019">10/19</option>
+                                <option value="1119">11/19</option>
+                                <option value="1219">12/19</option>
+                                <option value="1319">13/19</option>
+                                <option value="1419">14/19</option>
+                                <option value="1519">15/19</option>
+                                <option value="1619">16/19</option>
+                                <option value="1719">17/19</option>
+                                <option value="1819">18/19</option>
+                                <option value="1919">19/19</option>
+                                <option value="2019">20/19</option>
+                                <option value="2119">21/19</option>
+                                <option value="2219">22/19</option>
+                                <option value="2319">23/19</option>
+                                <option value="2419">24/19</option>
                               </select>
                         </div>
                     </div>
@@ -234,12 +129,17 @@
                             <div class="field">
                                 <input type="text" name="url_{{index}}" placeholder="Link URL">
                             </div>
+                            <div class="field">
+                                <input type="text" name="desc_{{index}}" placeholder="Description">
+                            </div>
                         </div>
                     </div>
                     {% endfor %}
 
-                    <button class="ui button" type="submit">Submit</button>
-                </div>
+                    <button class="ui right floated positive button" type="submit">Submit</button>
+                    
+                </form>
+                <a href="./"><button class="ui button">Back to Main Site</button></a>
             </div>
     
         </div>
