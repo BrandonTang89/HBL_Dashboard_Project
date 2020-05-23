@@ -1,0 +1,1 @@
+Contains CSV files of class wallpaper preferences
