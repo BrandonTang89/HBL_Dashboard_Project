@@ -41,13 +41,19 @@ def class_name(class_name):
     except:
         link_list = []
 
-    print(link_list)
-    return render_template("dashboard.html", class_name=class_name, link_list=link_list)
+    notepad_name = "./static/class_notepad_database/" + class_name + ".txt"
+    try:
+        with open(notepad_name) as notepad_file:
+            class_notepad = notepad_file.read()
+    except:
+        class_notepad =""
+
+    return render_template("dashboard.html", class_name=class_name, link_list=link_list, class_notepad=class_notepad)
 
 @app.route('/<class_name>', methods=['POST'])
 def update_notepad(class_name):
     text_file_name = "./static/class_notepad_database/" +  class_name + ".txt"
-    new_text = request.form["notepad"]
+    new_text = request.form["new_text"]
 
     f = open(text_file_name, "w")
     f.write(new_text)

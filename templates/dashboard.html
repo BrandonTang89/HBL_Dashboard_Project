@@ -22,11 +22,10 @@
             }
     
             .time_table_container {
-                height: 75%;
                 display: block;
                 margin-left: auto;
                 margin-right: auto;
-                width: 75%;
+                width: 100%;
                 height: auto;
                 position: relative;
     
@@ -50,23 +49,54 @@
 	</head>
 	<body>
         <div class="margined" style="margin-top: 2%; text-align: center;">
-            <div class="ui segment">
-                <div class="ui huge centered header">CG {{class_name[:-2]}}/{{class_name[-2:]}} Home Based Learning Dashboard</div>
-                <div id="clock" class="ui large header" style="display: inline-block;"></div>
-                <div class="time_table_container">
-                    <img class="ui image centered_image"
-                        src="static/timetables/{{class_name}}.jpeg">
-    
-                    <div class="time_marker" id="time_marker">
-                        <svg height="26" width="26">
-                            <circle cx="13" cy="13" r="10" stroke="black" stroke-width="3" fill="red" />
-                        </svg>
+
+            <div class = "ui grid">
+            
+                <div class = "twelve wide column">
+                    <div class="ui segment">
+                        <div class="ui huge centered header">CG {{class_name[:-2]}}/{{class_name[-2:]}} Home Based Learning Dashboard</div>
+                        <div id="clock" class="ui large header" style="display: inline-block;"></div>
+                        <div class="time_table_container">
+                            <img class="ui image centered_image" style = "min-width: 100%; height: auto;"
+                                src="static/timetables/{{class_name}}.jpeg">
+            
+                            <div class="time_marker" id="time_marker">
+                                <svg height="26" width="26">
+                                    <circle cx="13" cy="13" r="10" stroke="black" stroke-width="3" fill="red" />
+                                </svg>
+                            </div>
+                        </div>
+            
                     </div>
                 </div>
-    
+
+                <div class = "four wide column">
+                    <div class="ui right segment">
+                        <button class = "ui grey button" onclick ="runModal()">Edit Notepad</button>
+                    </div>
+                </div>
             </div>
     
         </div>
+    
+        <div id = editModal class="ui fullscreen modal transition">
+            <i class="close icon"></i>
+            <div class="header">
+              Update Your Class Notepad
+            </div>
+            
+
+            <form id="notepad_form">
+                <textarea style = "width: 99%; height: 60%; margin: 10px" rows = "40" name="notepad" id="edit_notepad">{{class_notepad}}</textarea>
+    
+            </form> 
+
+            <div class="actions">
+              <div class="ui negative button" tabindex="0" type="button">Cancel</div>
+              <div class="ui positive button" id = "update_notepad_button" tabindex="0" type="button">Save Notepad</div>
+            </div>
+        </div>
+
         <div class="margined">
             <div class="ui segment margined">
                 <div class="ui large header">General</div>
@@ -193,19 +223,19 @@
             </a>
         </div>
 
-        <form id="notepad_form">
-            <input type="text" name="notepad">
-
-            <button class="ui button" id="update_notepad_button" tabindex="0" type="button">Submit</button>
-        </form>
-
 
         <script>
+            // Javascript for Modal
+            function runModal(){
+                $('.fullscreen.modal').modal('show');
+            }
+
             // Javascript for Updating Notepad
             $("#update_notepad_button").click(update_notepad);
 
             function update_notepad(){
-                var new_data = $('#notepad_form').serializeArray();
+                var new_data = document.getElementById("edit_notepad").value;
+                new_data = {"new_text": new_data}
                 console.log(new_data);
                 
                 $.ajax({
