@@ -3,6 +3,8 @@ import csv
 import requests
 import hashlib
 import random
+import os.path
+from PIL import Image
 from hash_table import *
 app = Flask(__name__)
 
@@ -24,7 +26,6 @@ def index():
 # For the main dashboard
 @app.route('/<class_name>', methods=['GET'])
 def class_name(class_name):
-    
     if not class_name in class_set:
         return ("Invalid Class")
 
@@ -37,7 +38,6 @@ def class_name(class_name):
                 if row == []:
                     continue
                 link_list.append(row)
-                # link_list.append([html.escape(i) for i in row])
     except:
         link_list = []
 
@@ -47,8 +47,17 @@ def class_name(class_name):
             class_notepad = notepad_file.read()
     except:
         class_notepad =""
+    
+    # Choose Icon URL
+    icon_url = "./static/class_icon_database/" + class_name + ".png"
+    if not os.path.exists(icon_url):
+        icon_url = "https://cdn.avero-tech.com/tjc/img/icon/android-icon-192x192.png"
 
-    return render_template("dashboard.html", class_name=class_name, link_list=link_list, class_notepad=class_notepad)
+    wallpaper_csv_name = "./static/class_wallpaper_database/" + class_name + ".csv"
+    
+
+
+    return render_template("dashboard.html", class_name=class_name, link_list=link_list, class_notepad=class_notepad, icon_url=icon_url)
 
 @app.route('/<class_name>', methods=['POST'])
 def update_notepad(class_name):
@@ -60,6 +69,48 @@ def update_notepad(class_name):
     f.close()
 
     return new_text
+
+
+# For upload of icons
+@app.route('/<class_name>/edit_icon', methods=['POST'])
+def update_icon(class_name):
+    def make_square(im, min_size=190, fill_color=(255, 255, 255, 255)):
+        x, y = im.size
+        size = max(min_size, x, y)
+        new_im = Image.new('RGBA', (size, size), fill_color)
+        new_im.paste(im, (int((size - x) / 2), int((size - y) / 2)))
+        return new_im
+
+    icon_file_name = "./static/class_icon_database/" + class_name +".png"
+
+    # Write Raw Files
+    image_data = request.files['image_upload_input'].read()
+    f = open(icon_file_name, 'wb')
+    f.write(image_data)
+    f.close()
+
+    # Modify and Resave Square Files
+    im = Image.open(icon_file_name)
+    im = make_square(im)
+    im.thumbnail((192,192))
+    im.save(icon_file_name)
+    
+    print("Image Written to", icon_file_name)
+    return (render_template("success_update.html", class_name=class_name, updated_content="Class Icon"))
+
+# For selection of background
+@app.route('/<class_name>/edit_wallpaper', methods=['POST'])
+def update_wallpaper(class_name):
+    wallpaper_file_name = "./static/class_wallpaper_database/"+ class_name + ".csv"
+    chosen_wallpaper = request.form["chosen_wallpaper"]
+    
+    csv_file = open(wallpaper_file_name, 'w')
+    with csv_file:
+        writer = csv.writer(csv_file)
+        writer.writerow(["wallpaper", chosen_wallpaper])
+
+    return (render_template("success_update.html", class_name=class_name, updated_content="Class wallpaper"))
+    
 
 # For the Update Page
 @app.route('/update')
@@ -106,7 +157,7 @@ def submit_update():
             writer.writerow(row)
 
 
-    return (render_template("success_update.html", class_name=class_name))
+    return (render_template("success_update.html", class_name=class_name, updated_content="Class Links"))
 
 
 if __name__ == '__main__':

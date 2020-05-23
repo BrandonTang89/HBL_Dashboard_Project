@@ -8,6 +8,10 @@
         <style>
             body {
                 background-color: azure;
+                background-image: url("static/images/wallpapers/4.jpg");
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+                background-position: center;
             }
     
             .margined {
@@ -39,7 +43,6 @@
     
                 margin-left: -3;
                 margin-top: -2;
-    
             }
     
             #time_marker_image {
@@ -72,25 +75,65 @@
 
                 <div class = "four wide column">
                     <div class="ui right segment">
-                        <img class="ui small centered image" src="https://cdn.avero-tech.com/tjc/img/icon/android-icon-192x192.png">
+                        <img class="ui  centered rounded image" style="margin-bottom:5px;" src="{{icon_url}}">
                         
-                        <button class = "ui basic button" onclick ="runModal()">Edit Icon</button>
+                        <button class = "ui basic button" onclick ="edit_icon()">Edit Icon</button>
                     </div>
                     <div class="ui right segment">
                         <form class="ui form">
                             <div class="field">
                                 <label><h3>Class Notepad</h3></label>
-                                <textarea readonly id="notepad_textarea" style="min-height: 60vh;">{{class_notepad}}</textarea>
+                                <textarea readonly id="notepad_textarea" style="min-height: 55vh;">{{class_notepad}}</textarea>
                             </div>
                         </form>
                         
-                        <button class = "ui grey button" onclick ="runModal()">Edit Notepad</button>
+                        <button class = "ui button" onclick ="runModal()">Edit Notepad</button>
                     </div>
                 </div>
             </div>
     
         </div>
     
+
+        <div id = edit_icon_modal class="ui modal transition">
+            <i class="close icon"></i>
+            <div class="header">
+                Upload your class icon
+            </div>
+            
+            <div class="centering_parent_div" style="text-align: center; display:block; background-color">
+                <div class="ui placeholder segment" id="placeholder_segment" style="width: 80%; margin-top: 10%; margin-bottom: 10%; padding-top:6%; display: inline-block;">
+                    
+                    <div class="ui icon header">
+                        <i class="cloud upload icon"></i>
+                        Upload a JEPG or JPG Image of your icon
+                    </div>
+
+                    <label for="image_upload_input" class="ui primary button" id="upload_button">
+                        <i class="ui upload icon"></i>
+                        Upload image
+                    </label>
+                </div>
+
+
+                <img class="ui large centered rounded image" id="preview_img" src="#" alt=" " style="max-width: 100%; padding: 2%;"/>
+
+            </div>
+            <form id="icon_upload_form" method="POST" action="{{class_name}}/edit_icon" enctype="multipart/form-data">
+                <input type="file" class="inputfile" name="image_upload_input" id="image_upload_input" hidden/>
+            </form>
+            
+                
+    
+            </form> 
+
+            <div class="actions">
+              <div class="ui negative button" tabindex="0" type="button">Cancel</div>
+              <div class="ui positive button" id = "upload_image_button" tabindex="0" type="button">Upload Image</div>
+            </div>
+        </div>
+
+
         <div id = editModal class="ui fullscreen modal transition">
             <i class="close icon"></i>
             <div class="header">
@@ -233,10 +276,74 @@
             <a href="/update">
                 <button class="ui button">Update Class Subject Links</button>
             </a>
+
+            <button class="ui button" onclick="runWallpaperModal()">Change Wallpaper</button>
+
         </div>
 
+        <div id = WallpaperModal class="ui fullscreen modal transition">
+            <i class="close icon"></i>
+            <div class="header">
+                Update Your Class Wallpaper
+            </div>
+            
+
+            <form class="ui form" id="wallpaper_form" method="POST" action="{{class_name}}/edit_wallpaper">
+                <div class="inline fields">
+                  <label for="fruit">Select a Class wallpaper:</label>
+                  <div class="field">
+                    <div class="ui radio checkbox">
+                      <input type="radio" name="chosen_wallpaper" value="static/images/wallpapers/5.jpg"  tabindex="0" class="hidden">
+                      <label><img class="ui medium image" src="static/images/wallpapers/1.jpg"></label>
+                    </div>
+                  </div>
+                  <div class="field">
+                    <div class="ui radio checkbox">
+                      <input type="radio" name="chosen_wallpaper" value="static/images/wallpapers/5.jpg" tabindex="0" class="hidden">
+                      <label><img class="ui medium image" src="static/images/wallpapers/2.jpg"></label>
+                    </div>
+                  </div>
+                  <div class="field">
+                    <div class="ui radio checkbox">
+                      <input type="radio" name="chosen_wallpaper" value="static/images/wallpapers/5.jpg" tabindex="0" class="hidden">
+                      <label><img class="ui medium image" src="static/images/wallpapers/3.jpg"></label>
+                    </div>
+                  </div>
+                  <div class="field">
+                    <div class="ui radio checkbox">
+                      <input type="radio" name="chosen_wallpaper" value="static/images/wallpapers/5.jpg" tabindex="0" class="hidden">
+                      <label><img class="ui medium image" src="static/images/wallpapers/4.jpg"></label>
+                    </div>
+                  </div>
+                  <div class="field">
+                    <div class="ui radio checkbox">
+                      <input type="radio" name="chosen_wallpaper" value="static/images/wallpapers/5.jpg" tabindex="0" class="hidden">
+                      <label><img class="ui medium image" src="static/images/wallpapers/5.jpg"></label>
+                    </div>
+                  </div>
+            </form>
+            
+
+
+            <div class="actions">
+                <div class="ui negative button" tabindex="0" type="button">Cancel</div>
+                <div class="ui positive button" id = "update_wallpaper_number_button" tabindex="0" type="button">Save Wallpaper</div>
+            </div>
+
+    
+        </div>
+
+        
+        <form class="ui form" id="wallpaper_form" method="POST" action="{{class_name}}/edit_wallpaper">
+            <input type="text" name="chosen_wallpaper">
+        </form>
 
         <script>
+            //======================================================================================================================
+            //s$('#wallpaper_form').submit();
+
+            // Initialising Webpage
+            $('#preview_img').hide();
 
             // Helper Function to Escape HTML Special Characters
             function escapeHtml(unsafe) {
@@ -248,10 +355,42 @@
                      .replace(/'/g, "&#039;");
              }
 
+            // --- Javascript for Edit Icon Modal ---
+            function edit_icon(){
+                $('#edit_icon_modal').modal('show');
+            }
+            
+            // Deal with input of icons
+            $('#image_upload_input').on('change', function () {
 
-            // Javascript for Modal
+                $('#placeholder_segment').hide();
+                $('#preview_img').show();
+                readURL(this);
+            });
+
+            // Library Code to Preview Image on Upload
+            function readURL(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        $('#preview_img').attr('src', e.target.result);
+                    }
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+
+            // Code to Submit Icon Edit form on Click
+            $("#upload_image_button").click(function (){
+                // alert("uploading file");
+                $('#icon_upload_form').submit();
+            });
+            
+
+
+            // --- Javascript for Notepad Modal ---
             function runModal(){
-                $('.fullscreen.modal').modal('show');
+                $('#editModal').modal('show');
             }
 
             // Javascript for Updating Notepad
@@ -283,7 +422,20 @@
             }
 
 
-            // JS for moving red indicator across timetable
+            // Javascript for Wallpaper Modal
+            function runWallpaperModal(){
+                $('#WallpaperModal').modal('show');
+            }
+
+
+            $('.ui.radio.checkbox').checkbox()
+
+            $("#update_wallpaper_number_button").click(function (){
+                $('#wallpaper_form').submit();
+            });
+
+
+            // --- JS for moving red indicator across timetable ---
             const monthNames = ["January", "February", "March", "April", "May", "June",
                 "July", "August", "September", "October", "November", "December"
             ];
