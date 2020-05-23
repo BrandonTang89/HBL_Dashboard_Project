@@ -189,13 +189,45 @@
                 <div class="ui button">Download Current links</div>
             </a>
             <a href="/update">
-                <div class="ui button">Update Class Subject Links</div>
+                <button class="ui button">Update Class Subject Links</button>
             </a>
         </div>
 
+        <form id="notepad_form">
+            <input type="text" name="notepad">
+
+            <button class="ui button" id="update_notepad_button" tabindex="0" type="button">Submit</button>
+        </form>
 
 
         <script>
+            // Javascript for Updating Notepad
+            $("#update_notepad_button").click(update_notepad);
+
+            function update_notepad(){
+                var new_data = $('#notepad_form').serializeArray();
+                console.log(new_data);
+                
+                $.ajax({
+                    url: window.location.pathname,
+                    type: 'POST',
+                    data:new_data,
+                    success: function(response) {
+                        console.log(response);
+                        change_current_notepad(response);
+        
+                    },
+                    error: function(error) {
+                        console.log(error);
+                    }
+                });
+            }
+
+            function change_current_notepad(response){
+                console.log("Succesfully Changed Notepad");
+            }
+
+
             // JS for moving red indicator across timetable
             const monthNames = ["January", "February", "March", "April", "May", "June",
                 "July", "August", "September", "October", "November", "December"

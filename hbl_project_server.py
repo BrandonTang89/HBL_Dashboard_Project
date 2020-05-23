@@ -12,6 +12,7 @@ ip_set = ["1A20","1B20","1C20","1D20","1E20","2A19","2B19","2C19","2D19","2E19",
 j1_set = ["0120", "0220", "0320", "0420", "0520", "0620", "0720", "0820", "0920", "1020", "1120", "1220", "1320", "1420", "1520", "1620", "1720", "1820", "1920", "2020", "2120", "2220", "2320", "2420"]
 j2_set = ["0119", "0219", "0319", "0419", "0519", "0619", "0719", "0819", "0919", "1019", "1119", "1219", "1319", "1419", "1519", "1619", "1719", "1819", "1919", "2019", "2119", "2219", "2319", "2419", "2519"]
 
+# For the homepage
 @app.route("/")
 def index():
     img_url = 'static/images/tjc/' + str(random.randint(1,37)) + '.jpg'
@@ -19,7 +20,9 @@ def index():
 
     return render_template("homepage.html", ip_set = ip_set, j1_set = j1_set, j2_set = j2_set, img_url = img_url)
 
-@app.route('/<class_name>')
+
+# For the main dashboard
+@app.route('/<class_name>', methods=['GET'])
 def class_name(class_name):
     
     if not class_name in class_set:
@@ -34,13 +37,25 @@ def class_name(class_name):
                 if row == []:
                     continue
                 link_list.append(row)
+                # link_list.append([html.escape(i) for i in row])
     except:
         link_list = []
 
     print(link_list)
     return render_template("dashboard.html", class_name=class_name, link_list=link_list)
 
+@app.route('/<class_name>', methods=['POST'])
+def update_notepad(class_name):
+    text_file_name = "./static/class_notepad_database/" +  class_name + ".txt"
+    new_text = request.form["notepad"]
 
+    f = open(text_file_name, "w")
+    f.write(new_text)
+    f.close()
+
+    return new_text
+
+# For the Update Page
 @app.route('/update')
 def update_form():
     return render_template("update_form.html")
