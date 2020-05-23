@@ -1,5 +1,6 @@
 <html>
 	<head>
+        <link rel="icon" href="static/images/icons/favicon.png">
 		<title>HBL Dashboard</title>
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='semantic/semantic/dist/semantic.min.css') }}">
         <script src="{{ url_for('static', filename='jquery-3.1.1.min.js') }}"></script>
@@ -28,16 +29,28 @@
                 padding-right: 4px;
             }
 
+            #big_header{
+                color: black; 
+                font-family: 'Trebuchet MS'; 
+                font-weight: 900; 
+                font-size: 100; 
+                margin-left: 3vh; 
+                background-color: rgba(255,255,255,0.7);
+            }
+
         </style>
 
 	</head>
 	<body>
+    
+    <div class = "left floated ui header" id = "big_header"> &nbsp; TJC HBL Dashboards &nbsp </div>
+
         <div class="margined" style="margin-top: 2%;">
             <div class="ui segment">
-                <div class="ui huge centered header">TJC HBL Dashboards</div>
-                <h3 class="ui dividing header">About</h3>
-                <p>Hello! To help everyone out during this HBL time period, we have rolled out a dashboard website for classes to use. <br>
-                    Here you can enjoy a timetable with a live indicator and can access common links required for ur HBL lessons. <br>
+                
+                <h3 class="ui dividing header">About this Website</h3>
+                <p>Hello! To help everyone out during this HBL time period, we have rolled out a dashboard website for classes to use. <br> <br>
+                    Here you can enjoy a timetable with a live indicator and can access common links required for ur HBL lessons. <br><br>
                     Do remind your CG Chairpersons to update your class's custom links! <br>
                     Feel free to use your class's dashboard as your browser homepage for convenience.
                 </p>
@@ -46,7 +59,7 @@
                     
                     <div class="scroll_box">
                         
-                        <h3 class="ui centered dividing header">IP</h3>
+                        <h3 class="ui centered dividing header">Integrated Programme</h3>
                         <div class = "ui three cards">
                             {% for class_name in ip_set %}
                                 <a class=" ui green centered card" href="/{{class_name}}">
@@ -59,7 +72,7 @@
                             {% endfor %}
                         </div>
 
-                        <h3 class="ui centered dividing header">J1</h3>
+                        <h3 class="ui centered dividing header">Junior College 1</h3>
                         <div class = "ui red three cards">
                             {% for class_name in j1_set %}
                                 <a class=" ui centered card" href="/{{class_name}}">
@@ -72,7 +85,7 @@
                             {% endfor %}
                         </div>
 
-                        <h3 class="ui centered dividing header">J2</h3>
+                        <h3 class="ui centered dividing header">Junior College 2</h3>
                         <div class = "ui blue three cards">
                             {% for class_name in j2_set %}
                                 <a class=" ui centered card" href="/{{class_name}}">

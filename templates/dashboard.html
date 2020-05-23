@@ -2,6 +2,7 @@
 
 <head>
     <title>HBL Dashboard</title>
+    <link rel="icon" href="static/images/icons/favicon.png">
     <link rel="stylesheet" type="text/css"
         href="{{ url_for('static', filename='semantic/semantic/dist/semantic.min.css') }}">
     <script src="{{ url_for('static', filename='jquery-3.1.1.min.js') }}"></script>
@@ -280,15 +281,13 @@
 
 
         </div>
+        <button class="ui right floated teal button" onclick="runWallpaperModal()">Change Class Wallpaper</button>
         <a href="/static/class_link_database/{{class_name}}_links.csv">
-            <div class="ui button">Download Current links</div>
+            <div class="ui grey button">Download Current links</div>
         </a>
         <a href="/update">
-            <button class="ui button">Update Class Subject Links</button>
-        </a>
-
-        <button class="ui button" onclick="runWallpaperModal()">Change Wallpaper</button>
-
+            <button class="ui grey button">Update Class Subject Links</button>
+            </a>
     </div>
 
     <div id=WallpaperModal class="ui fullscreen modal transition">
