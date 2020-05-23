@@ -1,512 +1,534 @@
 <html>
-	<head>
-		<title>HBL Dashboard</title>
-        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='semantic/semantic/dist/semantic.min.css') }}">
-        <script src="{{ url_for('static', filename='jquery-3.1.1.min.js') }}"></script>
-        <script src="{{ url_for('static', filename='semantic/semantic/dist/semantic.min.js') }}"></script>
-        
-        <style>
-            body {
-                background-color: azure;
-                background-image: url("static/images/wallpapers/4.jpg");
-                background-repeat: no-repeat;
-                background-attachment: fixed;
-                background-position: center;
-            }
-    
-            .margined {
-                margin-left: 5%;
-                margin-right: 5%;
-                margin-bottom: 2%;
-            }
-    
-            .centered_image {
-                image-rendering: crisp-edges;
-                width: 100%;
-            }
-    
-            .time_table_container {
-                display: block;
-                margin-left: auto;
-                margin-right: auto;
-                width: 100%;
-                height: auto;
-                position: relative;
-    
-                background-color: black;
-            }
-    
-            #time_marker {
-                position: absolute;
-                top: 52.5%;
-                left: 98.4%;
-    
-                margin-left: -3;
-                margin-top: -2;
-            }
-    
-            #time_marker_image {
-                width: 10px;
-            }
-        </style>
-	</head>
-	<body>
-        <div class="margined" style="margin-top: 2%; text-align: center;">
 
-            <div class = "ui grid">
-            
-                <div class = "twelve wide column">
-                    <div class="ui segment">
-                        <div class="ui huge centered header">CG {{class_name[:-2]}}/{{class_name[-2:]}} Home Based Learning Dashboard</div>
-                        <div id="clock" class="ui large header" style="display: inline-block;"></div>
-                        <div class="time_table_container">
-                            <img class="ui image centered_image" style = "min-width: 100%; height: auto;"
-                                src="static/timetables/{{class_name}}.jpeg">
-            
-                            <div class="time_marker" id="time_marker">
-                                <svg height="26" width="26">
-                                    <circle cx="13" cy="13" r="10" stroke="black" stroke-width="3" fill="red" />
-                                </svg>
-                            </div>
+<head>
+    <title>HBL Dashboard</title>
+    <link rel="stylesheet" type="text/css"
+        href="{{ url_for('static', filename='semantic/semantic/dist/semantic.min.css') }}">
+    <script src="{{ url_for('static', filename='jquery-3.1.1.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='semantic/semantic/dist/semantic.min.js') }}"></script>
+
+    <style>
+        body {
+            background-color: azure;
+            background-image: url("{{wallpaper_url}}");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+        }
+
+        .margined {
+            margin-left: 5%;
+            margin-right: 5%;
+            margin-bottom: 2%;
+        }
+
+        .centered_image {
+            image-rendering: crisp-edges;
+            width: 100%;
+        }
+
+        .time_table_container {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 100%;
+            height: auto;
+            position: relative;
+
+            background-color: black;
+        }
+
+        #time_marker {
+            position: absolute;
+            top: 52.5%;
+            left: 98.4%;
+
+            margin-left: -3;
+            margin-top: -2;
+        }
+
+        #time_marker_image {
+            width: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="margined" style="margin-top: 2%; text-align: center;">
+
+        <div class="ui grid">
+
+            <div class="twelve wide column">
+                <div class="ui segment">
+                    <div class="ui huge centered header">CG {{class_name[:-2]}}/{{class_name[-2:]}} Home Based Learning
+                        Dashboard</div>
+                    <div id="clock" class="ui large header" style="display: inline-block;"></div>
+                    <div class="time_table_container">
+                        <img class="ui image centered_image" style="min-width: 100%; height: auto;"
+                            src="static/timetables/{{class_name}}.jpeg">
+
+                        <div class="time_marker" id="time_marker">
+                            <svg height="26" width="26">
+                                <circle cx="13" cy="13" r="10" stroke="black" stroke-width="3" fill="red" />
+                            </svg>
                         </div>
-            
                     </div>
-                </div>
 
-                <div class = "four wide column">
-                    <div class="ui right segment">
-                        <img class="ui  centered rounded image" style="margin-bottom:5px;" src="{{icon_url}}">
-                        
-                        <button class = "ui basic button" onclick ="edit_icon()">Edit Icon</button>
-                    </div>
-                    <div class="ui right segment">
-                        <form class="ui form">
-                            <div class="field">
-                                <label><h3>Class Notepad</h3></label>
-                                <textarea readonly id="notepad_textarea" style="min-height: 55vh;">{{class_notepad}}</textarea>
-                            </div>
-                        </form>
-                        
-                        <button class = "ui button" onclick ="runModal()">Edit Notepad</button>
-                    </div>
                 </div>
             </div>
-    
-        </div>
-    
 
-        <div id = edit_icon_modal class="ui modal transition">
-            <i class="close icon"></i>
-            <div class="header">
-                Upload your class icon
+            <div class="four wide column">
+                <div class="ui right segment">
+                    <img class="ui  centered rounded image" style="margin-bottom:5px;" src="{{icon_url}}">
+
+                    <button class="ui basic button" onclick="edit_icon()">Edit Icon</button>
+                </div>
+                <div class="ui right segment">
+                    <form class="ui form">
+                        <div class="field">
+                            <label>
+                                <h3>Class Notepad</h3>
+                            </label>
+                            <textarea readonly id="notepad_textarea"
+                                style="min-height: 55vh;">{{class_notepad}}</textarea>
+                        </div>
+                    </form>
+
+                    <button class="ui button" onclick="runModal()">Edit Notepad</button>
+                </div>
             </div>
-            
-            <div class="centering_parent_div" style="text-align: center; display:block; background-color">
-                <div class="ui placeholder segment" id="placeholder_segment" style="width: 80%; margin-top: 10%; margin-bottom: 10%; padding-top:6%; display: inline-block;">
-                    
-                    <div class="ui icon header">
-                        <i class="cloud upload icon"></i>
-                        Upload a JEPG or JPG Image of your icon
-                    </div>
+        </div>
 
-                    <label for="image_upload_input" class="ui primary button" id="upload_button">
-                        <i class="ui upload icon"></i>
-                        Upload image
-                    </label>
+    </div>
+
+
+    <div id=edit_icon_modal class="ui modal transition">
+        <i class="close icon"></i>
+        <div class="header">
+            Upload your class icon
+        </div>
+
+        <div class="centering_parent_div" style="text-align: center; display:block; background-color">
+            <div class="ui placeholder segment" id="placeholder_segment"
+                style="width: 80%; margin-top: 10%; margin-bottom: 10%; padding-top:6%; display: inline-block;">
+
+                <div class="ui icon header">
+                    <i class="cloud upload icon"></i>
+                    Upload a JEPG or JPG Image of your icon
                 </div>
 
-
-                <img class="ui large centered rounded image" id="preview_img" src="#" alt=" " style="max-width: 100%; padding: 2%;"/>
-
+                <label for="image_upload_input" class="ui primary button" id="upload_button">
+                    <i class="ui upload icon"></i>
+                    Upload image
+                </label>
             </div>
-            <form id="icon_upload_form" method="POST" action="{{class_name}}/edit_icon" enctype="multipart/form-data">
-                <input type="file" class="inputfile" name="image_upload_input" id="image_upload_input" hidden/>
-            </form>
-            
-                
-    
-            </form> 
-
-            <div class="actions">
-              <div class="ui negative button" tabindex="0" type="button">Cancel</div>
-              <div class="ui positive button" id = "upload_image_button" tabindex="0" type="button">Upload Image</div>
-            </div>
-        </div>
 
 
-        <div id = editModal class="ui fullscreen modal transition">
-            <i class="close icon"></i>
-            <div class="header">
-              Update Your Class Notepad
-            </div>
-            
-
-            <form id="notepad_form" class="ui form">
-                <textarea style = "width: 99%; height: 60%; margin: 10px; font-size: large;" rows = "30" name="notepad" id="edit_notepad">{{class_notepad}}</textarea>
-    
-            </form> 
-
-            <div class="actions">
-              <div class="ui negative button" tabindex="0" type="button">Cancel</div>
-              <div class="ui positive button" id = "update_notepad_button" tabindex="0" type="button">Save Notepad</div>
-            </div>
-        </div>
-
-        <div class="margined">
-            <div class="ui segment margined">
-                <div class="ui large header">General Links</div>
-                <div class="ui cards">
-    
-                    <a class="card" href="https://tinyurl.com/attTJC2" target="_blank">
-                        <div class="content">
-                            <img class="right floated mini ui image"
-                                src="data:image/png;base64,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">
-                            <div class="header">
-                                Attendance & Temperature Taking
-                            </div>
-                            <div class="meta">
-                                Google Form
-                            </div>
-                            <div class="description">
-                                For assembly attendance and temperature taking.
-                            </div>
-                        </div>
-                    </a>
-    
-                    <a class="card" href="https://vle.learning.moe.edu.sg/login" target="_blank">
-                        <div class="content">
-                            <img class="right floated mini ui image"
-                                src="https://static.learning.moe.edu.sg/images/jumbotron/jumbotron.png">
-                            <div class="header">
-                                Student Learning Space
-                            </div>
-                            <div class="meta">
-                                SLS
-                            </div>
-                            <div class="description">
-                                For lectures and some tutorials
-                            </div>
-                        </div>
-                    </a>
-    
-                    <a class="card" href="https://matrix.tjc.edu.sg/index.html" target="_blank">
-                        <div class="content">
-                            <img class="right floated mini ui image"
-                                src="https://cdn.avero-tech.com/tjc/img/icon/android-icon-192x192.png">
-                            <div class="header">
-                                Matrix TJC
-                            </div>
-                            <div class="meta">
-                                Matrix
-                            </div>
-                            <div class="description">
-                                Contains files and videos
-                            </div>
-                        </div>
-                    </a>
-    
-                    <a class="card" href="https://classroom.google.com/u/5/h" target="_blank">
-                        <div class="content">
-                            <img class="right floated mini ui image"
-                                src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Google_Classroom_Logo.png/220px-Google_Classroom_Logo.png">
-                            <div class="header">
-                                Google Classroom
-                            </div>
-                            <div class="meta">
-                                Google Classroom
-                            </div>
-                            <div class="description">
-                                To hand-in assigments and get files
-                            </div>
-                        </div>
-                    </a>
-
-                    <a class="card" href="https://autocite.brandontang89.repl.co/" target="_blank">
-                        <div class="content">
-                            <img class="right floated mini ui image"
-                                src="https://cdn.iconscout.com/icon/free/png-512/a-character-alphabet-letter-32849.png">
-                            <div class="header">
-                                AutoCite
-                            </div>
-                            <div class="meta">
-                                AutoCite
-                            </div>
-                            <div class="description">
-                                Automatic webpage citation generator. Fast, free, fantastic!
-                            </div>
-                        </div>
-                    </a>
-                    
-    
-                </div>
-    
-            </div>
-        </div>
-    
-        <div class="margined">
-            <div class="ui segment margined">
-                <div class="ui large header">Class Links</div>
-                <div class="ui cards">
-
-                    {% for (title, url, desc) in link_list %}
-
-                    <a class="card" href="{{url}}" target="_blank">
-                        <div class="content">
-                            <div class="header">
-                                {{title}}
-                            </div>
-                            <div class="meta">
-                               {{url[:20]}}...
-                            </div>
-                            <div class="description">
-                                {{desc}}
-                            </div>
-                        </div>
-                    </a>
-
-                    {% endfor %}
-    
-                </div>
-
-                
-            </div>
-            <a href="/static/class_link_database/{{class_name}}_links.csv">
-                <div class="ui button">Download Current links</div>
-            </a>
-            <a href="/update">
-                <button class="ui button">Update Class Subject Links</button>
-            </a>
-
-            <button class="ui button" onclick="runWallpaperModal()">Change Wallpaper</button>
+            <img class="ui large centered rounded image" id="preview_img" src="#" alt=" "
+                style="max-width: 100%; padding: 2%;" />
 
         </div>
-
-        <div id = WallpaperModal class="ui fullscreen modal transition">
-            <i class="close icon"></i>
-            <div class="header">
-                Update Your Class Wallpaper
-            </div>
-            
-
-            <form class="ui form" id="wallpaper_form" method="POST" action="{{class_name}}/edit_wallpaper">
-                <div class="inline fields">
-                  <label for="fruit">Select a Class wallpaper:</label>
-                  <div class="field">
-                    <div class="ui radio checkbox">
-                      <input type="radio" name="chosen_wallpaper" value="static/images/wallpapers/5.jpg"  tabindex="0" class="hidden">
-                      <label><img class="ui medium image" src="static/images/wallpapers/1.jpg"></label>
-                    </div>
-                  </div>
-                  <div class="field">
-                    <div class="ui radio checkbox">
-                      <input type="radio" name="chosen_wallpaper" value="static/images/wallpapers/5.jpg" tabindex="0" class="hidden">
-                      <label><img class="ui medium image" src="static/images/wallpapers/2.jpg"></label>
-                    </div>
-                  </div>
-                  <div class="field">
-                    <div class="ui radio checkbox">
-                      <input type="radio" name="chosen_wallpaper" value="static/images/wallpapers/5.jpg" tabindex="0" class="hidden">
-                      <label><img class="ui medium image" src="static/images/wallpapers/3.jpg"></label>
-                    </div>
-                  </div>
-                  <div class="field">
-                    <div class="ui radio checkbox">
-                      <input type="radio" name="chosen_wallpaper" value="static/images/wallpapers/5.jpg" tabindex="0" class="hidden">
-                      <label><img class="ui medium image" src="static/images/wallpapers/4.jpg"></label>
-                    </div>
-                  </div>
-                  <div class="field">
-                    <div class="ui radio checkbox">
-                      <input type="radio" name="chosen_wallpaper" value="static/images/wallpapers/5.jpg" tabindex="0" class="hidden">
-                      <label><img class="ui medium image" src="static/images/wallpapers/5.jpg"></label>
-                    </div>
-                  </div>
-            </form>
-            
-
-
-            <div class="actions">
-                <div class="ui negative button" tabindex="0" type="button">Cancel</div>
-                <div class="ui positive button" id = "update_wallpaper_number_button" tabindex="0" type="button">Save Wallpaper</div>
-            </div>
-
-    
-        </div>
-
-        
-        <form class="ui form" id="wallpaper_form" method="POST" action="{{class_name}}/edit_wallpaper">
-            <input type="text" name="chosen_wallpaper">
+        <form id="icon_upload_form" method="POST" action="{{class_name}}/edit_icon" enctype="multipart/form-data">
+            <input type="file" class="inputfile" name="image_upload_input" id="image_upload_input" hidden />
         </form>
 
-        <script>
-            //======================================================================================================================
-            //s$('#wallpaper_form').submit();
 
-            // Initialising Webpage
-            $('#preview_img').hide();
 
-            // Helper Function to Escape HTML Special Characters
-            function escapeHtml(unsafe) {
-                return unsafe
-                     .replace(/&/g, "&amp;")
-                     .replace(/</g, "&lt;")
-                     .replace(/>/g, "&gt;")
-                     .replace(/"/g, "&quot;")
-                     .replace(/'/g, "&#039;");
-             }
+        </form>
 
-            // --- Javascript for Edit Icon Modal ---
-            function edit_icon(){
-                $('#edit_icon_modal').modal('show');
-            }
-            
-            // Deal with input of icons
-            $('#image_upload_input').on('change', function () {
+        <div class="actions">
+            <div class="ui negative button" tabindex="0" type="button">Cancel</div>
+            <div class="ui positive button" id="upload_image_button" tabindex="0" type="button">Upload Image</div>
+        </div>
+    </div>
 
-                $('#placeholder_segment').hide();
-                $('#preview_img').show();
-                readURL(this);
-            });
 
-            // Library Code to Preview Image on Upload
-            function readURL(input) {
-                if (input.files && input.files[0]) {
-                    var reader = new FileReader();
+    <div id=editModal class="ui fullscreen modal transition">
+        <i class="close icon"></i>
+        <div class="header">
+            Update Your Class Notepad
+        </div>
 
-                    reader.onload = function (e) {
-                        $('#preview_img').attr('src', e.target.result);
-                    }
-                    reader.readAsDataURL(input.files[0]);
+
+        <form id="notepad_form" class="ui form">
+            <textarea style="width: 99%; height: 60%; margin: 10px; font-size: large;" rows="30" name="notepad"
+                id="edit_notepad">{{class_notepad}}</textarea>
+
+        </form>
+
+        <div class="actions">
+            <div class="ui negative button" tabindex="0" type="button">Cancel</div>
+            <div class="ui positive button" id="update_notepad_button" tabindex="0" type="button">Save Notepad</div>
+        </div>
+    </div>
+
+    <div class="margined">
+        <div class="ui segment margined">
+            <div class="ui large header">General Links</div>
+            <div class="ui cards">
+
+                <a class="card" href="https://tinyurl.com/attTJC2" target="_blank">
+                    <div class="content">
+                        <img class="right floated mini ui image"
+                            src="data:image/png;base64,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">
+                        <div class="header">
+                            Attendance & Temperature Taking
+                        </div>
+                        <div class="meta">
+                            Google Form
+                        </div>
+                        <div class="description">
+                            For assembly attendance and temperature taking.
+                        </div>
+                    </div>
+                </a>
+
+                <a class="card" href="https://vle.learning.moe.edu.sg/login" target="_blank">
+                    <div class="content">
+                        <img class="right floated mini ui image"
+                            src="https://static.learning.moe.edu.sg/images/jumbotron/jumbotron.png">
+                        <div class="header">
+                            Student Learning Space
+                        </div>
+                        <div class="meta">
+                            SLS
+                        </div>
+                        <div class="description">
+                            For lectures and some tutorials
+                        </div>
+                    </div>
+                </a>
+
+                <a class="card" href="https://matrix.tjc.edu.sg/index.html" target="_blank">
+                    <div class="content">
+                        <img class="right floated mini ui image"
+                            src="https://cdn.avero-tech.com/tjc/img/icon/android-icon-192x192.png">
+                        <div class="header">
+                            Matrix TJC
+                        </div>
+                        <div class="meta">
+                            Matrix
+                        </div>
+                        <div class="description">
+                            Contains files and videos
+                        </div>
+                    </div>
+                </a>
+
+                <a class="card" href="https://classroom.google.com/u/5/h" target="_blank">
+                    <div class="content">
+                        <img class="right floated mini ui image"
+                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Google_Classroom_Logo.png/220px-Google_Classroom_Logo.png">
+                        <div class="header">
+                            Google Classroom
+                        </div>
+                        <div class="meta">
+                            Google Classroom
+                        </div>
+                        <div class="description">
+                            To hand-in assigments and get files
+                        </div>
+                    </div>
+                </a>
+
+                <a class="card" href="https://autocite.brandontang89.repl.co/" target="_blank">
+                    <div class="content">
+                        <img class="right floated mini ui image"
+                            src="https://cdn.iconscout.com/icon/free/png-512/a-character-alphabet-letter-32849.png">
+                        <div class="header">
+                            AutoCite
+                        </div>
+                        <div class="meta">
+                            AutoCite
+                        </div>
+                        <div class="description">
+                            Automatic webpage citation generator. Fast, free, fantastic!
+                        </div>
+                    </div>
+                </a>
+
+
+            </div>
+
+        </div>
+    </div>
+
+    <div class="margined">
+        <div class="ui segment margined">
+            <div class="ui large header">Class Links</div>
+            <div class="ui cards">
+
+                {% for (title, url, desc) in link_list %}
+
+                <a class="card" href="{{url}}" target="_blank">
+                    <div class="content">
+                        <div class="header">
+                            {{title}}
+                        </div>
+                        <div class="meta">
+                            {{url[:20]}}...
+                        </div>
+                        <div class="description">
+                            {{desc}}
+                        </div>
+                    </div>
+                </a>
+
+                {% endfor %}
+
+            </div>
+
+
+        </div>
+        <a href="/static/class_link_database/{{class_name}}_links.csv">
+            <div class="ui button">Download Current links</div>
+        </a>
+        <a href="/update">
+            <button class="ui button">Update Class Subject Links</button>
+        </a>
+
+        <button class="ui button" onclick="runWallpaperModal()">Change Wallpaper</button>
+
+    </div>
+
+    <div id=WallpaperModal class="ui fullscreen modal transition">
+        <i class="close icon"></i>
+        <div class="header">
+            Update Your Class Wallpaper
+        </div>
+
+
+        <form class="ui form" id="wallpaper_form" method="POST" action="{{class_name}}/edit_wallpaper" style="margin:5vh">
+            <div class="inline fields">
+                <div class="field">
+                    <div class="ui radio checkbox">
+                        <input type="radio" name="chosen_wallpaper" value="static/images/wallpapers/1.jpg" tabindex="0"
+                            class="hidden">
+                        <label><img class="ui medium bordered image" src="static/images/wallpapers/1.jpg"></label>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui radio checkbox">
+                        <input type="radio" name="chosen_wallpaper" value="static/images/wallpapers/2.jpg" tabindex="0"
+                            class="hidden">
+                        <label><img class="ui medium bordered image" src="static/images/wallpapers/2.jpg"></label>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui radio checkbox">
+                        <input type="radio" name="chosen_wallpaper" value="static/images/wallpapers/3.jpg" tabindex="0"
+                            class="hidden">
+                        <label><img class="ui medium bordered image" src="static/images/wallpapers/3.jpg"></label>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui radio checkbox">
+                        <input type="radio" name="chosen_wallpaper" value="static/images/wallpapers/4.jpg" tabindex="0"
+                            class="hidden">
+                        <label><img class="ui medium bordered image" src="static/images/wallpapers/4.jpg"></label>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui radio checkbox">
+                        <input type="radio" name="chosen_wallpaper" value="static/images/wallpapers/5.jpg" tabindex="0"
+                            class="hidden">
+                        <label><img class="ui medium bordered image" src="static/images/wallpapers/5.jpg"></label>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui radio checkbox">
+                        <input type="radio" name="chosen_wallpaper" value="" tabindex="0"
+                            class="hidden">
+                        <label><img class="ui medium bordered image" src="static/images/wallpapers/0.jpg"></label>
+                    </div>
+                </div>
+        </form>
+
+
+
+        <div class="actions">
+            <div class="ui negative button" style = "width: 10vh;" tabindex="0" type="button">Cancel</div>
+            <br><br>
+            <div class="ui positive button" style = "width: 10vh; tabindex="0" id="update_wallpaper_number_button" tabindex="0" type="button">Save Wallpaper</div>
+        </div>
+
+
+    </div>
+
+
+    <form class="ui form" id="wallpaper_form" method="POST" action="{{class_name}}/edit_wallpaper">
+        <input type="text" name="chosen_wallpaper">
+    </form>
+
+    <script>
+        //======================================================================================================================
+        //s$('#wallpaper_form').submit();
+
+        // Initialising Webpage
+        $('#preview_img').hide();
+
+        // Helper Function to Escape HTML Special Characters
+        function escapeHtml(unsafe) {
+            return unsafe
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
+        // --- Javascript for Edit Icon Modal ---
+        function edit_icon() {
+            $('#edit_icon_modal').modal('show');
+        }
+
+        // Deal with input of icons
+        $('#image_upload_input').on('change', function () {
+
+            $('#placeholder_segment').hide();
+            $('#preview_img').show();
+            readURL(this);
+        });
+
+        // Library Code to Preview Image on Upload
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#preview_img').attr('src', e.target.result);
                 }
+                reader.readAsDataURL(input.files[0]);
             }
+        }
 
-            // Code to Submit Icon Edit form on Click
-            $("#upload_image_button").click(function (){
-                // alert("uploading file");
-                $('#icon_upload_form').submit();
-            });
-            
-
-
-            // --- Javascript for Notepad Modal ---
-            function runModal(){
-                $('#editModal').modal('show');
-            }
-
-            // Javascript for Updating Notepad
-            $("#update_notepad_button").click(update_notepad);
-
-            function update_notepad(){
-                var new_data = document.getElementById("edit_notepad").value;
-                new_data = {"new_text": new_data}
-                console.log(new_data);
-                
-                $.ajax({
-                    url: window.location.pathname,
-                    type: 'POST',
-                    data:new_data,
-                    success: function(response) {
-                        console.log(response);
-                        change_current_notepad(response);
-        
-                    },
-                    error: function(error) {
-                        console.log(error);
-                    }
-                });
-            }
-
-            function change_current_notepad(response){
-                $('#notepad_textarea').html(escapeHtml(response));
-                console.log("Succesfully Changed Notepad");
-            }
+        // Code to Submit Icon Edit form on Click
+        $("#upload_image_button").click(function () {
+            // alert("uploading file");
+            $('#icon_upload_form').submit();
+        });
 
 
-            // Javascript for Wallpaper Modal
-            function runWallpaperModal(){
-                $('#WallpaperModal').modal('show');
-            }
 
+        // --- Javascript for Notepad Modal ---
+        function runModal() {
+            $('#editModal').modal('show');
+        }
 
-            $('.ui.radio.checkbox').checkbox()
+        // Javascript for Updating Notepad
+        $("#update_notepad_button").click(update_notepad);
 
-            $("#update_wallpaper_number_button").click(function (){
-                $('#wallpaper_form').submit();
-            });
+        function update_notepad() {
+            var new_data = document.getElementById("edit_notepad").value;
+            new_data = { "new_text": new_data }
+            console.log(new_data);
 
+            $.ajax({
+                url: window.location.pathname,
+                type: 'POST',
+                data: new_data,
+                success: function (response) {
+                    console.log(response);
+                    change_current_notepad(response);
 
-            // --- JS for moving red indicator across timetable ---
-            const monthNames = ["January", "February", "March", "April", "May", "June",
-                "July", "August", "September", "October", "November", "December"
-            ];
-    
-            function get_vertical(day) {
-                return 12.5 + (day - 1) * 18.1;
-            }
-    
-            function get_horizontal(today) {
-                var h = today.getHours();
-                var m = today.getMinutes();
-                var s = today.getSeconds();
-    
-                var time_now = 60 * 60 * h + 60 * m + s; //Seconds from 12 am
-                var seven_thirty = 27000; // Seconds from 12am when time is 7:30 AM
-    
-                var position = ((time_now - seven_thirty) / (37200)) * (99.1 - 10.0) + 10;
-    
-                var day = today.getDay();
-                if (position < 10 || position > 99 || day > 5 || day < 1) {
-                    position = 1000; // Throw the dot off the page if the time is not within the time table time
+                },
+                error: function (error) {
+                    console.log(error);
                 }
-                return position;
+            });
+        }
+
+        function change_current_notepad(response) {
+            $('#notepad_textarea').html(escapeHtml(response));
+            console.log("Succesfully Changed Notepad");
+        }
+
+
+        // Javascript for Wallpaper Modal
+        function runWallpaperModal() {
+            $('#WallpaperModal').modal('show');
+        }
+
+
+        $('.ui.radio.checkbox').checkbox()
+
+        $("#update_wallpaper_number_button").click(function () {
+            $('#wallpaper_form').submit();
+        });
+
+
+        // --- JS for moving red indicator across timetable ---
+        const monthNames = ["January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        ];
+
+        function get_vertical(day) {
+            return 12.5 + (day - 1) * 18.1;
+        }
+
+        function get_horizontal(today) {
+            var h = today.getHours();
+            var m = today.getMinutes();
+            var s = today.getSeconds();
+
+            var time_now = 60 * 60 * h + 60 * m + s; //Seconds from 12 am
+            var seven_thirty = 27000; // Seconds from 12am when time is 7:30 AM
+
+            var position = ((time_now - seven_thirty) / (37200)) * (99.1 - 10.0) + 10;
+
+            var day = today.getDay();
+            if (position < 10 || position > 99 || day > 5 || day < 1) {
+                position = 1000; // Throw the dot off the page if the time is not within the time table time
             }
-    
-            function startTime() {
-                var today = new Date();
-                var pm;
-    
-                // Get Time
-                var h = today.getHours();
-                h = (h - 1) % 12 + 1;
-                if (h < today.getHours()) {
-                    pm = true;
-                }
-                var m = today.getMinutes();
-                var s = today.getSeconds();
-                m = checkTime(m);
-                s = checkTime(s);
-    
-                var half_of_day = "";
-                if (pm) half_of_day = "PM";
-                else half_of_day = "AM";
-    
-                // Get Date
-                var month = monthNames[today.getMonth() - 1]
-                var day = today.getDate();
-    
-                document.getElementById('clock').innerHTML =
-                    h + ":" + m + ":" + s + " " + half_of_day + "  " + month + " " + day;
-                var t = setTimeout(startTime, 500);
-    
-                // Process Dynamic Time Table
-                var day_of_week = today.getDay();
-                var vertical = get_vertical(day_of_week);
-                var horizontal = get_horizontal(today);
-    
-                //console.log("Vertical" +  vertical);
-                //console.log("horizontal" +  horizontal);
-    
-                time_marker_object = document.getElementById("time_marker");
-                time_marker_object.style.top = vertical + "%";
-                time_marker_object.style.left = (horizontal) + "%";
-    
+            return position;
+        }
+
+        function startTime() {
+            var today = new Date();
+            var pm;
+
+            // Get Time
+            var h = today.getHours();
+            h = (h - 1) % 12 + 1;
+            if (h < today.getHours()) {
+                pm = true;
             }
-            function checkTime(i) {
-                if (i < 10) { i = "0" + i };  // add zero in front of numbers < 10
-                return i;
-            }
-            startTime();
-        </script>
-    
-    </body>
-    <html>
+            var m = today.getMinutes();
+            var s = today.getSeconds();
+            m = checkTime(m);
+            s = checkTime(s);
+
+            var half_of_day = "";
+            if (pm) half_of_day = "PM";
+            else half_of_day = "AM";
+
+            // Get Date
+            var month = monthNames[today.getMonth() - 1]
+            var day = today.getDate();
+
+            document.getElementById('clock').innerHTML =
+                h + ":" + m + ":" + s + " " + half_of_day + "  " + month + " " + day;
+            var t = setTimeout(startTime, 500);
+
+            // Process Dynamic Time Table
+            var day_of_week = today.getDay();
+            var vertical = get_vertical(day_of_week);
+            var horizontal = get_horizontal(today);
+
+            //console.log("Vertical" +  vertical);
+            //console.log("horizontal" +  horizontal);
+
+            time_marker_object = document.getElementById("time_marker");
+            time_marker_object.style.top = vertical + "%";
+            time_marker_object.style.left = (horizontal) + "%";
+
+        }
+        function checkTime(i) {
+            if (i < 10) { i = "0" + i };  // add zero in front of numbers < 10
+            return i;
+        }
+        startTime();
+    </script>
+
+</body>
+<html>

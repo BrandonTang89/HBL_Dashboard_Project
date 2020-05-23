@@ -22,7 +22,6 @@ def index():
 
     return render_template("homepage.html", ip_set = ip_set, j1_set = j1_set, j2_set = j2_set, img_url = img_url)
 
-
 # For the main dashboard
 @app.route('/<class_name>', methods=['GET'])
 def class_name(class_name):
@@ -41,6 +40,7 @@ def class_name(class_name):
     except:
         link_list = []
 
+    # Retreive Notepad
     notepad_name = "./static/class_notepad_database/" + class_name + ".txt"
     try:
         with open(notepad_name) as notepad_file:
@@ -53,11 +53,16 @@ def class_name(class_name):
     if not os.path.exists(icon_url):
         icon_url = "https://cdn.avero-tech.com/tjc/img/icon/android-icon-192x192.png"
 
+    # Retreive Selected Wallpaper
     wallpaper_csv_name = "./static/class_wallpaper_database/" + class_name + ".csv"
-    
+    try:
+        with open(wallpaper_csv_name) as csv_file:
+            csv_reader = csv.reader(csv_file, delimiter=',')
+            (wallpaper, wallpaper_url) = next(csv_reader)
+    except:
+        wallpaper_url = ""
 
-
-    return render_template("dashboard.html", class_name=class_name, link_list=link_list, class_notepad=class_notepad, icon_url=icon_url)
+    return render_template("dashboard.html", class_name=class_name, link_list=link_list, class_notepad=class_notepad, icon_url=icon_url,wallpaper_url=wallpaper_url)
 
 @app.route('/<class_name>', methods=['POST'])
 def update_notepad(class_name):
