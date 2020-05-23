@@ -72,6 +72,18 @@
 
                 <div class = "four wide column">
                     <div class="ui right segment">
+                        <img class="ui small centered image" src="https://cdn.avero-tech.com/tjc/img/icon/android-icon-192x192.png">
+                        
+                        <button class = "ui basic button" onclick ="runModal()">Edit Icon</button>
+                    </div>
+                    <div class="ui right segment">
+                        <form class="ui form">
+                            <div class="field">
+                                <label><h3>Class Notepad</h3></label>
+                                <textarea readonly id="notepad_textarea" style="min-height: 60vh;">{{class_notepad}}</textarea>
+                            </div>
+                        </form>
+                        
                         <button class = "ui grey button" onclick ="runModal()">Edit Notepad</button>
                     </div>
                 </div>
@@ -86,8 +98,8 @@
             </div>
             
 
-            <form id="notepad_form">
-                <textarea style = "width: 99%; height: 60%; margin: 10px" rows = "40" name="notepad" id="edit_notepad">{{class_notepad}}</textarea>
+            <form id="notepad_form" class="ui form">
+                <textarea style = "width: 99%; height: 60%; margin: 10px; font-size: large;" rows = "30" name="notepad" id="edit_notepad">{{class_notepad}}</textarea>
     
             </form> 
 
@@ -99,7 +111,7 @@
 
         <div class="margined">
             <div class="ui segment margined">
-                <div class="ui large header">General</div>
+                <div class="ui large header">General Links</div>
                 <div class="ui cards">
     
                     <a class="card" href="https://tinyurl.com/attTJC2" target="_blank">
@@ -190,7 +202,7 @@
     
         <div class="margined">
             <div class="ui segment margined">
-                <div class="ui large header">Subjects</div>
+                <div class="ui large header">Class Links</div>
                 <div class="ui cards">
 
                     {% for (title, url, desc) in link_list %}
@@ -225,6 +237,18 @@
 
 
         <script>
+
+            // Helper Function to Escape HTML Special Characters
+            function escapeHtml(unsafe) {
+                return unsafe
+                     .replace(/&/g, "&amp;")
+                     .replace(/</g, "&lt;")
+                     .replace(/>/g, "&gt;")
+                     .replace(/"/g, "&quot;")
+                     .replace(/'/g, "&#039;");
+             }
+
+
             // Javascript for Modal
             function runModal(){
                 $('.fullscreen.modal').modal('show');
@@ -254,6 +278,7 @@
             }
 
             function change_current_notepad(response){
+                $('#notepad_textarea').html(escapeHtml(response));
                 console.log("Succesfully Changed Notepad");
             }
 
