@@ -1,0 +1,360 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>CG 13/19 HBL Homepage</title>
+    <link rel="icon" type="image/png" sizes="32x32"
+        href="https://gitlab.com/tangyuhanbrandon/testproject/-/raw/master/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16"
+        href="https://gitlab.com/tangyuhanbrandon/testproject/-/raw/master/favicon-16x16.png">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.9/semantic.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.9/semantic.min.js"></script>
+
+    <style>
+        body {
+            background-color: azure;
+        }
+
+        .margined {
+            margin-left: 5%;
+            margin-right: 5%;
+            margin-bottom: 2%;
+        }
+
+        .centered_image {
+            image-rendering: crisp-edges;
+            width: 100%;
+            ;
+        }
+
+        .time_table_container {
+            height: 75%;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 75%;
+            height: auto;
+            position: relative;
+
+            background-color: black;
+        }
+
+        #time_marker {
+            position: absolute;
+            top: 52.5%;
+            left: 98.4%;
+
+            margin-left: -3;
+            margin-top: -2;
+
+        }
+
+        #time_marker_image {
+            width: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="margined" style="margin-top: 2%; text-align: center;">
+        <div class="ui segment">
+            <div class="ui huge centered header">CG 13/19 Home Based Learning Homepage</div>
+            <div id="clock" class="ui large header" style="display: inline-block;"></div>
+            <div class="time_table_container">
+                <img class="ui image centered_image"
+                    src="https://gitlab.com/tangyuhanbrandon/testproject/-/raw/master/HD_TimeTable_HBL.PNG">
+
+                <div class="time_marker" id="time_marker">
+                    <svg height="26" width="26">
+                        <circle cx="13" cy="13" r="10" stroke="black" stroke-width="3" fill="red" />
+                    </svg>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="margined">
+        <div class="ui segment margined">
+            <div class="ui large header">General</div>
+            <div class="ui cards">
+
+                <a class="card" href="https://tinyurl.com/attTJC2" target="_blank">
+                    <div class="content">
+                        <img class="right floated mini ui image"
+                            src="data:image/png;base64,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">
+                        <div class="header">
+                            Attendance & Temperature Taking
+                        </div>
+                        <div class="meta">
+                            Google Form
+                        </div>
+                        <div class="description">
+                            For assembly attendance and temperature taking.
+                        </div>
+                    </div>
+                </a>
+
+                <a class="card" href="https://vle.learning.moe.edu.sg/login" target="_blank">
+                    <div class="content">
+                        <img class="right floated mini ui image"
+                            src="https://static.learning.moe.edu.sg/images/jumbotron/jumbotron.png">
+                        <div class="header">
+                            Student Learning Space
+                        </div>
+                        <div class="meta">
+                            SLS
+                        </div>
+                        <div class="description">
+                            For lectures and some tutorials
+                        </div>
+                    </div>
+                </a>
+
+                <a class="card" href="https://matrix.tjc.edu.sg/index.html" target="_blank">
+                    <div class="content">
+                        <img class="right floated mini ui image"
+                            src="https://cdn.avero-tech.com/tjc/img/icon/android-icon-192x192.png">
+                        <div class="header">
+                            Matrix TJC
+                        </div>
+                        <div class="meta">
+                            Matrix
+                        </div>
+                        <div class="description">
+                            Contains files and videos
+                        </div>
+                    </div>
+                </a>
+
+                <a class="card" href="https://classroom.google.com/u/5/h" target="_blank">
+                    <div class="content">
+                        <img class="right floated mini ui image"
+                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Google_Classroom_Logo.png/220px-Google_Classroom_Logo.png">
+                        <div class="header">
+                            Google Classroom
+                        </div>
+                        <div class="meta">
+                            Google Classroom
+                        </div>
+                        <div class="description">
+                            To hand-in assigments and get files
+                        </div>
+                    </div>
+                </a>
+
+                <!--- Ms Liews stuff keeps changing so :(
+                <a class="card" href="https://meet.google.com/lookup/aqx62is7ff?authuser=5&amp;hs=179" target="_blank">
+                    <div class="content">
+                        <img class="right floated mini ui image"
+                            src="https://cdn.onlinewebfonts.com/svg/img_104502.png">
+                        <div class="header">
+                            Guidance
+                        </div>
+                        <div class="meta">
+                            Google Meet
+                        </div>
+                        <div class="description">
+                            Also for all of Ms Liew's lectures and tutorials.
+                        </div>
+                    </div>
+                </a>
+                -->
+
+            </div>
+
+        </div>
+    </div>
+
+    <div class="margined">
+        <div class="ui segment margined">
+            <div class="ui large header">Subjects</div>
+            <div class="ui cards">
+                <!--- Ms Liews stuff keeps changing so :(
+                <a class="card" href="https://meet.google.com/lookup/aqx62is7ff?authuser=5&amp;hs=179" target="_blank">
+                    <div class="content">
+                        <img class="right floated mini ui image"
+                            src="https://static.thenounproject.com/png/34978-200.png">
+                        <div class="header">
+                            Chemistry Tutorial and Lecture
+                        </div>
+                        <div class="meta">
+                            Google Meet
+                        </div>
+                        <div class="description">
+                            Also for all of Ms Liew's Guidance.
+                        </div>
+                    </div>
+                </a>
+                -->
+                
+
+                <a class="card" href="https://meet.google.com/zof-obbv-xzw" target="_blank">
+                    <div class="content">
+                        <img class="right floated mini ui image"
+                            src="https://www.nicepng.com/png/detail/10-103060_this-math-icon-consists-of-a-perfect-square.png">
+                        <div class="header">
+                            Math Tutorial
+                        </div>
+                        <div class="meta">
+                            Google Meet
+                        </div>
+                        <div class="description">
+                            For all of Mrs Goh's tutorials.
+                        </div>
+                    </div>
+                </a>
+
+                <a class="card" href="https://meet.google.com/xjc-dzxp-hcx" target="_blank">
+                    <div class="content">
+                        <img class="right floated mini ui image"
+                            src="data:image/jpeg;base64,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">
+                        <div class="header">
+                            Economics Tutorial
+                        </div>
+                        <div class="meta">
+                            Google Meet
+                        </div>
+                        <div class="description">
+                            For Economics H2 Tutorial with Ms Teo.
+                        </div>
+                    </div>
+                </a>
+
+                <a class="card" href="https://docs.google.com/spreadsheets/d/1sm-07iJdyVwE2JruCUh-H3Yv5kWCxOAEYyfiVwQMuC0/edit" target="_blank">
+                    <div class="content">
+                        <img class="right floated mini ui image"
+                            src="https://cdn3.iconfinder.com/data/icons/bank-finance/512/Economic-512.png">
+                        <div class="header">
+                            Economics Tutorial Google Sheet
+                        </div>
+                        <div class="meta">
+                            Google Sheets
+                        </div>
+                        <div class="description">
+                            For Economics H2 Tutorial with Ms Teo.
+                        </div>
+                    </div>
+                </a>
+
+
+                <a class="card" href="https://jamboard.google.com/d/1B7rOChtdEvb_f-8dJd3YqPRM_wTjo_luRbBKxuIqhJI/viewer?f=1" target="_blank">
+                    <div class="content">
+                        <img class="right floated mini ui image"
+                            src="https://cdn0.iconfinder.com/data/icons/education-515/99/White_Board_-512.png">
+                        <div class="header">
+                            Economics Tutorial Jam Board
+                        </div>
+                        <div class="meta">
+                            Google Jam Board
+                        </div>
+                        <div class="description">
+                            For Economics H2 Tutorial with Ms Teo.
+                        </div>
+                    </div>
+                </a>
+                
+
+                <a class="card" href="https://meet.google.com/lookup/btftojunsr?authuser=5&hs=179" target="_blank">
+                    <div class="content">
+                        <img class="right floated mini ui image"
+                            src="https://i7.pngguru.com/preview/727/418/385/physics-icon-science-png-photo.jpg">
+                        <div class="header">
+                            Physics Tutorial
+                        </div>
+                        <div class="meta">
+                            Google Meet
+                        </div>
+                        <div class="description">
+                            For H2 Physics with Mr Wong. 
+                        </div>
+                    </div>
+                </a>
+                
+                
+
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+    <script>
+        const monthNames = ["January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        ];
+
+        function get_vertical(day) {
+            return 19.5 + (day - 1) * 16.3;
+        }
+
+        function get_horizontal(today) {
+            var h = today.getHours();
+            var m = today.getMinutes();
+            var s = today.getSeconds();
+
+            var time_now = 60 * 60 * h + 60 * m + s; //Seconds from 12 am
+            var seven_thirty = 27000; // Seconds from 12am when time is 7:30 AM
+
+            var position = ((time_now - seven_thirty) / (37200)) * (98.4 - 10.7) + 10.7; //22800 is the length of time in the time table
+
+            var day = today.getDay();
+            if (position < 10 || position > 99 || day > 5 || day < 1) {
+                position = 1000; // Throw the dot off the page if the time is not within the time table time
+            }
+            return position;
+        }
+
+        function startTime() {
+            var today = new Date();
+            var pm;
+
+            // Get Time
+            var h = today.getHours();
+            h = (h - 1) % 12 + 1;
+            if (h < today.getHours()) {
+                pm = true;
+            }
+            var m = today.getMinutes();
+            var s = today.getSeconds();
+            m = checkTime(m);
+            s = checkTime(s);
+
+            var half_of_day = "";
+            if (pm) half_of_day = "PM";
+            else half_of_day = "AM";
+
+            // Get Date
+            var month = monthNames[today.getMonth() - 1]
+            var day = today.getDate();
+
+            document.getElementById('clock').innerHTML =
+                h + ":" + m + ":" + s + " " + half_of_day + "  " + month + " " + day;
+            var t = setTimeout(startTime, 500);
+
+            // Process Dynamic Time Table
+            var day_of_week = today.getDay();
+            var vertical = get_vertical(day_of_week);
+            var horizontal = get_horizontal(today);
+
+            //console.log("Vertical" +  vertical);
+            //console.log("horizontal" +  horizontal);
+
+            time_marker_object = document.getElementById("time_marker");
+            time_marker_object.style.top = vertical + "%";
+            time_marker_object.style.left = (horizontal) + "%";
+
+        }
+        function checkTime(i) {
+            if (i < 10) { i = "0" + i };  // add zero in front of numbers < 10
+            return i;
+        }
+        startTime();
+    </script>
+
+</body>
+<html>
