@@ -15,7 +15,7 @@
             background-repeat: no-repeat;
             background-attachment: fixed;
             background-position: center;
-            background-size: 100%;
+            background-size: cover;
         }
 
         .margined {
@@ -81,7 +81,7 @@
 
             <div class="four wide column">
                 <div class="ui right segment">
-                    <img class="ui  centered rounded image" style="margin-bottom:5px;" src="{{icon_url}}">
+                    <img class="ui centered rounded image" style="margin-bottom:5px;" src="{{icon_url}}">
 
                     <button class="ui basic button" onclick="edit_icon()">Edit Icon</button>
                 </div>
@@ -110,7 +110,7 @@
             Upload your class icon
         </div>
 
-        <div class="centering_parent_div" style="text-align: center; display:block; background-color">
+        <div class="centering_parent_div" style="text-align: center; display:block;">
             <div class="ui placeholder segment" id="placeholder_segment"
                 style="width: 80%; margin-top: 10%; margin-bottom: 10%; padding-top:6%; display: inline-block;">
 
@@ -349,8 +349,7 @@
         <div class="actions">
             <div class="ui negative button" style="width: 10vh;" tabindex="0" type="button">Cancel</div>
             <br><br>
-            <div class="ui positive button" style="width: 10vh; tabindex=" 0" id="update_wallpaper_number_button"
-                tabindex="0" type="button">Save Wallpaper</div>
+            <div class="ui positive button" style="width: 10vh;" id="update_wallpaper_number_button" tabindex="0" type="button">Save Wallpaper</div>
         </div>
 
 
@@ -534,4 +533,4 @@
     </script>
 
 </body>
-<html>
+</html>
