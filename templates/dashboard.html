@@ -463,6 +463,7 @@
 
         function get_vertical(day) {
             return 12.5 + (day - 1) * 18.1;
+            
         }
 
         function get_horizontal(today) {
@@ -479,6 +480,7 @@
             if (position < 10 || position > 99 || day > 5 || day < 1) {
                 position = 1000; // Throw the dot off the page if the time is not within the time table time
             }
+
             return position;
         }
 

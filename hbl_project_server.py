@@ -66,6 +66,8 @@ def class_name(class_name):
 
 @app.route('/<class_name>', methods=['POST'])
 def update_notepad(class_name):
+    if not class_name in class_set:
+        return ("Invalid Class")
     text_file_name = "./static/class_notepad_database/" +  class_name + ".txt"
     new_text = request.form["new_text"]
 
@@ -79,6 +81,8 @@ def update_notepad(class_name):
 # For upload of icons
 @app.route('/<class_name>/edit_icon', methods=['POST'])
 def update_icon(class_name):
+    if not class_name in class_set:
+        return ("Invalid Class")
     def make_square(im, min_size=190, fill_color=(255, 255, 255, 255)):
         x, y = im.size
         size = max(min_size, x, y)
@@ -106,6 +110,8 @@ def update_icon(class_name):
 # For selection of background
 @app.route('/<class_name>/edit_wallpaper', methods=['POST'])
 def update_wallpaper(class_name):
+    if not class_name in class_set:
+        return ("Invalid Class")
     wallpaper_file_name = "./static/class_wallpaper_database/"+ class_name + ".csv"
     chosen_wallpaper = request.form["chosen_wallpaper"]
     
