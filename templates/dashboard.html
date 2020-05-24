@@ -1,7 +1,7 @@
 <html>
 
 <head>
-    <title>HBL Dashboard</title>
+    <title>HBL Dashboard {{class_name[:-2]}}/{{class_name[-2:]}}</title>
     <link rel="icon" href="static/images/icons/favicon.png">
     <link rel="stylesheet" type="text/css"
         href="{{ url_for('static', filename='semantic/semantic/dist/semantic.min.css') }}">
@@ -288,7 +288,7 @@
         </a>
         <a href="/update">
             <button class="ui grey button">Update Class Subject Links</button>
-            </a>
+        </a>
     </div>
 
     <div id=WallpaperModal class="ui fullscreen modal transition">
@@ -298,7 +298,8 @@
         </div>
 
 
-        <form class="ui form" id="wallpaper_form" method="POST" action="{{class_name}}/edit_wallpaper" style="margin:5vh">
+        <form class="ui form" id="wallpaper_form" method="POST" action="{{class_name}}/edit_wallpaper"
+            style="margin:5vh">
             <div class="inline fields">
                 <div class="field">
                     <div class="ui radio checkbox">
@@ -337,8 +338,7 @@
                 </div>
                 <div class="field">
                     <div class="ui radio checkbox">
-                        <input type="radio" name="chosen_wallpaper" value="" tabindex="0"
-                            class="hidden">
+                        <input type="radio" name="chosen_wallpaper" value="" tabindex="0" class="hidden">
                         <label><img class="ui medium bordered image" src="static/images/wallpapers/0.jpg"></label>
                     </div>
                 </div>
@@ -347,9 +347,10 @@
 
 
         <div class="actions">
-            <div class="ui negative button" style = "width: 10vh;" tabindex="0" type="button">Cancel</div>
+            <div class="ui negative button" style="width: 10vh;" tabindex="0" type="button">Cancel</div>
             <br><br>
-            <div class="ui positive button" style = "width: 10vh; tabindex="0" id="update_wallpaper_number_button" tabindex="0" type="button">Save Wallpaper</div>
+            <div class="ui positive button" style="width: 10vh; tabindex=" 0" id="update_wallpaper_number_button"
+                tabindex="0" type="button">Save Wallpaper</div>
         </div>
 
 
@@ -464,7 +465,7 @@
 
         function get_vertical(day) {
             return 12.5 + (day - 1) * 18.1;
-            
+
         }
 
         function get_horizontal(today) {

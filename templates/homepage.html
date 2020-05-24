@@ -1,125 +1,129 @@
 <html>
-	<head>
-        <link rel="icon" href="static/images/icons/favicon.png">
-		<title>HBL Dashboard</title>
-        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='semantic/semantic/dist/semantic.min.css') }}">
-        <script src="{{ url_for('static', filename='jquery-3.1.1.min.js') }}"></script>
-        <script src="{{ url_for('static', filename='semantic/semantic/dist/semantic.min.js') }}"></script>
-        
-        <style>
-            body {
-                
-                background-image: url("{{img_url}}");
-                background-size: 100%;
-                background-repeat: no-repeat;
-                background-attachment: fixed;
-                background-position: center;
-                overflow-y:hidden;
-            }
-    
-            .margined {
-                margin-left: 70%;
-                margin-right: 3%;
-                margin-bottom: 2%;
-            }
 
-            .scroll_box{
-                max-height: 62vh;
-                overflow-y: scroll;
-                overflow-x:hidden;
-                max-width: 100%;
-                padding-left: 3px;
-                padding-right: 4px;
-            }
+<head>
+    <link rel="icon" href="static/images/icons/favicon.png">
+    <title>HBL Dashboard Home</title>
+    <link rel="stylesheet" type="text/css"
+        href="{{ url_for('static', filename='semantic/semantic/dist/semantic.min.css') }}">
+    <script src="{{ url_for('static', filename='jquery-3.1.1.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='semantic/semantic/dist/semantic.min.js') }}"></script>
 
-            #big_header{
-                color: black; 
-                font-family: 'Trebuchet MS'; 
-                font-weight: 900; 
-                font-size: 100; 
-                margin-left: 3vh; 
-                background-color: rgba(255,255,255,0.7);
-            }
+    <style>
+        body {
 
-        </style>
+            background-image: url("{{img_url}}");
+            background-size: 100%;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            overflow-y: hidden;
+        }
 
-	</head>
-	<body>
-    
-    <div class = "left floated ui header" id = "big_header"> &nbsp; TJC HBL Dashboards &nbsp </div>
+        .margined {
+            margin-left: 70%;
+            margin-right: 3%;
+            margin-bottom: 2%;
+        }
 
-        <div class="margined" style="margin-top: 2%;">
-            <div class="ui segment">
-                
-                <h3 class="ui dividing header">About this Website</h3>
-                <p>Hello! To help everyone out during this HBL time period, we have rolled out a dashboard website for classes to use. <br> <br>
-                    Here you can enjoy a timetable with a live indicator and can access common links required for ur HBL lessons. <br><br>
-                    Do remind your CG Chairpersons to update your class's custom links! <br>
-                    Feel free to use your class's dashboard as your browser homepage for convenience.
-                </p>
-                <h3 class="ui dividing header">Links for Classes</h3>
-                <div class="ui cards">
-                    
-                    <div class="scroll_box">
-                        
-                        <h3 class="ui centered dividing header">Integrated Programme</h3>
-                        <div class = "ui three cards">
-                            {% for class_name in ip_set %}
-                                <a class=" ui green centered card" href="/{{class_name}}">
-                                    <div class="content">
-                                        <div class="center aligned header">
-                                            {{class_name[:-2]}}/ {{class_name[-2:]}}
-                                        </div>
-                                    </div>
-                                </a>
-                            {% endfor %}
-                        </div>
+        .scroll_box {
+            max-height: 62vh;
+            overflow-y: scroll;
+            overflow-x: hidden;
+            max-width: 100%;
+            padding-left: 3px;
+            padding-right: 4px;
+        }
 
-                        <h3 class="ui centered dividing header">Junior College 1</h3>
-                        <div class = "ui red three cards">
-                            {% for class_name in j1_set %}
-                                <a class=" ui centered card" href="/{{class_name}}">
-                                    <div class="content">
-                                        <div class="center aligned header">
-                                            {{class_name[:-2]}}/ {{class_name[-2:]}}
-                                        </div>
-                                    </div>
-                                </a>
-                            {% endfor %}
-                        </div>
+        #big_header {
+            color: black;
+            font-family: 'Trebuchet MS';
+            font-weight: 900;
+            font-size: 100;
+            margin-left: 3vh;
+            background-color: rgba(255, 255, 255, 0.7);
+        }
+    </style>
 
-                        <h3 class="ui centered dividing header">Junior College 2</h3>
-                        <div class = "ui blue three cards">
-                            {% for class_name in j2_set %}
-                                <a class=" ui centered card" href="/{{class_name}}">
-                                    <div class="content">
-                                        <div class="center aligned header">
-                                            {{class_name[:-2]}}/ {{class_name[-2:]}}
-                                        </div>
-                                    </div>
-                                </a>
-                            {% endfor %}
-                        </div>
+</head>
 
+<body>
+
+    <div class="left floated ui header" id="big_header"> &nbsp; TJC HBL Dashboards &nbsp </div>
+
+    <div class="margined" style="margin-top: 2%;">
+        <div class="ui segment">
+
+            <h3 class="ui dividing header">About this Website</h3>
+            <p>Hello! To help everyone out during this HBL time period, we have rolled out a dashboard website for
+                classes to use. <br> <br>
+                Here you can enjoy a timetable with a live indicator and can access common links required for ur HBL
+                lessons. <br><br>
+                Do remind your CG Chairpersons to update your class's custom links! <br>
+                Feel free to use your class's dashboard as your browser homepage for convenience.
+            </p>
+            <h3 class="ui dividing header">Links for Classes</h3>
+            <div class="ui cards">
+
+                <div class="scroll_box">
+
+                    <h3 class="ui centered dividing header">Integrated Programme</h3>
+                    <div class="ui three cards">
+                        {% for class_name in ip_set %}
+                        <a class=" ui green centered card" href="/{{class_name}}">
+                            <div class="content">
+                                <div class="center aligned header">
+                                    {{class_name[:-2]}}/ {{class_name[-2:]}}
+                                </div>
+                            </div>
+                        </a>
+                        {% endfor %}
                     </div>
-                    
+
+                    <h3 class="ui centered dividing header">Junior College 1</h3>
+                    <div class="ui red three cards">
+                        {% for class_name in j1_set %}
+                        <a class=" ui centered card" href="/{{class_name}}">
+                            <div class="content">
+                                <div class="center aligned header">
+                                    {{class_name[:-2]}}/ {{class_name[-2:]}}
+                                </div>
+                            </div>
+                        </a>
+                        {% endfor %}
+                    </div>
+
+                    <h3 class="ui centered dividing header">Junior College 2</h3>
+                    <div class="ui blue three cards">
+                        {% for class_name in j2_set %}
+                        <a class=" ui centered card" href="/{{class_name}}">
+                            <div class="content">
+                                <div class="center aligned header">
+                                    {{class_name[:-2]}}/ {{class_name[-2:]}}
+                                </div>
+                            </div>
+                        </a>
+                        {% endfor %}
+                    </div>
+
                 </div>
 
-
-
-                    
-                </div>
-
-               
-                    
-                
             </div>
-    
+
+
+
+
         </div>
 
-    
-        <script>
-        </script>
-    
-    </body>
-    <html>
+
+
+
+    </div>
+
+    </div>
+
+
+    <script>
+    </script>
+
+</body>
+<html>

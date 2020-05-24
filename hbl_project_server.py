@@ -8,19 +8,23 @@ from PIL import Image
 from hash_table import *
 app = Flask(__name__)
 
-class_set =  ["1A20","1B20","1C20","1D20","1E20","2A19","2B19","2C19","2D19","2E19","3A20","3B20","3C20","3D20","3E20","3F20","4A19","4B19","4C19","4D19","4E19","4F19","0120", "0220", "0320", "0420", "0520", "0620", "0720", "0820", "0920", "1020", "1120", "1220", "1320", "1420", "1520", "1620", "1720", "1820", "1920", "2020", "2120", "2220", "2320", "2420", "0119", "0219", "0319", "0419", "0519", "0619", "0719", "0819", "0919", "1019", "1119", "1219", "1319", "1419", "1519", "1619", "1719", "1819", "1919", "2019", "2119", "2219", "2319", "2419", "2519"]
+class_set = ["1A20", "1B20", "1C20", "1D20", "1E20", "2A19", "2B19", "2C19", "2D19", "2E19", "3A20", "3B20", "3C20", "3D20", "3E20", "3F20", "4A19", "4B19", "4C19", "4D19", "4E19", "4F19", "0120", "0220", "0320", "0420", "0520", "0620", "0720", "0820", "0920", "1020", "1120", "1220", "1320",
+             "1420", "1520", "1620", "1720", "1820", "1920", "2020", "2120", "2220", "2320", "2420", "0119", "0219", "0319", "0419", "0519", "0619", "0719", "0819", "0919", "1019", "1119", "1219", "1319", "1419", "1519", "1619", "1719", "1819", "1919", "2019", "2119", "2219", "2319", "2419", "2519"]
 
-ip_set = ["1A20","1B20","1C20","1D20","1E20","2A19","2B19","2C19","2D19","2E19","3A20","3B20","3C20","3D20","3E20","3F20","4A19","4B19","4C19","4D19","4E19","4F19"]
-j1_set = ["0120", "0220", "0320", "0420", "0520", "0620", "0720", "0820", "0920", "1020", "1120", "1220", "1320", "1420", "1520", "1620", "1720", "1820", "1920", "2020", "2120", "2220", "2320", "2420"]
-j2_set = ["0119", "0219", "0319", "0419", "0519", "0619", "0719", "0819", "0919", "1019", "1119", "1219", "1319", "1419", "1519", "1619", "1719", "1819", "1919", "2019", "2119", "2219", "2319", "2419", "2519"]
+ip_set = ["1A20", "1B20", "1C20", "1D20", "1E20", "2A19", "2B19", "2C19", "2D19", "2E19",
+          "3A20", "3B20", "3C20", "3D20", "3E20", "3F20", "4A19", "4B19", "4C19", "4D19", "4E19", "4F19"]
+j1_set = ["0120", "0220", "0320", "0420", "0520", "0620", "0720", "0820", "0920", "1020", "1120",
+          "1220", "1320", "1420", "1520", "1620", "1720", "1820", "1920", "2020", "2120", "2220", "2320", "2420"]
+j2_set = ["0119", "0219", "0319", "0419", "0519", "0619", "0719", "0819", "0919", "1019", "1119", "1219",
+          "1319", "1419", "1519", "1619", "1719", "1819", "1919", "2019", "2119", "2219", "2319", "2419", "2519"]
 
 # For the homepage
 @app.route("/")
 def index():
-    img_url = 'static/images/tjc/' + str(random.randint(1,37)) + '.jpg'
-    print (img_url)
+    img_url = 'static/images/tjc/' + str(random.randint(1, 37)) + '.jpg'
+    print(img_url)
 
-    return render_template("homepage.html", ip_set = ip_set, j1_set = j1_set, j2_set = j2_set, img_url = img_url)
+    return render_template("homepage.html", ip_set=ip_set, j1_set=j1_set, j2_set=j2_set, img_url=img_url)
 
 # For the main dashboard
 @app.route('/<class_name>', methods=['GET'])
@@ -46,8 +50,8 @@ def class_name(class_name):
         with open(notepad_name) as notepad_file:
             class_notepad = notepad_file.read()
     except:
-        class_notepad =""
-    
+        class_notepad = ""
+
     # Choose Icon URL
     icon_url = "./static/class_icon_database/" + class_name + ".png"
     if not os.path.exists(icon_url):
@@ -62,13 +66,14 @@ def class_name(class_name):
     except:
         wallpaper_url = ""
 
-    return render_template("dashboard.html", class_name=class_name, link_list=link_list, class_notepad=class_notepad, icon_url=icon_url,wallpaper_url=wallpaper_url)
+    return render_template("dashboard.html", class_name=class_name, link_list=link_list, class_notepad=class_notepad, icon_url=icon_url, wallpaper_url=wallpaper_url)
+
 
 @app.route('/<class_name>', methods=['POST'])
 def update_notepad(class_name):
     if not class_name in class_set:
         return ("Invalid Class")
-    text_file_name = "./static/class_notepad_database/" +  class_name + ".txt"
+    text_file_name = "./static/class_notepad_database/" + class_name + ".txt"
     new_text = request.form["new_text"]
 
     f = open(text_file_name, "w")
@@ -83,6 +88,7 @@ def update_notepad(class_name):
 def update_icon(class_name):
     if not class_name in class_set:
         return ("Invalid Class")
+
     def make_square(im, min_size=190, fill_color=(255, 255, 255, 255)):
         x, y = im.size
         size = max(min_size, x, y)
@@ -90,7 +96,7 @@ def update_icon(class_name):
         new_im.paste(im, (int((size - x) / 2), int((size - y) / 2)))
         return new_im
 
-    icon_file_name = "./static/class_icon_database/" + class_name +".png"
+    icon_file_name = "./static/class_icon_database/" + class_name + ".png"
 
     # Write Raw Files
     image_data = request.files['image_upload_input'].read()
@@ -101,55 +107,58 @@ def update_icon(class_name):
     # Modify and Resave Square Files
     im = Image.open(icon_file_name)
     im = make_square(im)
-    im.thumbnail((192,192))
+    im.thumbnail((192, 192))
     im.save(icon_file_name)
-    
+
     print("Image Written to", icon_file_name)
     return (render_template("success_update.html", class_name=class_name, updated_content="Class Icon"))
 
 # For selection of background
+
+
 @app.route('/<class_name>/edit_wallpaper', methods=['POST'])
 def update_wallpaper(class_name):
     if not class_name in class_set:
         return ("Invalid Class")
-    wallpaper_file_name = "./static/class_wallpaper_database/"+ class_name + ".csv"
+    wallpaper_file_name = "./static/class_wallpaper_database/" + class_name + ".csv"
     chosen_wallpaper = request.form["chosen_wallpaper"]
-    
+
     csv_file = open(wallpaper_file_name, 'w')
     with csv_file:
         writer = csv.writer(csv_file)
         writer.writerow(["wallpaper", chosen_wallpaper])
 
     return (render_template("success_update.html", class_name=class_name, updated_content="Class wallpaper"))
-    
+
 
 # For the Update Page
 @app.route('/update')
 def update_form():
     return render_template("update_form.html")
 
+
 @app.route('/submit_update', methods=['POST'])
 def submit_update():
     def check_password(class_name, user_pass):
         if hash_dict[class_name] == hashlib.sha1(user_pass.encode(encoding='UTF-8')).hexdigest():
             return True
-        
+
     user_pass = request.form['password']
     class_name = request.form['class_name']
 
     if not class_name in class_set:
         return ("INVALID Class")
-    
+
     if not check_password(class_name, user_pass):
         return (render_template("invalid_pass.html"))
 
     link_list = []
-    
+
     for index in range(1, 16):
-        
-        title = request.form['title_'+ str(index) + "_custom"]
+
+        title = request.form['title_' + str(index) + "_custom"]
         if title == "":
-            title = request.form['title_'+ str(index)]
+            title = request.form['title_' + str(index)]
 
         url = request.form["url_" + str(index)]
         desc = request.form["desc_" + str(index)]
@@ -166,7 +175,6 @@ def submit_update():
 
         for row in link_list:
             writer.writerow(row)
-
 
     return (render_template("success_update.html", class_name=class_name, updated_content="Class Links"))
 
