@@ -114,8 +114,6 @@ def update_icon(class_name):
     return (render_template("success_update.html", class_name=class_name, updated_content="Class Icon"))
 
 # For selection of background
-
-
 @app.route('/<class_name>/edit_wallpaper', methods=['POST'])
 def update_wallpaper(class_name):
     if not class_name in class_set:

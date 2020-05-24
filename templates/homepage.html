@@ -1,16 +1,17 @@
 <html>
 
 <head>
-    <link rel="icon" href="static/images/icons/favicon.png">
     <title>HBL Dashboard Home</title>
+    <link rel="icon" href="static/images/icons/favicon.png">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
     <link rel="stylesheet" type="text/css"
         href="{{ url_for('static', filename='semantic/semantic/dist/semantic.min.css') }}">
     <script src="{{ url_for('static', filename='jquery-3.1.1.min.js') }}"></script>
     <script src="{{ url_for('static', filename='semantic/semantic/dist/semantic.min.js') }}"></script>
 
     <style>
+        html {zoom: 100%;}
         body {
-
             background-image: url("{{img_url}}");
             background-size: cover;
             background-repeat: no-repeat;
@@ -41,6 +42,7 @@
             font-size: 100;
             margin-left: 3vh;
             background-color: rgba(255, 255, 255, 0.7);
+            max-width: 80%;
         }
     </style>
 
@@ -104,26 +106,12 @@
                         </a>
                         {% endfor %}
                     </div>
-
                 </div>
-
             </div>
-
-
-
-
         </div>
-
-
-
-
     </div>
 
     </div>
-
-
-    <script>
-    </script>
 
 </body>
 <html>
