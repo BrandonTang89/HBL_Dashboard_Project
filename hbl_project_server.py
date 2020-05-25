@@ -176,6 +176,36 @@ def submit_update():
 
     return (render_template("success_update.html", class_name=class_name, updated_content="Class Links"))
 
+# For the Game Page
+@app.route('/<class_name>/game', methods=['GET'])
+def game(class_name):
+    return render_template("2048/index.html", class_name="class_name")
+
+# Update Class Score with Total Score
+@app.route('/<class_name>/game', methods=['POST'])
+def update_class_score(class_name):
+    if not class_name in class_set:
+        return ("Invalid Class")
+
+    text_file_name = "./static/class_2048_database/" + class_name + ".txt"
+    new_score = float(request.form["score"])
+
+    # Get Existing Score (If Any)
+    if os.path.exists(text_file_name):
+        with open(text_file_name) as f:
+            cur_score = float(f.read())
+    else:
+        cur_score = 0
+
+    # Calculate New Score and Write to File
+    total_score = str(cur_score + new_score)
+
+    f = open(text_file_name, "w")
+    f.write(total_score)
+    f.close()
+
+    return total_score
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port='3000', debug=True)
