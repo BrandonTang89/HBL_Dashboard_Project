@@ -289,6 +289,13 @@
         <a href="/update">
             <button class="ui grey button">Update Class Subject Links</button>
         </a>
+
+        
+        <div class="ui slider checkbox">
+            <input type="checkbox" tabindex="0" class="hidden" id="bell_checkbox" checked>
+            <label>25 Min Bell</label>
+        </div>
+
     </div>
 
     <div id=WallpaperModal class="ui fullscreen modal transition">
@@ -355,17 +362,12 @@
 
     </div>
 
-
-    <form class="ui form" id="wallpaper_form" method="POST" action="{{class_name}}/edit_wallpaper">
-        <input type="text" name="chosen_wallpaper">
-    </form>
-
     <script>
         //======================================================================================================================
-        //s$('#wallpaper_form').submit();
 
         // Initialising Webpage
         $('#preview_img').hide();
+        $('.ui.checkbox').checkbox();
 
         // Helper Function to Escape HTML Special Characters
         function escapeHtml(unsafe) {
@@ -485,7 +487,7 @@
             return position;
         }
 
-        function startTime() {
+        async function startTime() {
             var today = new Date();
             var pm;
 
@@ -510,8 +512,7 @@
 
             document.getElementById('clock').innerHTML =
                 h + ":" + m + ":" + s + " " + half_of_day + "  " + month + " " + day;
-            var t = setTimeout(startTime, 500);
-
+            
             // Process Dynamic Time Table
             var day_of_week = today.getDay();
             var vertical = get_vertical(day_of_week);
@@ -524,12 +525,38 @@
             time_marker_object.style.top = vertical + "%";
             time_marker_object.style.left = (horizontal) + "%";
 
+           
+
+            // 25 Min Bell
+            if ($("#bell_checkbox").prop("checked")){ 
+                var h = today.getHours(); // Reset Hours
+    
+                var first_bell = 60*60*7  + 60*30; //7 30am
+                var last_bell = 60*60*17  + 60*50; //5 50pm
+                var time_now = 60 * 60 * h + 60 * m + s;
+
+                if (time_now => first_bell &&  time_now <= last_bell){
+                    if ((time_now - first_bell)%(1500) == 0){
+                        console.log("Bell Ring " + time_now);
+                        var audio = new Audio('static/audio/bell_audio.mp3');
+                        audio.play();
+                        await new Promise(r => setTimeout(r, 1000));
+                    }
+                }
+            }
+
+            var t = setTimeout(startTime, 500); // Call This function Again
+            
+
         }
         function checkTime(i) {
             if (i < 10) { i = "0" + i };  // add zero in front of numbers < 10
             return i;
         }
         startTime();
+
+        //var audio = new Audio('static/audio/bell_audio.mp3');
+        //audio.play();
     </script>
 
 </body>
