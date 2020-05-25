@@ -1,1 +1,1 @@
-Contains Icons uploaded by classes
+Contains Scores for 2048 Game

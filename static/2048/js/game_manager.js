@@ -56,6 +56,9 @@ GameManager.prototype.setup = function () {
 
   // Update the actuator
   this.actuate();
+
+  // Set up the Initial Scoreboard
+  this.send_score(0);
 };
 
 // Set up the initial tiles to start the game with
@@ -86,6 +89,9 @@ GameManager.prototype.send_score = function(score){
       success: function (response) {
           console.log("Total Score: " + response);
           console.log("Sent Scores to Server");
+          
+          $("#class_score_box").html("Class Score:  " + Math.floor(response));
+
       },
       error: function (error) {
           console.log(error);

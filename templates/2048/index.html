@@ -17,6 +17,24 @@
   <meta name="HandheldFriendly" content="True">
   <meta name="MobileOptimized" content="320">
   <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0, maximum-scale=1, user-scalable=no, minimal-ui">
+
+
+  <style>
+    #rcorners2 {
+        border-radius: 25px;
+        border: 2px solid #73AD21;
+        padding: 20px;
+        width: 90%;
+        height: 100%;
+      }
+
+      ul.a {
+      list-style-type: circle;
+      font-weight: bold;
+      }       
+
+  </style>
+
 </head>
 <body>
   <div class="container">
@@ -74,6 +92,10 @@
       </div>
     </div>
 
+    <div id = "rcorners2" style="margin-top: 5vh;">
+      <h2 id="class_score_box">Class Score: </h2> 
+    </div>
+
     <p class="game-explanation">
       <strong class="important">How to play:</strong> Use your <strong>arrow keys</strong> to move the tiles. When two tiles with the same number touch, they <strong>merge into one!</strong>
     </p>
@@ -87,10 +109,6 @@
     </p>
   </div>
 
-  <form>
-    <input type="hidden" value="{{class_name}}" name="class_name">
-    <input type="hidden" value="0" name="score">
-  </form>
 
 
   <script src="{{ url_for('static', filename='2048/js/bind_polyfill.js') }}"></script>

@@ -260,6 +260,23 @@
             <div class="ui large header">Class Links</div>
             <div class="ui cards">
 
+                <a class="card" href="{{class_name}}/game" target="_blank">
+                    <div class="content">
+                        <div class="header">
+                            2048 Game
+                        </div>
+                        <div class="meta">
+                            2048 Game
+                        </div>
+                        <div class="description">
+                            Class Score: <b>{{class_score}}</b><br>
+                            Play 2048 and help increase ur class score!
+                        </div>
+                    </div>
+                </a>
+
+
+
                 {% for (title, url, desc) in link_list %}
 
                 <a class="card" href="{{url}}" target="_blank">
@@ -293,7 +310,7 @@
 
                  
                 <div class="ui toggle checkbox" style="background-color:#E0E1E3; padding: 10px; border-radius: 6px;">
-                    <input type="checkbox" tabindex="0" class="hidden" id="bell_checkbox">
+                    <input type="checkbox" tabindex="0" class="hidden" id="bell_checkbox" checked>
                      <label>25 Min Bell</label>
                 </div>
         

@@ -66,7 +66,17 @@ def class_name(class_name):
     except:
         wallpaper_url = ""
 
-    return render_template("dashboard.html", class_name=class_name, link_list=link_list, class_notepad=class_notepad, icon_url=icon_url, wallpaper_url=wallpaper_url)
+    # Retreive 2048 Game Scores
+    game_score_filename = "./static/class_2048_database/" + class_name + ".txt"
+
+    
+    try:
+        with open(game_score_filename) as game_score_file:
+            class_score = str(int(float(game_score_file.read())))
+    except:
+        class_score = "0"
+
+    return render_template("dashboard.html", class_name=class_name, link_list=link_list, class_notepad=class_notepad, icon_url=icon_url, wallpaper_url=wallpaper_url, class_score=class_score)
 
 
 @app.route('/<class_name>', methods=['POST'])
