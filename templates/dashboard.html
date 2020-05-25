@@ -292,7 +292,7 @@
 
         
         <div class="ui slider checkbox">
-            <input type="checkbox" tabindex="0" class="hidden" id="bell_checkbox" checked>
+            <input type="checkbox" tabindex="0" class="hidden" id="bell_checkbox">
             <label>25 Min Bell</label>
         </div>
 
@@ -528,12 +528,20 @@
            
 
             // 25 Min Bell
+            
             if ($("#bell_checkbox").prop("checked")){ 
                 var h = today.getHours(); // Reset Hours
+                var m = today.getMinutes(); // Reset Min
+                var s = today.getSeconds(); // Reset Sec
     
-                var first_bell = 60*60*7  + 60*30; //7 30am
-                var last_bell = 60*60*17  + 60*50; //5 50pm
-                var time_now = 60 * 60 * h + 60 * m + s;
+                var first_bell = 60*60*8  + 60*15; //8 15am
+                var last_bell = 1000+ 60*60*17  + 60*50; //5 50pm
+                var time_now = 60 * 60 * h + 60 * m + (s);
+
+                // console.log("Hours:" + h);
+                // console.log("Mins:" + m);
+                // console.log("Sec:" + s);
+                // console.log((time_now - first_bell)%(1500));
 
                 if (time_now => first_bell &&  time_now <= last_bell){
                     if ((time_now - first_bell)%(1500) == 0){
