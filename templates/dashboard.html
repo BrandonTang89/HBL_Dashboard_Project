@@ -282,19 +282,23 @@
 
 
         </div>
-        <button class="ui right floated teal button" onclick="runWallpaperModal()">Change Class Wallpaper</button>
-        <a href="/static/class_link_database/{{class_name}}_links.csv">
-            <div class="ui grey button">Download Current links</div>
-        </a>
-        <a href="/update">
-            <button class="ui grey button">Update Class Subject Links</button>
-        </a>
+        <!--<div class="ui blue segment">-->
+                
+                <a href="/static/class_link_database/{{class_name}}_links.csv">
+                    <div class="ui white button">Download Current links</div>
+                </a>
+                <a href="/update">
+                    <button class="ui white button">Update Class Subject Links</button>
+                </a>
 
+                 
+                <div class="ui toggle checkbox" style="background-color:#E0E1E3; padding: 10px; border-radius: 6px;">
+                    <input type="checkbox" tabindex="0" class="hidden" id="bell_checkbox">
+                     <label>25 Min Bell</label>
+                </div>
         
-        <div class="ui slider checkbox">
-            <input type="checkbox" tabindex="0" class="hidden" id="bell_checkbox">
-            <label>25 Min Bell</label>
-        </div>
+                <button class="ui right floated teal button" onclick="runWallpaperModal()">Change Class Wallpaper</button>
+
 
     </div>
 
@@ -528,13 +532,12 @@
            
 
             // 25 Min Bell
-            
             if ($("#bell_checkbox").prop("checked")){ 
                 var h = today.getHours(); // Reset Hours
                 var m = today.getMinutes(); // Reset Min
                 var s = today.getSeconds(); // Reset Sec
     
-                var first_bell = 60*60*8  + 60*15; //8 15am
+                var first_bell = 60*60*8  + 60*15; //8 15am (note that assembly is 20min instead of 25min)
                 var last_bell = 1000+ 60*60*17  + 60*50; //5 50pm
                 var time_now = 60 * 60 * h + 60 * m + (s);
 
@@ -562,9 +565,6 @@
             return i;
         }
         startTime();
-
-        //var audio = new Audio('static/audio/bell_audio.mp3');
-        //audio.play();
     </script>
 
 </body>
