@@ -236,12 +236,13 @@ def update_class_score(class_name):
 
 @app.route('/<class_name>/<index_number>/update', methods=['GET'])
 def personal_update_form(index_number, class_name):
-    return render_template("personal_link_update_form.html")
+    return render_template("personal_update_form.html", index_number=index_number, class_name=class_name)
 
 @app.route('/<class_name>/<index_number>/update', methods=['POST'])
 def update_personal_links(index_number, class_name):
+
     def check_password(index_number, class_name, user_pass):
-        if personal_hash_dict[class_name][index_number] == hashlib.sha1(user_pass.encode(encoding='UTF-8')).hexdigest():
+        if personal_hash_dict[class_name][int(index_number)-1] == hashlib.sha1(user_pass.encode(encoding='UTF-8')).hexdigest():
             return True
         return False
 
@@ -249,10 +250,13 @@ def update_personal_links(index_number, class_name):
 
     if not class_name in class_set:
         return ("INVALID Class")
+    
+    if str(index_number) < 1 or str(index_number) > 30:
+        return ("INVALID Index Number")
 
-    '''
+    
     if not check_password(index_number, class_name, user_pass):
-        return (render_template("invalid_pass.html"))'''
+        return (render_template("invalid_pass.html"))
 
     personal_link_list = []
 

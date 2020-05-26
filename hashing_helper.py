@@ -6,6 +6,13 @@ def hash_a_dict(plain_dict):
 
         return plain_dict
 
+
+def hash_a_dict_2(plain_dict):
+    for item in plain_dict.items():
+        plain_dict[item[0]] =  [hashlib.sha1(i.encode(encoding='UTF-8')).hexdigest() for i in item[1]]
+
+    return plain_dict
+
 pass_dict = {
             "1A20": "mushywatermelon",
             "1B20": "crumblypear",
@@ -80,8 +87,7 @@ pass_dict = {
         }
 
 personal_pass_dict = {
-    "2419": "incredibleapricots",
-    "2019": "incredibleapricots"
+    "1319": ["hello","hellogaian"]
 }
 
-pprint(hash_a_dict(pass_dict))
+pprint(hash_a_dict_2(personal_pass_dict))
