@@ -32,7 +32,7 @@ def class_name(class_name, index_number):
     if not class_name in class_set:
         return ("Invalid Class")
 
-    if (index_number < 0 or index_number > 30):
+    if (int(index_number) < 0 or int(index_number) > 30):
         return ("Invalid Index Number")
 
     csv_name = "./static/class_link_database/" + class_name + "_links.csv"
@@ -81,7 +81,20 @@ def class_name(class_name, index_number):
     except:
         class_score = "0"
 
-    return render_template("dashboard.html", class_name=class_name, link_list=link_list, class_notepad=class_notepad, icon_url=icon_url, wallpaper_url=wallpaper_url, class_score=class_score)
+    # Retreive Individual Links
+    personal_link_list = []
+    if int(index_number) > 0:
+        csv_name = "./static/personal_link_database/" + class_name + "/" + index_number + "_links.csv"
+        if os.path.exists(csv_name):
+            with open(csv_name) as csv_file:
+                csv_reader = csv.reader(csv_file, delimiter=',')
+                for row in csv_reader:
+                    if row == []:
+                        continue
+                    personal_link_list.append(row)
+
+
+    return render_template("dashboard.html", class_name=class_name, index_number=index_number, link_list=link_list, class_notepad=class_notepad, icon_url=icon_url, wallpaper_url=wallpaper_url, class_score=class_score, personal_link_list=personal_link_list)
 
 
 @app.route('/<class_name>', methods=['POST'])
@@ -148,7 +161,6 @@ def update_wallpaper(class_name):
 @app.route('/update')
 def update_form():
     return render_template("update_form.html")
-
 
 @app.route('/submit_update', methods=['POST'])
 def submit_update():
@@ -220,6 +232,54 @@ def update_class_score(class_name):
     f.close()
 
     return total_score
+
+
+@app.route('/<class_name>/<index_number>/update', methods=['GET'])
+def personal_update_form(index_number, class_name):
+    return render_template("personal_link_update_form.html")
+
+@app.route('/<class_name>/<index_number>/update', methods=['POST'])
+def update_personal_links(index_number, class_name):
+    def check_password(index_number, class_name, user_pass):
+        if personal_hash_dict[class_name][index_number] == hashlib.sha1(user_pass.encode(encoding='UTF-8')).hexdigest():
+            return True
+        return False
+
+    user_pass = request.form['password']
+
+    if not class_name in class_set:
+        return ("INVALID Class")
+
+    '''
+    if not check_password(index_number, class_name, user_pass):
+        return (render_template("invalid_pass.html"))'''
+
+    personal_link_list = []
+
+    for index in range(1, 16):
+
+        title = request.form['title_' + str(index) + "_custom"]
+        if title == "":
+            title = request.form['title_' + str(index)]
+
+        url = request.form["url_" + str(index)]
+        desc = request.form["desc_" + str(index)]
+        if title != "" or url != "":
+            link_list.append((title, url, desc))
+        else:
+            break
+
+    print(personal_link_list)
+    csv_name = "./static/personal_link_database/" + class_name + "/" + index_number + "_links.csv"
+    csv_file = open(csv_name, 'w')
+
+    with csv_file:
+        writer = csv.writer(csv_file)
+
+        for row in link_list:
+            writer.writerow(row)
+
+    return (render_template("success_update.html", class_name=class_name + " Index: " + index_number, updated_content="Individual Links"))
 
 
 if __name__ == '__main__':

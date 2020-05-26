@@ -21,7 +21,7 @@
         .margined {
             margin-left: 5%;
             margin-right: 5%;
-            margin-bottom: 2%;
+            margin-bottom: 1.5%;
         }
 
         .centered_image {
@@ -275,8 +275,6 @@
                     </div>
                 </a>
 
-
-
                 {% for (title, url, desc) in link_list %}
 
                 <a class="card" href="{{url}}" target="_blank">
@@ -299,8 +297,40 @@
 
 
         </div>
+    </div>
+
+
+    {% if index_number != 0 %}
+    <div class="margined">
+        <div class="ui segment margined">
+                <div class="ui large header">Personal Links</div>
+                <div class="ui cards">
+                    {% for (title, url, desc) in personal_link_list %}
+    
+                    <a class="card" href="{{url}}" target="_blank">
+                        <div class="content">
+                            <div class="header">
+                                {{title}}
+                            </div>
+                            <div class="meta">
+                                {{url[:20]}}...
+                            </div>
+                            <div class="description">
+                                {{desc}}
+                            </div>
+                        </div>
+                    </a>
+    
+                    {% endfor %}
+    
+            </div>
+        </div>
+    
+    
+    {% endif %}
 
         <!-- Buttons at the bottom of the page -->
+        
         <a href="/static/class_link_database/{{class_name}}_links.csv">
             <div class="ui white button">Download Current links</div>
         </a>
