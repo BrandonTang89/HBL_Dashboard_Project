@@ -178,7 +178,7 @@ def submit_update():
         return ("INVALID Class")
 
     if not check_password(class_name, user_pass):
-        return (render_template("invalid_pass.html"))
+        return (render_template("invalid_pass.html", link_address="update"))
 
     link_list = []
     for index in range(1, 16):
@@ -258,7 +258,7 @@ def update_personal_links(index_number, class_name):
 
     
     if not check_password(index_number, class_name, user_pass):
-        return (render_template("invalid_pass.html"))
+        return (render_template("invalid_pass.html", link_address="/" + class_name + "/" + index_number + "/update"))
 
     personal_link_list = [(request.form["user_name"], "")]
 
