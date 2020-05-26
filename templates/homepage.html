@@ -70,7 +70,7 @@
                     <h3 class="ui centered dividing header">Integrated Programme</h3>
                     <div class="ui three cards">
                         {% for class_name in ip_set %}
-                        <a class=" ui green centered card" href="/{{class_name}}">
+                        <a class=" ui green centered card" href="/{{class_name}}/0">
                             <div class="content">
                                 <div class="center aligned header">
                                     {{class_name[:-2]}}/ {{class_name[-2:]}}
@@ -83,7 +83,7 @@
                     <h3 class="ui centered dividing header">Junior College 1</h3>
                     <div class="ui red three cards">
                         {% for class_name in j1_set %}
-                        <a class=" ui centered card" href="/{{class_name}}">
+                        <a class=" ui centered card" href="/{{class_name}}/0">
                             <div class="content">
                                 <div class="center aligned header">
                                     {{class_name[:-2]}}/ {{class_name[-2:]}}
@@ -96,7 +96,7 @@
                     <h3 class="ui centered dividing header">Junior College 2</h3>
                     <div class="ui blue three cards">
                         {% for class_name in j2_set %}
-                        <a class=" ui centered card" href="/{{class_name}}">
+                        <a class=" ui centered card" href="/{{class_name}}/0">
                             <div class="content">
                                 <div class="center aligned header">
                                     {{class_name[:-2]}}/ {{class_name[-2:]}}

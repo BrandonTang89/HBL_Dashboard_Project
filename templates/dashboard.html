@@ -2,7 +2,7 @@
 
 <head>
     <title>HBL Dashboard {{class_name[:-2]}}/{{class_name[-2:]}}</title>
-    <link rel="icon" href="static/images/icons/favicon.png">
+    <link rel="icon" href="/static/images/icons/favicon.png">
     <link rel="stylesheet" type="text/css"
         href="{{ url_for('static', filename='semantic/semantic/dist/semantic.min.css') }}">
     <script src="{{ url_for('static', filename='jquery-3.1.1.min.js') }}"></script>
@@ -67,7 +67,7 @@
                     <div id="clock" class="ui large header" style="display: inline-block;"></div>
                     <div class="time_table_container">
                         <img class="ui image centered_image" style="min-width: 100%; height: auto;"
-                            src="static/timetables/{{class_name}}.jpeg">
+                            src="/static/timetables/{{class_name}}.jpeg">
 
                         <div class="time_marker" id="time_marker">
                             <svg height="26" width="26">
@@ -130,7 +130,7 @@
                 style="max-width: 100%; padding: 2%;" />
 
         </div>
-        <form id="icon_upload_form" method="POST" action="{{class_name}}/edit_icon" enctype="multipart/form-data">
+        <form id="icon_upload_form" method="POST" action="/{{class_name}}/edit_icon" enctype="multipart/form-data">
             <input type="file" class="inputfile" name="image_upload_input" id="image_upload_input" hidden />
         </form>
 
@@ -260,7 +260,7 @@
             <div class="ui large header">Class Links</div>
             <div class="ui cards">
 
-                <a class="card" href="{{class_name}}/game" target="_blank">
+                <a class="card" href="/{{class_name}}/game" target="_blank">
                     <div class="content">
                         <div class="header">
                             2048 Game
@@ -299,26 +299,28 @@
 
 
         </div>
-        <!--<div class="ui blue segment">-->
-                
-                <a href="/static/class_link_database/{{class_name}}_links.csv">
-                    <div class="ui white button">Download Current links</div>
-                </a>
-                <a href="/update">
-                    <button class="ui white button">Update Class Subject Links</button>
-                </a>
 
-                 
-                <div class="ui toggle checkbox" style="background-color:#E0E1E3; padding: 10px; border-radius: 6px;">
-                    <input type="checkbox" tabindex="0" class="hidden" id="bell_checkbox" checked>
-                     <label>25 Min Bell</label>
-                </div>
-        
-                <button class="ui right floated teal button" onclick="runWallpaperModal()">Change Class Wallpaper</button>
+        <!-- Buttons at the bottom of the page -->
+        <a href="/static/class_link_database/{{class_name}}_links.csv">
+            <div class="ui white button">Download Current links</div>
+        </a>
+        <a href="/update">
+            <button class="ui white button">Update Class Subject Links</button>
+        </a>
+
+            
+        <div class="ui toggle checkbox" style="background-color:#E0E1E3; padding: 10px; border-radius: 6px;">
+            <input type="checkbox" tabindex="0" class="hidden" id="bell_checkbox" checked>
+                <label>25 Min Bell</label>
+        </div>
+
+        <button class="ui right floated teal button" onclick="runWallpaperModal()">Change Class Wallpaper</button>
 
 
     </div>
 
+    
+    <!-- Wall Paper Modal -->
     <div id=WallpaperModal class="ui fullscreen modal transition">
         <i class="close icon"></i>
         <div class="header">
@@ -326,48 +328,48 @@
         </div>
 
 
-        <form class="ui form" id="wallpaper_form" method="POST" action="{{class_name}}/edit_wallpaper"
+        <form class="ui form" id="wallpaper_form" method="POST" action="/{{class_name}}/edit_wallpaper"
             style="margin:5vh">
             <div class="inline fields">
                 <div class="field">
                     <div class="ui radio checkbox">
-                        <input type="radio" name="chosen_wallpaper" value="static/images/wallpapers/1.jpg" tabindex="0"
+                        <input type="radio" name="chosen_wallpaper" value="/static/images/wallpapers/1.jpg" tabindex="0"
                             class="hidden">
-                        <label><img class="ui medium bordered image" src="static/images/wallpapers/1.jpg"></label>
+                        <label><img class="ui medium bordered image" src="/static/images/wallpapers/1.jpg"></label>
                     </div>
                 </div>
                 <div class="field">
                     <div class="ui radio checkbox">
-                        <input type="radio" name="chosen_wallpaper" value="static/images/wallpapers/2.jpg" tabindex="0"
+                        <input type="radio" name="chosen_wallpaper" value="/static/images/wallpapers/2.jpg" tabindex="0"
                             class="hidden">
-                        <label><img class="ui medium bordered image" src="static/images/wallpapers/2.jpg"></label>
+                        <label><img class="ui medium bordered image" src="/static/images/wallpapers/2.jpg"></label>
                     </div>
                 </div>
                 <div class="field">
                     <div class="ui radio checkbox">
-                        <input type="radio" name="chosen_wallpaper" value="static/images/wallpapers/3.jpg" tabindex="0"
+                        <input type="radio" name="chosen_wallpaper" value="/static/images/wallpapers/3.jpg" tabindex="0"
                             class="hidden">
-                        <label><img class="ui medium bordered image" src="static/images/wallpapers/3.jpg"></label>
+                        <label><img class="ui medium bordered image" src="/static/images/wallpapers/3.jpg"></label>
                     </div>
                 </div>
                 <div class="field">
                     <div class="ui radio checkbox">
-                        <input type="radio" name="chosen_wallpaper" value="static/images/wallpapers/4.jpg" tabindex="0"
+                        <input type="radio" name="chosen_wallpaper" value="/static/images/wallpapers/4.jpg" tabindex="0"
                             class="hidden">
-                        <label><img class="ui medium bordered image" src="static/images/wallpapers/4.jpg"></label>
+                        <label><img class="ui medium bordered image" src="/static/images/wallpapers/4.jpg"></label>
                     </div>
                 </div>
                 <div class="field">
                     <div class="ui radio checkbox">
-                        <input type="radio" name="chosen_wallpaper" value="static/images/wallpapers/5.jpg" tabindex="0"
+                        <input type="radio" name="chosen_wallpaper" value="/static/images/wallpapers/5.jpg" tabindex="0"
                             class="hidden">
-                        <label><img class="ui medium bordered image" src="static/images/wallpapers/5.jpg"></label>
+                        <label><img class="ui medium bordered image" src="/static/images/wallpapers/5.jpg"></label>
                     </div>
                 </div>
                 <div class="field">
                     <div class="ui radio checkbox">
                         <input type="radio" name="chosen_wallpaper" value="" tabindex="0" class="hidden">
-                        <label><img class="ui medium bordered image" src="static/images/wallpapers/0.jpg"></label>
+                        <label><img class="ui medium bordered image" src="/static/images/wallpapers/0.jpg"></label>
                     </div>
                 </div>
         </form>
@@ -432,7 +434,6 @@
         });
 
 
-
         // --- Javascript for Notepad Modal ---
         function runModal() {
             $('#editModal').modal('show');
@@ -447,13 +448,12 @@
             console.log(new_data);
 
             $.ajax({
-                url: window.location.pathname,
+                url: "/{{class_name}}",
                 type: 'POST',
                 data: new_data,
                 success: function (response) {
                     console.log(response);
                     change_current_notepad(response);
-
                 },
                 error: function (error) {
                     console.log(error);
@@ -471,7 +471,6 @@
         function runWallpaperModal() {
             $('#WallpaperModal').modal('show');
         }
-
 
         $('.ui.radio.checkbox').checkbox()
 

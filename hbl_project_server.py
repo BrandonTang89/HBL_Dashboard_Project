@@ -27,10 +27,13 @@ def index():
     return render_template("homepage.html", ip_set=ip_set, j1_set=j1_set, j2_set=j2_set, img_url=img_url)
 
 # For the main dashboard
-@app.route('/<class_name>', methods=['GET'])
-def class_name(class_name):
+@app.route('/<class_name>/<index_number>', methods=['GET'])
+def class_name(class_name, index_number):
     if not class_name in class_set:
         return ("Invalid Class")
+
+    if (index_number < 0 or index_number > 30):
+        return ("Invalid Index Number")
 
     csv_name = "./static/class_link_database/" + class_name + "_links.csv"
     link_list = []
@@ -53,9 +56,12 @@ def class_name(class_name):
         class_notepad = ""
 
     # Choose Icon URL
-    icon_url = "./static/class_icon_database/" + class_name + ".png"
+    icon_url = "static/class_icon_database/" + class_name + ".png"
     if not os.path.exists(icon_url):
         icon_url = "https://cdn.avero-tech.com/tjc/img/icon/android-icon-192x192.png"
+    else:
+        icon_url = "/" + icon_url
+    
 
     # Retreive Selected Wallpaper
     wallpaper_csv_name = "./static/class_wallpaper_database/" + class_name + ".csv"
@@ -68,7 +74,6 @@ def class_name(class_name):
 
     # Retreive 2048 Game Scores
     game_score_filename = "./static/class_2048_database/" + class_name + ".txt"
-
     
     try:
         with open(game_score_filename) as game_score_file:
@@ -218,6 +223,6 @@ def update_class_score(class_name):
 
 
 if __name__ == '__main__':
-    # app.run(host='0.0.0.0', port='3000', debug=True)
-    from waitress import serve
-    serve(app, host='0.0.0.0', port=8080)
+    app.run(host='0.0.0.0', port='3000', debug=True)
+    #from waitress import serve
+    #serve(app, host='0.0.0.0', port=8080)
