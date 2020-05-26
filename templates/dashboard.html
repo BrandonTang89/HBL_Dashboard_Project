@@ -62,8 +62,7 @@
 
             <div class="twelve wide column">
                 <div class="ui segment">
-                    <div class="ui huge centered header">CG {{class_name[:-2]}}/{{class_name[-2:]}} Home Based Learning
-                        Dashboard</div>
+                    <div class="ui huge centered header">CG {{class_name[:-2]}}/{{class_name[-2:]}} {{user_name}}HBL Dashboard</div>
                     <div id="clock" class="ui large header" style="display: inline-block;"></div>
                     <div class="time_table_container">
                         <img class="ui image centered_image" style="min-width: 100%; height: auto;"
@@ -257,7 +256,7 @@
 
     <div class="margined">
         <div class="ui segment margined">
-            <div class="ui large header">Class Links</div>
+            <div class="ui large header">{{class_name[:-2]}}/{{class_name[-2:]}} Class Links</div>
             <div class="ui cards">
 
                 <a class="card" href="/{{class_name}}/game" target="_blank">
@@ -300,10 +299,10 @@
     </div>
 
 
-    {% if index_number != 0 %}
+    {% if not index_number == '0' %}
     <div class="margined">
         <div class="ui segment margined">
-                <div class="ui large header">Personal Links</div>
+                <div class="ui large header">{{user_name}}Personal Links</div>
                 <div class="ui cards">
                     {% for (title, url, desc) in personal_link_list %}
     
@@ -325,10 +324,12 @@
     
             </div>
         </div>
+    </div>
     
     
     {% endif %}
 
+    <div class="margined">
         <!-- Buttons at the bottom of the page -->
         
         <a href="/static/class_link_database/{{class_name}}_links.csv">
@@ -337,6 +338,12 @@
         <a href="/update">
             <button class="ui white button">Update Class Subject Links</button>
         </a>
+
+        {% if not index_number == '0' %}
+        <a href="/{{class_name}}/{{index_number}}/update">
+            <button class="ui white button">Update Personal Links</button>
+        </a>
+        {% endif %}
 
             
         <div class="ui toggle checkbox" style="background-color:#E0E1E3; padding: 10px; border-radius: 6px;">

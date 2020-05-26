@@ -83,6 +83,7 @@ def class_name(class_name, index_number):
 
     # Retreive Individual Links
     personal_link_list = []
+    user_name = ""
     if int(index_number) > 0:
         csv_name = "./static/personal_link_database/" + class_name + "/" + index_number + "_links.csv"
         if os.path.exists(csv_name):
@@ -93,8 +94,10 @@ def class_name(class_name, index_number):
                         continue
                     personal_link_list.append(row)
 
+            user_name = personal_link_list[0][0] + "'s "
+            personal_link_list.pop(0)
 
-    return render_template("dashboard.html", class_name=class_name, index_number=index_number, link_list=link_list, class_notepad=class_notepad, icon_url=icon_url, wallpaper_url=wallpaper_url, class_score=class_score, personal_link_list=personal_link_list)
+    return render_template("dashboard.html", class_name=class_name, index_number=index_number, link_list=link_list, class_notepad=class_notepad, icon_url=icon_url, wallpaper_url=wallpaper_url, class_score=class_score, personal_link_list=personal_link_list, user_name=user_name)
 
 
 @app.route('/<class_name>', methods=['POST'])
@@ -139,7 +142,7 @@ def update_icon(class_name):
     im.save(icon_file_name)
 
     print("Image Written to", icon_file_name)
-    return (render_template("success_update.html", class_name=class_name, updated_content="Class Icon"))
+    return (render_template("success_update.html", class_name=class_name, updated_content="Class Icon", link_address=class_name+"/0"))
 
 # For selection of background
 @app.route('/<class_name>/edit_wallpaper', methods=['POST'])
@@ -154,7 +157,7 @@ def update_wallpaper(class_name):
         writer = csv.writer(csv_file)
         writer.writerow(["wallpaper", chosen_wallpaper])
 
-    return (render_template("success_update.html", class_name=class_name, updated_content="Class wallpaper"))
+    return (render_template("success_update.html", class_name=class_name, updated_content="Class wallpaper", link_address=class_name+"/0"))
 
 
 # For the Update Page
@@ -178,7 +181,6 @@ def submit_update():
         return (render_template("invalid_pass.html"))
 
     link_list = []
-
     for index in range(1, 16):
 
         title = request.form['title_' + str(index) + "_custom"]
@@ -187,7 +189,7 @@ def submit_update():
 
         url = request.form["url_" + str(index)]
         desc = request.form["desc_" + str(index)]
-        if title != "" or url != "":
+        if title != "" and url != "":
             link_list.append((title, url, desc))
         else:
             break
@@ -201,7 +203,7 @@ def submit_update():
         for row in link_list:
             writer.writerow(row)
 
-    return (render_template("success_update.html", class_name=class_name, updated_content="Class Links"))
+    return (render_template("success_update.html", class_name=class_name, updated_content="Class Links", link_address=class_name+"/0"))
 
 # For the Game Page
 @app.route('/<class_name>/game', methods=['GET'])
@@ -251,14 +253,14 @@ def update_personal_links(index_number, class_name):
     if not class_name in class_set:
         return ("INVALID Class")
     
-    if str(index_number) < 1 or str(index_number) > 30:
+    if int(index_number) < 1 or int(index_number) > 30:
         return ("INVALID Index Number")
 
     
     if not check_password(index_number, class_name, user_pass):
         return (render_template("invalid_pass.html"))
 
-    personal_link_list = []
+    personal_link_list = [(request.form["user_name"], "")]
 
     for index in range(1, 16):
 
@@ -268,8 +270,8 @@ def update_personal_links(index_number, class_name):
 
         url = request.form["url_" + str(index)]
         desc = request.form["desc_" + str(index)]
-        if title != "" or url != "":
-            link_list.append((title, url, desc))
+        if title != "" and url != "":
+            personal_link_list.append((title, url, desc))
         else:
             break
 
@@ -280,10 +282,10 @@ def update_personal_links(index_number, class_name):
     with csv_file:
         writer = csv.writer(csv_file)
 
-        for row in link_list:
+        for row in personal_link_list:
             writer.writerow(row)
 
-    return (render_template("success_update.html", class_name=class_name + " Index: " + index_number, updated_content="Individual Links"))
+    return (render_template("success_update.html", class_name=class_name + " Index Number: " + index_number, updated_content="Individual Links", link_address=class_name+"/"+index_number))
 
 
 if __name__ == '__main__':

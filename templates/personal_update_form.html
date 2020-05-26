@@ -1,7 +1,7 @@
 <html>
 	<head>
         <title>HBL Dashboard</title>
-        <link rel="icon" href="static/images/icons/favicon.png">
+        <link rel="icon" href="/static/images/icons/favicon.png">
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='semantic/semantic/dist/semantic.min.css') }}">
         <script src="{{ url_for('static', filename='jquery-3.1.1.min.js') }}"></script>
         <script src="{{ url_for('static', filename='semantic/semantic/dist/semantic.min.js') }}"></script>
@@ -24,11 +24,11 @@
             <div class="ui segment">
                 <div class="ui huge centered header">Subject URL Update Page</div>
                 <h3 class="ui dividing header">Information</h3>
-                <p>Hello! This is the page where {{index_number}} of {{class_name}} can update information on the relevant class links.<br>
+                <p>Hello! This is the page where index number {{index_number}} of class {{class_name}} can update information on his/her personal links.<br>
                     Passwords should have been distributed.<br>
                 </p>
 
-                <form class="ui form" action ="/submit_update" method="POST">
+                <form class="ui form" action ="/{{class_name}}/{{index_number}}/update" method="POST">
                     <h4 class="ui dividing header">Identity Information</h4>
                     <div class="field">
                         <label>Class</label>
@@ -44,6 +44,13 @@
                         </div>
                     </div>
 
+
+                    <div class="field">
+                        <label>Preferred Name</label>
+                        <div class="four wide field">
+                            <input type="text" name="user_name" placeholder="Name">
+                        </div>
+                    </div>
 
                     <div class="field">
                         <label>Password</label>
