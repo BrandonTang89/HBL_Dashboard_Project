@@ -1,0 +1,32 @@
+Hello everyone, today we are rolling out TJC Dashboards!
+
+TJC Dashboards can be found at the url "tinyurl.com/TJCDashB".
+It is a site at which TJC Students can have a convenient place to store and access HBL related links and reference a live timetime. 
+To get a better idea of the various features available and how to use them, we have included a video that showcases the main features :)
+
+Summary of Key Features
+1. General Links to HBL Related Sites (Standard across all classes)
+2. Class Links to HBL Related Sites (Updated by CG Reps)
+3. Personal Links (Updated by Students)
+4. Real-Time Timetable (with red visual indicator present during weekdays during school time)
+5. Virtual Bell (an audio cue that rings every 25 mins, aligned with the periods during lesson)
+6. Class Notepad (a place for nice messages and homework reminders)
+
+Note:
+- The site looks terrible on mobile and has not been optimized for that so try to use a computer to access it.
+
+
+For the CG Reps, you have 3 tasks to do
+1. Inform your class about the existance of TJC Dashboards
+-- a. Feel free to forward the above message to your class group chat
+
+2. Update the class custom links
+-- a. Go onto your dashboard (the index number does not matter for this) and click on the "update class links" button at the bottom of the page.
+-- b. Fill in the relevant class links as well as your class password (which will be distributed as well).
+-- c. Click on the submit button.
+
+3. Distribute Individual Passwords
+-- a. A text file with format <class>.txt will be given out containing passwords.
+-- b. The first line of <class>.txt is the class password used to change class links (CG Reps should hold onto that).
+-- c. The next 30 lines are individual passwords used for students to change their personal custom links.
+-- d. The individual passwords are based on index numbers, please relay each password to their specific user.
