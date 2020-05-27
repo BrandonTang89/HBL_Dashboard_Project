@@ -6,6 +6,7 @@ import csv
 import hashlib
 import random
 import os.path
+import os
 
 app = Flask(__name__)
 
@@ -165,6 +166,7 @@ def update_icon(class_name):
         im.thumbnail((192, 192))
         im.save(icon_file_name)
     except:
+        os.remove(icon_file_name)
         return ("Error Processing ur ICON")
 
     print("Image Written to", icon_file_name)
