@@ -18,6 +18,12 @@ j1_set = ["0120", "0220", "0320", "0420", "0520", "0620", "0720", "0820", "0920"
 j2_set = ["0119", "0219", "0319", "0419", "0519", "0619", "0719", "0819", "0919", "1019", "1119", "1219",
           "1319", "1419", "1519", "1619", "1719", "1819", "1919", "2019", "2119", "2219", "2319", "2419", "2519"]
 
+attendance_links ={
+    "ip" : "",
+    "jc1": "https://tinyurl.com/TJCT3J1att",
+    "jc2": "https://tinyurl.com/attTJC2"
+}
+
 # For the homepage
 @app.route("/")
 def index():
@@ -97,7 +103,16 @@ def class_name(class_name, index_number):
             user_name = personal_link_list[0][0] + "'s "
             personal_link_list.pop(0)
 
-    return render_template("dashboard.html", class_name=class_name, index_number=index_number, link_list=link_list, class_notepad=class_notepad, icon_url=icon_url, wallpaper_url=wallpaper_url, class_score=class_score, personal_link_list=personal_link_list, user_name=user_name)
+
+    # Get Attendance Links
+    if class_name in ip_set:
+        attendance_link = attendance_links["ip"]
+    elif class_name in j1_set:
+        attendance_link = attendance_links["jc1"]
+    else:
+        attendance_link = attendance_links["jc2"]
+
+    return render_template("dashboard.html", class_name=class_name, index_number=index_number, link_list=link_list, class_notepad=class_notepad, icon_url=icon_url, wallpaper_url=wallpaper_url, class_score=class_score, personal_link_list=personal_link_list, user_name=user_name, attendance_link=attendance_link)
 
 
 @app.route('/<class_name>', methods=['POST'])
@@ -289,6 +304,6 @@ def update_personal_links(index_number, class_name):
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port='3000', debug=True)
-    #from waitress import serve
-    #serve(app, host='0.0.0.0', port=8080)
+    #app.run(host='0.0.0.0', port='3000', debug=True)
+    from waitress import serve
+    serve(app, host='0.0.0.0', port=8080)
