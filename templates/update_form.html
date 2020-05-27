@@ -1,7 +1,7 @@
 <html>
 	<head>
         <title>HBL Dashboard</title>
-        <link rel="icon" href="static/images/icons/favicon.png">
+        <link rel="icon" href="/static/images/icons/favicon.png">
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='semantic/semantic/dist/semantic.min.css') }}">
         <script src="{{ url_for('static', filename='jquery-3.1.1.min.js') }}"></script>
         <script src="{{ url_for('static', filename='semantic/semantic/dist/semantic.min.js') }}"></script>
@@ -24,89 +24,24 @@
             <div class="ui segment">
                 <div class="ui huge centered header">Subject URL Update Page</div>
                 <h3 class="ui dividing header">Information</h3>
-                <p>Hello! This is the page where CG chairpersons can update information on the relevant class links.<br>
-                    If you want to view the links already stored for your class, go to your class's dashboard and click the "download current links button" below.<br>
-                    Passwords should have been distributed to the CG chairpersons.<br>
+                <p>Hello! This is the page where the CG chairperson of CG {{class_name[:-2]}}/{{class_name[-2:]}} can update information on the relevant class links.<br>
+                    Password should have been distributed to the CG chairperson.<br><br>
 
-                    If your class has overridden the default class icon but want it back, you can download it <a href=" https://cdn.avero-tech.com/tjc/img/icon/android-icon-192x192.png" target="_blank">HERE</a>.
+                    If your class has overridden the default class icon but want it back, you can download it <a href=" https://cdn.avero-tech.com/tjc/img/icon/android-icon-192x192.png" target="_blank">HERE</a>.<br>
+                    If you want to view the links already stored for your class, download button below.<br>
                 </p>
+
+                <a href="/static/class_link_database/{{class_name}}_links.csv">
+                    <button class="ui green basic button">Download Current CG{{class_name[:-2]}}/{{class_name[-2:]}} Links</button>
+                </a>
+                <br><br>
 
                 <form class="ui form" action ="/submit_update" method="POST">
                     <h4 class="ui dividing header">Identity Information</h4>
                     <div class="field">
                         <label>Class</label>
                         <div class="four wide field">
-                            <select class="ui search dropdown class_name" name="class_name" id="class_name">
-                                <option value="">Class</option>
-                                <option value="1A20">1A/20</option>
-                                <option value="1B20">1B/20</option>
-                                <option value="1C20">1C/20</option>
-                                <option value="1D20">1D/20</option>
-                                <option value="1E20">1E/20</option>
-                                <option value="2A19">2A/19</option>
-                                <option value="2B19">2B/19</option>
-                                <option value="2C19">2C/19</option>
-                                <option value="2D19">2D/19</option>
-                                <option value="2E19">2E/19</option>
-                                <option value="3A20">3A/20</option>
-                                <option value="3B20">3B/20</option>
-                                <option value="3C20">3C/20</option>
-                                <option value="3D20">3D/20</option>
-                                <option value="3E20">3E/20</option>
-                                <option value="4A19">4A/19</option>
-                                <option value="4B19">4B/19</option>
-                                <option value="4C19">4C/19</option>
-                                <option value="4D19">4D/19</option>
-                                <option value="4E19">4E/19</option>
-                                <option value="0120">01/20</option>
-                                <option value="0220">02/20</option>
-                                <option value="0320">03/20</option>
-                                <option value="0420">04/20</option>
-                                <option value="0520">05/20</option>
-                                <option value="0620">06/20</option>
-                                <option value="0720">07/20</option>
-                                <option value="0820">08/20</option>
-                                <option value="0920">09/20</option>
-                                <option value="1020">10/20</option>
-                                <option value="1120">11/20</option>
-                                <option value="1220">12/20</option>
-                                <option value="1320">13/20</option>
-                                <option value="1420">14/20</option>
-                                <option value="1520">15/20</option>
-                                <option value="1620">16/20</option>
-                                <option value="1720">17/20</option>
-                                <option value="1820">18/20</option>
-                                <option value="1920">19/20</option>
-                                <option value="2020">20/20</option>
-                                <option value="2120">21/20</option>
-                                <option value="2220">22/20</option>
-                                <option value="2320">23/20</option>
-                                <option value="2420">24/20</option>
-                                <option value="0119">01/19</option>
-                                <option value="0219">02/19</option>
-                                <option value="0319">03/19</option>
-                                <option value="0419">04/19</option>
-                                <option value="0519">05/19</option>
-                                <option value="0619">06/19</option>
-                                <option value="0719">07/19</option>
-                                <option value="0819">08/19</option>
-                                <option value="0919">09/19</option>
-                                <option value="1019">10/19</option>
-                                <option value="1119">11/19</option>
-                                <option value="1219">12/19</option>
-                                <option value="1319">13/19</option>
-                                <option value="1419">14/19</option>
-                                <option value="1519">15/19</option>
-                                <option value="1619">16/19</option>
-                                <option value="1719">17/19</option>
-                                <option value="1819">18/19</option>
-                                <option value="1919">19/19</option>
-                                <option value="2019">20/19</option>
-                                <option value="2119">21/19</option>
-                                <option value="2219">22/19</option>
-                                <option value="2319">23/19</option>
-                                <option value="2419">24/19</option>
-                              </select>
+                            <input class="text" readonly name="class_name" id="class_name" value="{{class_name}}"> 
                         </div>
                     </div>
 
@@ -194,7 +129,7 @@
                     <button class="ui right floated positive button" type="submit">Submit</button>
                     
                 </form>
-                <a href="./"><button class="ui button">Back to Main Site</button></a>
+                <a href="/{{class_name}}/0"><button class="ui button">Back to Main Site</button></a>
             </div>
     
         </div>

@@ -183,9 +183,9 @@ def update_wallpaper(class_name):
 
 
 # For the Update Page
-@app.route('/update')
-def update_form():
-    return render_template("update_form.html")
+@app.route('/<class_name>/update')
+def update_form(class_name):
+    return render_template("update_form.html", class_name=class_name)
 
 
 @app.route('/submit_update', methods=['POST'])
@@ -201,7 +201,7 @@ def submit_update():
         return ("INVALID Class")
 
     if not check_password(class_name, user_pass):
-        return (render_template("invalid_pass.html", link_address="update"))
+        return (render_template("invalid_pass.html", link_address="/" + class_name+"/update"))
 
     link_list = []
     for index in range(1, 16):
@@ -313,6 +313,6 @@ def update_personal_links(index_number, class_name):
 
 
 if __name__ == '__main__':
-    # app.run(host='0.0.0.0', port='3000', debug=True)
+    #app.run(host='0.0.0.0', port='3000', debug=True)
     from waitress import serve
     serve(app, host='0.0.0.0', port=8080)
