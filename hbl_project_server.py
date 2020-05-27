@@ -79,7 +79,7 @@ def class_name(class_name, index_number):
     try:
         with open(wallpaper_csv_name) as csv_file:
             csv_reader = csv.reader(csv_file, delimiter=',')
-            (wallpaper, wallpaper_url) = next(csv_reader)
+            wallpaper_url = next(csv_reader)[1]
     except:
         wallpaper_url = ""
 
