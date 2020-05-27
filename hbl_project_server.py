@@ -27,6 +27,14 @@ attendance_links = {
     "jc2": "https://tinyurl.com/attTJC2"
 }
 
+
+# Initialise Profanity Filter with Extra Words
+pf = ProfanityFilter()
+swear_words_file = "static/swear_words.txt"
+with open(swear_words_file) as f:
+    for line in f:
+        pf.append_words([line.strip()])
+
 # For the homepage
 @app.route("/")
 def index():
@@ -131,7 +139,7 @@ def update_notepad(class_name):
         return ("Invalid Class")
     text_file_name = "./static/class_notepad_database/" + class_name + ".txt"
     new_text = request.form["new_text"]
-    new_text = ProfanityFilter().censor(new_text)
+    new_text = pf.censor(new_text)
 
     f = open(text_file_name, "w")
     f.write(new_text)
