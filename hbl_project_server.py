@@ -1,11 +1,11 @@
 from flask import *
+from hash_table import *
+from PIL import Image
 import csv
-import requests
 import hashlib
 import random
 import os.path
-from PIL import Image
-from hash_table import *
+
 app = Flask(__name__)
 
 class_set = ["1A20", "1B20", "1C20", "1D20", "1E20", "2A19", "2B19", "2C19", "2D19", "2E19", "3A20", "3B20", "3C20", "3D20", "3E20", "3F20", "4A19", "4B19", "4C19", "4D19", "4E19", "4F19", "0120", "0220", "0320", "0420", "0520", "0620", "0720", "0820", "0920", "1020", "1120", "1220", "1320",
