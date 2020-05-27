@@ -2,6 +2,7 @@ from flask import *
 from hash_table import *
 from PIL import Image
 from pathlib import Path
+from profanityfilter import ProfanityFilter
 import csv
 import hashlib
 import random
@@ -130,6 +131,7 @@ def update_notepad(class_name):
         return ("Invalid Class")
     text_file_name = "./static/class_notepad_database/" + class_name + ".txt"
     new_text = request.form["new_text"]
+    new_text = ProfanityFilter(no_word_boundaries = True).censor(new_text)
 
     f = open(text_file_name, "w")
     f.write(new_text)
@@ -320,6 +322,6 @@ def update_personal_links(index_number, class_name):
 
 
 if __name__ == '__main__':
-    #app.run(host='0.0.0.0', port='3000', debug=True)
+    # app.run(host='0.0.0.0', port='3000', debug=True)
     from waitress import serve
     serve(app, host='0.0.0.0', port=8080)
