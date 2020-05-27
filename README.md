@@ -3,7 +3,7 @@
 ## About
 This project is a community service effort to make home-based learning more convenient and thus effective for students of Temasek Junior College. It is a dynamic web dashboard powered by flask.
 
-Check it out at tinyurl.com/TJCDashB.
+Check it out at https://tinyurl.com/TJCDashB.
 
 ### Features
 1. Live Timetable (with visual and audio indicators)
