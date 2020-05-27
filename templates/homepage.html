@@ -10,7 +10,10 @@
     <script src="{{ url_for('static', filename='semantic/semantic/dist/semantic.min.js') }}"></script>
 
     <style>
-        html {zoom: 100%;}
+        html {
+            zoom: 100%;
+        }
+
         body {
             background-image: url("{{img_url}}");
             background-size: cover;
@@ -62,55 +65,139 @@
                 Do remind your CG Chairpersons to update your class's custom links! <br>
                 Feel free to use your class's dashboard as your browser homepage for convenience.
             </p>
-            <h3 class="ui dividing header">Links for Classes</h3>
-            <div class="ui cards">
 
-                <div class="scroll_box">
 
-                    <h3 class="ui centered dividing header">Integrated Programme</h3>
-                    <div class="ui three cards">
-                        {% for class_name in ip_set %}
-                        <a class=" ui green centered card" href="/{{class_name}}/0">
-                            <div class="content">
-                                <div class="center aligned header">
-                                    {{class_name[:-2]}}/ {{class_name[-2:]}}
-                                </div>
-                            </div>
-                        </a>
-                        {% endfor %}
-                    </div>
+            <div class="ui form">
 
-                    <h3 class="ui centered dividing header">Junior College 1</h3>
-                    <div class="ui red three cards">
-                        {% for class_name in j1_set %}
-                        <a class=" ui centered card" href="/{{class_name}}/0">
-                            <div class="content">
-                                <div class="center aligned header">
-                                    {{class_name[:-2]}}/ {{class_name[-2:]}}
-                                </div>
-                            </div>
-                        </a>
-                        {% endfor %}
-                    </div>
+                <select class="ui fluid search dropdown" style="width: 100%;" name="class_name" id="class_name">
+                    <option value="">Class</option>
+                    <option value="1A20">1A/20</option>
+                    <option value="1B20">1B/20</option>
+                    <option value="1C20">1C/20</option>
+                    <option value="1D20">1D/20</option>
+                    <option value="1E20">1E/20</option>
+                    <option value="2A19">2A/19</option>
+                    <option value="2B19">2B/19</option>
+                    <option value="2C19">2C/19</option>
+                    <option value="2D19">2D/19</option>
+                    <option value="2E19">2E/19</option>
+                    <option value="3A20">3A/20</option>
+                    <option value="3B20">3B/20</option>
+                    <option value="3C20">3C/20</option>
+                    <option value="3D20">3D/20</option>
+                    <option value="3E20">3E/20</option>
+                    <option value="4A19">4A/19</option>
+                    <option value="4B19">4B/19</option>
+                    <option value="4C19">4C/19</option>
+                    <option value="4D19">4D/19</option>
+                    <option value="4E19">4E/19</option>
+                    <option value="0120">01/20</option>
+                    <option value="0220">02/20</option>
+                    <option value="0320">03/20</option>
+                    <option value="0420">04/20</option>
+                    <option value="0520">05/20</option>
+                    <option value="0620">06/20</option>
+                    <option value="0720">07/20</option>
+                    <option value="0820">08/20</option>
+                    <option value="0920">09/20</option>
+                    <option value="1020">10/20</option>
+                    <option value="1120">11/20</option>
+                    <option value="1220">12/20</option>
+                    <option value="1320">13/20</option>
+                    <option value="1420">14/20</option>
+                    <option value="1520">15/20</option>
+                    <option value="1620">16/20</option>
+                    <option value="1720">17/20</option>
+                    <option value="1820">18/20</option>
+                    <option value="1920">19/20</option>
+                    <option value="2020">20/20</option>
+                    <option value="2120">21/20</option>
+                    <option value="2220">22/20</option>
+                    <option value="2320">23/20</option>
+                    <option value="2420">24/20</option>
+                    <option value="0119">01/19</option>
+                    <option value="0219">02/19</option>
+                    <option value="0319">03/19</option>
+                    <option value="0419">04/19</option>
+                    <option value="0519">05/19</option>
+                    <option value="0619">06/19</option>
+                    <option value="0719">07/19</option>
+                    <option value="0819">08/19</option>
+                    <option value="0919">09/19</option>
+                    <option value="1019">10/19</option>
+                    <option value="1119">11/19</option>
+                    <option value="1219">12/19</option>
+                    <option value="1319">13/19</option>
+                    <option value="1419">14/19</option>
+                    <option value="1519">15/19</option>
+                    <option value="1619">16/19</option>
+                    <option value="1719">17/19</option>
+                    <option value="1819">18/19</option>
+                    <option value="1919">19/19</option>
+                    <option value="2019">20/19</option>
+                    <option value="2119">21/19</option>
+                    <option value="2219">22/19</option>
+                    <option value="2319">23/19</option>
+                    <option value="2419">24/19</option>
+                </select>
+                <br>
 
-                    <h3 class="ui centered dividing header">Junior College 2</h3>
-                    <div class="ui blue three cards">
-                        {% for class_name in j2_set %}
-                        <a class=" ui centered card" href="/{{class_name}}/0">
-                            <div class="content">
-                                <div class="center aligned header">
-                                    {{class_name[:-2]}}/ {{class_name[-2:]}}
-                                </div>
-                            </div>
-                        </a>
-                        {% endfor %}
-                    </div>
-                </div>
+                <select class="ui fluid search dropdown" name="index_number" id="index_number" accesskey="target">
+                    <option value="0">Index Number</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                    <option value="20">20</option>
+                    <option value="21">21</option>
+                    <option value="22">22</option>
+                    <option value="23">23</option>
+                    <option value="24">24</option>
+                    <option value="25">25</option>
+                    <option value="26">26</option>
+                    <option value="27">27</option>
+                    <option value="28">28</option>
+                    <option value="29">29</option>
+                    <option value="30">30</option>
+                </select>
+                <p>*You may leave the index number blank if you do not wish to edit your personal bookmarks</p>
+                <input class="ui positive button" style="width: 100%" type=button value="Go" onclick="goToNewPage()" />
             </div>
+
+
         </div>
     </div>
 
     </div>
 
 </body>
+
+
+
+<script>
+
+    $('.ui.dropdown').dropdown();
+    function goToNewPage() {
+        var url = document.getElementById('class_name').value + "/" + document.getElementById('index_number').value;
+        if (url != 'none') {
+            window.location = url;
+        }
+    }
+
+</script>
 <html>
