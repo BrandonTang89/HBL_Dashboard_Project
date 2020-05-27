@@ -159,10 +159,13 @@ def update_icon(class_name):
     f.close()
 
     # Modify and Resave Square Files
-    im = Image.open(icon_file_name)
-    im = make_square(im)
-    im.thumbnail((192, 192))
-    im.save(icon_file_name)
+    try:
+        im = Image.open(icon_file_name)
+        im = make_square(im)
+        im.thumbnail((192, 192))
+        im.save(icon_file_name)
+    except:
+        return ("Error Processing ur ICON")
 
     print("Image Written to", icon_file_name)
     return (render_template("success_update.html", class_name=class_name, updated_content="Class Icon", link_address=class_name+"/0"))
