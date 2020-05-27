@@ -1,4 +1,4 @@
-Hello everyone, today we are rolling out TJC Dashboards!
+Hello everyone, today we present to you TJC Dashboards!
 
 TJC Dashboards can be found at the url "tinyurl.com/TJCDashB".
 It is a site at which TJC Students can have a convenient place to store and access HBL related links and reference a live timetime. 
@@ -13,7 +13,9 @@ Summary of Key Features
 6. Class Notepad (a place for nice messages and homework reminders)
 
 Note:
-- The site looks terrible on mobile and has not been optimized for that so try to use a computer to access it.
+- The site has been designed for view on computers as most of you will using that during HBL
+
+If you feel like the site could benefit you, feel free to use it!
 
 
 For the CG Reps, you have 3 tasks to do

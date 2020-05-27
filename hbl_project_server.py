@@ -24,7 +24,7 @@ j2_set = ["0119", "0219", "0319", "0419", "0519", "0619", "0719", "0819", "0919"
 attendance_links = {
     "ip": "",
     "jc1": "https://tinyurl.com/TJCT3J1att",
-    "jc2": "https://tinyurl.com/attTJC2"
+    "jc2": "https://tinyurl.com/TJCT3J2att"
 }
 
 
