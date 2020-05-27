@@ -27,7 +27,12 @@ attendance_links ={
 # For the homepage
 @app.route("/")
 def index():
-    img_url = 'static/images/tjc/' + str(random.randint(2, 37)) + '.jpg'
+    random_var = random.randint(1, 39)
+    if random_var == 39:
+        random_var = random.randint(35, 39)
+
+    img_url = 'static/images/tjc/' + str(random_var) + '.jpg'
+
     print(img_url)
 
     return render_template("homepage.html", ip_set=ip_set, j1_set=j1_set, j2_set=j2_set, img_url=img_url)
@@ -306,4 +311,4 @@ def update_personal_links(index_number, class_name):
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port='3000', debug=True)
     #from waitress import serve
-    #serve(app, host='0.0.0.0', port=8080)
+    # serve(app, host='0.0.0.0', port=8080)
