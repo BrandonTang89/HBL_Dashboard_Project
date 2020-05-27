@@ -27,7 +27,7 @@ attendance_links ={
 # For the homepage
 @app.route("/")
 def index():
-    img_url = 'static/images/tjc/' + str(random.randint(1, 37)) + '.jpg'
+    img_url = 'static/images/tjc/' + str(random.randint(2, 37)) + '.jpg'
     print(img_url)
 
     return render_template("homepage.html", ip_set=ip_set, j1_set=j1_set, j2_set=j2_set, img_url=img_url)
