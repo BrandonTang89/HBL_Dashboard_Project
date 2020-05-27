@@ -28,21 +28,24 @@
                     Passwords should have been distributed.<br>
                 </p>
 
+                <a href="/static/personal_link_database/{{class_name}}/{{index_number}}_links.csv">
+                    <button class="ui blue basic button">Download Current Personal Links</button>
+                </a>
+                <br><br>
+
                 <form class="ui form" action ="/{{class_name}}/{{index_number}}/update" method="POST">
-                    <h4 class="ui dividing header">Identity Information</h4>
-                    <div class="field">
-                        <label>Class</label>
-                        <div class="four wide field">
+                <h4 class="ui dividing header">Identity Information</h4>
+                    <div class="fields">
+                        <div class="two wide field">
+                            <label>Class</label>
                             <input value="{{class_name}}" readonly="" type="text">
                         </div>
-                    </div>
-
-                    <div class="field">
-                        <label>Index Number</label>
-                        <div class="four wide field">
+                        <div class="two wide field">
+                            <label>Index Number</label>
                             <input value="{{index_number}}" readonly="" type="text">
                         </div>
                     </div>
+                    
 
 
                     <div class="field">
@@ -136,7 +139,7 @@
                     <button class="ui right floated positive button" type="submit">Submit</button>
                     
                 </form>
-                <a href="./"><button class="ui button">Back to Main Site</button></a>
+                <a href="/{{class_name}}/{{index_number}}"><button class="ui button">Back to Main Site</button></a>
             </div>
     
         </div>
