@@ -11,7 +11,7 @@ This project is a community service effort to make home-based learning more conv
 5. Class 2048 Game (credits to https://github.com/gabrielecirulli/2048/)
 
 ## Dependencies
-Runs on Windows or Linux machines, instructions provided are for linux machines.
+Runs on Windows or Linux machines with Python 3.7+, instructions provided are for linux machines.
 <pre>pip3 install -r requirements.txt</pre>
 
 ## Usage
