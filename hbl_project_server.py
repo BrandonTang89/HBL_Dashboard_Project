@@ -105,7 +105,10 @@ def class_name(class_name, index_number):
                         continue
                     personal_link_list.append(row)
 
-            user_name = personal_link_list[0][0] + "'s "
+            user_name = personal_link_list[0][0] 
+            if user_name != "":
+                user_name = user_name + "'s "
+                
             personal_link_list.pop(0)
 
 
@@ -309,6 +312,6 @@ def update_personal_links(index_number, class_name):
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port='3000', debug=True)
-    #from waitress import serve
-    # serve(app, host='0.0.0.0', port=8080)
+    #app.run(host='0.0.0.0', port='3000', debug=True)
+    from waitress import serve
+    serve(app, host='0.0.0.0', port=8080)
