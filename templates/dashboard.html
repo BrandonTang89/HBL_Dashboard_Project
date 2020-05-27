@@ -62,7 +62,8 @@
 
             <div class="twelve wide column">
                 <div class="ui segment">
-                    <div class="ui huge centered header">CG {{class_name[:-2]}}/{{class_name[-2:]}} {{user_name}}HBL Dashboard</div>
+                    <div class="ui huge centered header">CG {{class_name[:-2]}}/{{class_name[-2:]}} {{user_name}}HBL
+                        Dashboard</div>
                     <div id="clock" class="ui large header" style="display: inline-block;"></div>
                     <div class="time_table_container">
                         <img class="ui image centered_image" style="min-width: 100%; height: auto;"
@@ -302,36 +303,36 @@
     {% if not index_number == '0' %}
     <div class="margined">
         <div class="ui segment margined">
-                <div class="ui large header">{{user_name}}Personal Links</div>
-                <div class="ui cards">
-                    {% for (title, url, desc) in personal_link_list %}
-    
-                    <a class="card" href="{{url}}" target="_blank">
-                        <div class="content">
-                            <div class="header">
-                                {{title}}
-                            </div>
-                            <div class="meta">
-                                {{url[:20]}}...
-                            </div>
-                            <div class="description">
-                                {{desc}}
-                            </div>
+            <div class="ui large header">{{user_name}}Personal Links</div>
+            <div class="ui cards">
+                {% for (title, url, desc) in personal_link_list %}
+
+                <a class="card" href="{{url}}" target="_blank">
+                    <div class="content">
+                        <div class="header">
+                            {{title}}
                         </div>
-                    </a>
-    
-                    {% endfor %}
-    
+                        <div class="meta">
+                            {{url[:20]}}...
+                        </div>
+                        <div class="description">
+                            {{desc}}
+                        </div>
+                    </div>
+                </a>
+
+                {% endfor %}
+
             </div>
         </div>
     </div>
-    
-    
+
+
     {% endif %}
 
     <div class="margined">
         <!-- Buttons at the bottom of the page -->
-        
+
         <a href="/static/class_link_database/{{class_name}}_links.csv">
             <div class="ui white button">Download Current links</div>
         </a>
@@ -345,10 +346,10 @@
         </a>
         {% endif %}
 
-            
+
         <div class="ui toggle checkbox" style="background-color:#E0E1E3; padding: 10px; border-radius: 6px;">
             <input type="checkbox" tabindex="0" class="hidden" id="bell_checkbox" checked>
-                <label>25 Min Bell</label>
+            <label>25 Min Bell</label>
         </div>
 
         <button class="ui right floated teal button" onclick="runWallpaperModal()">Change Class Wallpaper</button>
@@ -356,7 +357,7 @@
 
     </div>
 
-    
+
     <!-- Wall Paper Modal -->
     <div id=WallpaperModal class="ui fullscreen modal transition">
         <i class="close icon"></i>
@@ -416,7 +417,8 @@
         <div class="actions">
             <div class="ui negative button" style="width: 10vh;" tabindex="0" type="button">Cancel</div>
             <br><br>
-            <div class="ui positive button" style="width: 10vh;" id="update_wallpaper_number_button" tabindex="0" type="button">Save Wallpaper</div>
+            <div class="ui positive button" style="width: 10vh;" id="update_wallpaper_number_button" tabindex="0"
+                type="button">Save Wallpaper</div>
         </div>
 
 
@@ -569,7 +571,7 @@
 
             document.getElementById('clock').innerHTML =
                 h + ":" + m + ":" + s + " " + half_of_day + "  " + month + " " + day;
-            
+
             // Process Dynamic Time Table
             var day_of_week = today.getDay();
             var vertical = get_vertical(day_of_week);
@@ -582,16 +584,16 @@
             time_marker_object.style.top = vertical + "%";
             time_marker_object.style.left = (horizontal) + "%";
 
-           
+
 
             // 25 Min Bell
-            if ($("#bell_checkbox").prop("checked")){ 
+            if ($("#bell_checkbox").prop("checked")) {
                 var h = today.getHours(); // Reset Hours
                 var m = today.getMinutes(); // Reset Min
                 var s = today.getSeconds(); // Reset Sec
-    
-                var first_bell = 60*60*8  + 60*15; //8 15am (note that assembly is 20min instead of 25min)
-                var last_bell = 1000+ 60*60*17  + 60*50; //5 50pm
+
+                var first_bell = 60 * 60 * 8 + 60 * 15; //8 15am (note that assembly is 20min instead of 25min)
+                var last_bell = 1000 + 60 * 60 * 17 + 60 * 50; //5 50pm
                 var time_now = 60 * 60 * h + 60 * m + (s);
 
                 // console.log("Hours:" + h);
@@ -599,8 +601,8 @@
                 // console.log("Sec:" + s);
                 // console.log((time_now - first_bell)%(1500));
 
-                if (time_now => first_bell &&  time_now <= last_bell){
-                    if ((time_now - first_bell)%(1500) == 0){
+                if (time_now => first_bell && time_now <= last_bell) {
+                    if ((time_now - first_bell) % (1500) == 0) {
                         console.log("Bell Ring " + time_now);
                         var audio = new Audio('static/audio/bell_audio.mp3');
                         audio.play();
@@ -610,7 +612,7 @@
             }
 
             var t = setTimeout(startTime, 500); // Call This function Again
-            
+
 
         }
         function checkTime(i) {
@@ -621,4 +623,5 @@
     </script>
 
 </body>
+
 </html>

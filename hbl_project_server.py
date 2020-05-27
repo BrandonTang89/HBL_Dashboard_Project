@@ -18,8 +18,8 @@ j1_set = ["0120", "0220", "0320", "0420", "0520", "0620", "0720", "0820", "0920"
 j2_set = ["0119", "0219", "0319", "0419", "0519", "0619", "0719", "0819", "0919", "1019", "1119", "1219",
           "1319", "1419", "1519", "1619", "1719", "1819", "1919", "2019", "2119", "2219", "2319", "2419", "2519"]
 
-attendance_links ={
-    "ip" : "",
+attendance_links = {
+    "ip": "",
     "jc1": "https://tinyurl.com/TJCT3J1att",
     "jc2": "https://tinyurl.com/attTJC2"
 }
@@ -72,7 +72,6 @@ def class_name(class_name, index_number):
         icon_url = "https://cdn.avero-tech.com/tjc/img/icon/android-icon-192x192.png"
     else:
         icon_url = "/" + icon_url
-    
 
     # Retreive Selected Wallpaper
     wallpaper_csv_name = "./static/class_wallpaper_database/" + class_name + ".csv"
@@ -85,7 +84,7 @@ def class_name(class_name, index_number):
 
     # Retreive 2048 Game Scores
     game_score_filename = "./static/class_2048_database/" + class_name + ".txt"
-    
+
     try:
         with open(game_score_filename) as game_score_file:
             class_score = str(int(float(game_score_file.read())))
@@ -96,7 +95,8 @@ def class_name(class_name, index_number):
     personal_link_list = []
     user_name = ""
     if int(index_number) > 0:
-        csv_name = "./static/personal_link_database/" + class_name + "/" + index_number + "_links.csv"
+        csv_name = "./static/personal_link_database/" + \
+            class_name + "/" + index_number + "_links.csv"
         if os.path.exists(csv_name):
             with open(csv_name) as csv_file:
                 csv_reader = csv.reader(csv_file, delimiter=',')
@@ -105,12 +105,11 @@ def class_name(class_name, index_number):
                         continue
                     personal_link_list.append(row)
 
-            user_name = personal_link_list[0][0] 
+            user_name = personal_link_list[0][0]
             if user_name != "":
                 user_name = user_name + "'s "
-                
-            personal_link_list.pop(0)
 
+            personal_link_list.pop(0)
 
     # Get Attendance Links
     if class_name in ip_set:
@@ -188,6 +187,7 @@ def update_wallpaper(class_name):
 def update_form():
     return render_template("update_form.html")
 
+
 @app.route('/submit_update', methods=['POST'])
 def submit_update():
     def check_password(class_name, user_pass):
@@ -263,6 +263,7 @@ def update_class_score(class_name):
 def personal_update_form(index_number, class_name):
     return render_template("personal_update_form.html", index_number=index_number, class_name=class_name)
 
+
 @app.route('/<class_name>/<index_number>/update', methods=['POST'])
 def update_personal_links(index_number, class_name):
 
@@ -275,11 +276,10 @@ def update_personal_links(index_number, class_name):
 
     if not class_name in class_set:
         return ("INVALID Class")
-    
+
     if int(index_number) < 1 or int(index_number) > 30:
         return ("INVALID Index Number")
 
-    
     if not check_password(index_number, class_name, user_pass):
         return (render_template("invalid_pass.html", link_address="/" + class_name + "/" + index_number + "/update"))
 
@@ -299,7 +299,8 @@ def update_personal_links(index_number, class_name):
             break
 
     print(personal_link_list)
-    csv_name = "./static/personal_link_database/" + class_name + "/" + index_number + "_links.csv"
+    csv_name = "./static/personal_link_database/" + \
+        class_name + "/" + index_number + "_links.csv"
     csv_file = open(csv_name, 'w')
 
     with csv_file:
