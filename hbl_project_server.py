@@ -131,7 +131,7 @@ def update_notepad(class_name):
         return ("Invalid Class")
     text_file_name = "./static/class_notepad_database/" + class_name + ".txt"
     new_text = request.form["new_text"]
-    new_text = ProfanityFilter(no_word_boundaries = True).censor(new_text)
+    new_text = ProfanityFilter().censor(new_text)
 
     f = open(text_file_name, "w")
     f.write(new_text)
