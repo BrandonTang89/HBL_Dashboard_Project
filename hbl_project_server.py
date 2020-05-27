@@ -1,6 +1,7 @@
 from flask import *
 from hash_table import *
 from PIL import Image
+from pathlib import Path
 import csv
 import hashlib
 import random
@@ -299,8 +300,9 @@ def update_personal_links(index_number, class_name):
             break
 
     print(personal_link_list)
-    csv_name = "./static/personal_link_database/" + \
-        class_name + "/" + index_number + "_links.csv"
+
+    Path("./static/personal_link_database/" + class_name).mkdir(exist_ok=True)
+    csv_name = "./static/personal_link_database/" + class_name + "/" + index_number + "_links.csv"
     csv_file = open(csv_name, 'w')
 
     with csv_file:
