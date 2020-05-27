@@ -4,10 +4,11 @@
 This project is a community service effort to make home-based learning more convenient and thus effective for students of Temasek Junior College. It is a dynamic web dashboard powered by flask.
 
 ### Features
-1. Live Timetable
-2. Relevant and Customisable Links
+1. Live Timetable (with visual and audio indicators)
+2. Relevant and Customisable Class and Personal Links (password protected)
 3. Class Notepad
 4. Class Icons
+5. Class 2048 Game (credits to https://github.com/gabrielecirulli/2048/)
 
 ## Dependencies
 Runs on Windows or Linux machines, instructions provided are for linux machines.
