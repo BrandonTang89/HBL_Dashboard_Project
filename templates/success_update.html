@@ -1,37 +1,40 @@
 <html>
-	<head>
-        <title>HBL Dashboard</title>
-        <link rel="icon" href="/static/images/icons/favicon.png">
-        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='semantic/semantic/dist/semantic.min.css') }}">
-        <script src="{{ url_for('static', filename='jquery-3.1.1.min.js') }}"></script>
-        <script src="{{ url_for('static', filename='semantic/semantic/dist/semantic.min.js') }}"></script>
-        
-        <style>
-            body {
-                background-color: lightgreen;
-            }
-    
-            .margined {
-                margin-left: 5%;
-                margin-right: 5%;
-                margin-bottom: 2%;
-            }
-        </style>
-	</head>
-	<body>
-        <div class="margined" style="margin-top: 2%;">
-            <div class="ui segment">
-                <div class="ui huge centered header">Success</div>
-                <h3 class="ui header">Successfully Updated Class {{class_name}} {{updated_content}}!</h3>
-                
-                <a href="/{{link_address}}"><button class="ui primary button">Back to Class Dashboard</button></a>
-            </div>
-    
+
+<head>
+    <title>HBL Dashboard</title>
+    <link rel="icon" href="/static/images/icons/favicon.png">
+    <link rel="stylesheet" type="text/css"
+        href="{{ url_for('static', filename='semantic/semantic/dist/semantic.min.css') }}">
+    <script src="{{ url_for('static', filename='jquery-3.1.1.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='semantic/semantic/dist/semantic.min.js') }}"></script>
+
+    <style>
+        body {
+            background-color: lightgreen;
+        }
+
+        .margined {
+            margin-left: 5%;
+            margin-right: 5%;
+            margin-bottom: 2%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="margined" style="margin-top: 2%;">
+        <div class="ui segment">
+            <div class="ui huge centered header">Success</div>
+            <h3 class="ui header">Successfully Updated Class {{class_name}} {{updated_content}}!</h3>
+
+            <a href="/{{link_address}}"><button class="ui primary button">Back to Class Dashboard</button></a>
         </div>
 
-    
-        <script>
-        </script>
-    
-    </body>
-    <html>
+    </div>
+
+
+    <script>
+    </script>
+
+</body>
+<html>

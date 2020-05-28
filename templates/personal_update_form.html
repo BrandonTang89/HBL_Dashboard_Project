@@ -1,169 +1,175 @@
 <html>
-	<head>
-        <title>HBL Dashboard</title>
-        <link rel="icon" href="/static/images/icons/favicon.png">
-        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='semantic/semantic/dist/semantic.min.css') }}">
-        <script src="{{ url_for('static', filename='jquery-3.1.1.min.js') }}"></script>
-        <script src="{{ url_for('static', filename='semantic/semantic/dist/semantic.min.js') }}"></script>
-        
-        <style>
-            body {
-                background-color: mintcream;
-            }
-    
-            .margined {
-                margin-left: 5%;
-                margin-right: 5%;
-                margin-bottom: 2%;
-            }
-    
-        </style>
-	</head>
-	<body>
-        <div class="margined" style="margin-top: 2%;">
-            <div class="ui segment">
-                <div class="ui huge centered header">Subject URL Update Page</div>
-                <h3 class="ui dividing header">Information</h3>
-                <p>Hello! This is the page where index number {{index_number}} of class {{class_name}} can update information on his/her personal links.<br>
-                    Passwords should have been distributed.<br>
-                </p>
 
-                <a href="/static/personal_link_database/{{class_name}}/{{index_number}}_links.csv">
-                    <button class="ui blue basic button">Download Current Links of Index {{index_number}} of CG{{class_name[:-2]}}/{{class_name[-2:]}}</button>
-                </a>
-                <br><br>
+<head>
+    <title>HBL Dashboard</title>
+    <link rel="icon" href="/static/images/icons/favicon.png">
+    <link rel="stylesheet" type="text/css"
+        href="{{ url_for('static', filename='semantic/semantic/dist/semantic.min.css') }}">
+    <script src="{{ url_for('static', filename='jquery-3.1.1.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='semantic/semantic/dist/semantic.min.js') }}"></script>
 
-                <form class="ui form" action ="/{{class_name}}/{{index_number}}/update" method="POST">
+    <style>
+        body {
+            background-color: mintcream;
+        }
+
+        .margined {
+            margin-left: 5%;
+            margin-right: 5%;
+            margin-bottom: 2%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="margined" style="margin-top: 2%;">
+        <div class="ui segment">
+            <div class="ui huge centered header">Subject URL Update Page</div>
+            <h3 class="ui dividing header">Information</h3>
+            <p>Hello! This is the page where index number {{index_number}} of class {{class_name}} can update
+                information on his/her personal links.<br>
+                Passwords should have been distributed.<br>
+            </p>
+
+            <a href="/static/personal_link_database/{{class_name}}/{{index_number}}_links.csv">
+                <button class="ui blue basic button">Download Current Links of Index {{index_number}} of
+                    CG{{class_name[:-2]}}/{{class_name[-2:]}}</button>
+            </a>
+            <br><br>
+
+            <form class="ui form" action="/{{class_name}}/{{index_number}}/update" method="POST">
                 <h4 class="ui dividing header">Identity Information</h4>
-                    <div class="fields">
-                        <div class="two wide field">
-                            <label>Class</label>
-                            <input value="{{class_name}}" readonly="" type="text">
+                <div class="fields">
+                    <div class="two wide field">
+                        <label>Class</label>
+                        <input value="{{class_name}}" readonly="" type="text">
+                    </div>
+                    <div class="two wide field">
+                        <label>Index Number</label>
+                        <input value="{{index_number}}" readonly="" type="text">
+                    </div>
+                </div>
+
+
+
+                <div class="field">
+                    <label>Preferred Name</label>
+                    <div class="four wide field">
+                        <input type="text" name="user_name" placeholder="Name">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label>Password</label>
+                    <div class="four wide field">
+                        <input type="password" name="password" placeholder="Password">
+                    </div>
+                </div>
+
+
+                <h4 class="ui dividing header">New Links</h4>
+                {% for index in range(1,16) %}
+                <div class="field">
+                    <label>Link {{index}}</label>
+                    <div class="two fields">
+                        <div class="field">
+                            <!--<input type="text" name="title_{{index}}" placeholder="Link Title">-->
+                            <select class="ui search dropdown title_{{index}}" name="title_{{index}}">
+                                <option value="">Title</option>
+                                <option value="H1 Project Work">H1 Project Work</option>
+                                <option value="H1 General Paper">H1 General Paper</option>
+                                <option value="H1 Economics">H1 Economics</option>
+                                <option value="H2 Economics">H2 Economics</option>
+                                <option value="H3 Economics">H3 Economics</option>
+                                <option value="H1 Mathematics">H1 Mathematics</option>
+                                <option value="H2 Mathematics">H2 Mathematics</option>
+                                <option value="H3 Mathematics">H3 Mathematics</option>
+                                <option value="Further Mathematics">Further Mathematics</option>
+                                <option value="Fundamental Mathematics">Fundamental Mathematics</option>
+                                <option value="Intermediate Mathematics">Intermediate Mathematics</option>
+                                <option value="Advanced Mathematics">Advanced Mathematics</option>
+                                <option value="H1 Chemistry">H1 Chemistry</option>
+                                <option value="H2 Chemistry">H2 Chemistry</option>
+                                <option value="H3 Chemistry">H3 Chemistry</option>
+                                <option value="Chemistry">Chemistry</option>
+                                <option value="H1 Physics">H1 Physics</option>
+                                <option value="H2 Physics">H2 Physics</option>
+                                <option value="H3 Physics">H3 Physics</option>
+                                <option value="Physics">Physics</option>
+                                <option value="H1 Biology">H1 Biology</option>
+                                <option value="H2 Biology">H2 Biology</option>
+                                <option value="H3 Biology">H3 Biology</option>
+                                <option value="Biology">Biology</option>
+                                <option value="H2 Art">Art</option>
+                                <option value="H1 History">H1 History</option>
+                                <option value="H2 History">H2 History</option>
+                                <option value="H3 History">H3 History</option>
+                                <option value="H1 Geography">H1 Geography</option>
+                                <option value="H1 Geography">H2 Geography</option>
+                                <option value="H1 Geography">H3 Geography</option>
+                                <option value="H2 Knowledge and Inquiry">H2 Knowledge and Inquiry</option>
+                                <option value="H1 Literature">H1 Literature</option>
+                                <option value="H2 Literature">H2 Literature</option>
+                                <option value="H3 Literature">H3 Literature</option>
+                                <option value="Chinese Language and Literature">Chinese Language and Literature</option>
+                                <option value="H1 Chinese">H1 Chinese</option>
+                                <option value="CLB Chinese">CLB Chinese</option>
+                                <option value="Higher Chinese">Higher Chinese</option>
+                                <option value="Chinese">Chinese</option>
+                                <option value="Malay">Malay</option>
+                                <option value="Tamil">Tamil</option>
+                                <option value="Chinese Language Elective Programme">Chinese Language Elective Programme
+                                </option>
+                                <option value="H2 Music">H2 Music</option>
+                                <option value="Music Lanuguage Elective Programme">Music Lanugage Elective Programme
+                                </option>
+                                <option value="Language Arts">Language Arts</option>
+                                <option value="Green Science">Green Science</option>
+                                <option value="Fundamental Humanities">Fundamental Humanities</option>
+                                <option value="Core Humanities">Core Humanities</option>
+                                <option value="Skills and Knowledge">Skills and Knowledge</option>
+                                <option value="other">Other</option>
+                            </select>
+                            <input type="text" class="title_{{index}}_custom" name="title_{{index}}_custom" hidden>
                         </div>
-                        <div class="two wide field">
-                            <label>Index Number</label>
-                            <input value="{{index_number}}" readonly="" type="text">
+                        <div class="field">
+                            <input type="text" name="url_{{index}}" placeholder="Link URL">
+                        </div>
+                        <div class="field">
+                            <input type="text" name="desc_{{index}}" placeholder="Description">
                         </div>
                     </div>
-                    
+                </div>
+                {% endfor %}
+                <div class="ui red big message">All changes will overwrite existing links upon submission!</div>
+                <button class="ui right floated positive button" type="submit">Submit</button>
 
-
-                    <div class="field">
-                        <label>Preferred Name</label>
-                        <div class="four wide field">
-                            <input type="text" name="user_name" placeholder="Name">
-                        </div>
-                    </div>
-
-                    <div class="field">
-                        <label>Password</label>
-                        <div class="four wide field">
-                            <input type="password" name="password" placeholder="Password">
-                        </div>
-                    </div>
-
-
-                    <h4 class="ui dividing header">New Links</h4>
-                    {% for index in range(1,16) %}
-                    <div class="field">
-                        <label>Link {{index}}</label>
-                        <div class="two fields">    
-                            <div class="field">
-                                <!--<input type="text" name="title_{{index}}" placeholder="Link Title">-->
-                                <select class="ui search dropdown title_{{index}}" name="title_{{index}}">
-                                    <option value="">Title</option>
-                                    <option value="H1 Project Work">H1 Project Work</option>
-                                    <option value="H1 General Paper">H1 General Paper</option>
-                                    <option value="H1 Economics">H1 Economics</option>
-                                    <option value="H2 Economics">H2 Economics</option>
-                                    <option value="H3 Economics">H3 Economics</option>
-                                    <option value="H1 Mathematics">H1 Mathematics</option>
-                                    <option value="H2 Mathematics">H2 Mathematics</option>
-                                    <option value="H3 Mathematics">H3 Mathematics</option>
-                                    <option value="Further Mathematics">Further Mathematics</option>
-                                    <option value="Fundamental Mathematics">Fundamental Mathematics</option>
-                                    <option value="Intermediate Mathematics">Intermediate Mathematics</option>
-                                    <option value="Advanced Mathematics">Advanced Mathematics</option>
-                                    <option value="H1 Chemistry">H1 Chemistry</option>
-                                    <option value="H2 Chemistry">H2 Chemistry</option>
-                                    <option value="H3 Chemistry">H3 Chemistry</option>
-                                    <option value="Chemistry">Chemistry</option>
-                                    <option value="H1 Physics">H1 Physics</option>
-                                    <option value="H2 Physics">H2 Physics</option>
-                                    <option value="H3 Physics">H3 Physics</option>
-                                    <option value="Physics">Physics</option>
-                                    <option value="H1 Biology">H1 Biology</option>
-                                    <option value="H2 Biology">H2 Biology</option>
-                                    <option value="H3 Biology">H3 Biology</option>
-                                    <option value="Biology">Biology</option>
-                                    <option value="H2 Art">Art</option>
-                                    <option value="H1 History">H1 History</option>
-                                    <option value="H2 History">H2 History</option>
-                                    <option value="H3 History">H3 History</option>
-                                    <option value="H1 Geography">H1 Geography</option>
-                                    <option value="H1 Geography">H2 Geography</option>
-                                    <option value="H1 Geography">H3 Geography</option>
-                                    <option value="H2 Knowledge and Inquiry">H2 Knowledge and Inquiry</option>
-                                    <option value="H1 Literature">H1 Literature</option>
-                                    <option value="H2 Literature">H2 Literature</option>
-                                    <option value="H3 Literature">H3 Literature</option>
-                                    <option value="Chinese Language and Literature">Chinese Language and Literature</option>
-                                    <option value="H1 Chinese">H1 Chinese</option>
-                                    <option value="CLB Chinese">CLB Chinese</option>
-                                    <option value="Higher Chinese">Higher Chinese</option>
-                                    <option value="Chinese">Chinese</option>
-                                    <option value="Malay">Malay</option>
-                                    <option value="Tamil">Tamil</option>
-                                    <option value="Chinese Language Elective Programme">Chinese Language Elective Programme</option>
-                                    <option value="H2 Music">H2 Music</option>
-                                    <option value="Music Lanuguage Elective Programme">Music Lanugage Elective Programme</option>
-                                    <option value="Language Arts">Language Arts</option>
-                                    <option value="Green Science">Green Science</option>
-                                    <option value="Fundamental Humanities">Fundamental Humanities</option>
-                                    <option value="Core Humanities">Core Humanities</option>
-                                    <option value="Skills and Knowledge">Skills and Knowledge</option>
-                                    <option value="other">Other</option>
-                                </select>
-                                <input type="text" class="title_{{index}}_custom" name="title_{{index}}_custom" hidden>
-                            </div>
-                            <div class="field">
-                                <input type="text" name="url_{{index}}" placeholder="Link URL">
-                            </div>
-                            <div class="field">
-                                <input type="text" name="desc_{{index}}" placeholder="Description">
-                            </div>
-                        </div>
-                    </div>
-                    {% endfor %}
-                    <div class="ui red big message">All changes will overwrite existing links upon submission!</div>
-                    <button class="ui right floated positive button" type="submit">Submit</button>
-                    
-                </form>
-                <a href="/{{class_name}}/{{index_number}}"><button class="ui button">Back to Main Site</button></a>
-            </div>
-    
+            </form>
+            <a href="/{{class_name}}/{{index_number}}"><button class="ui button">Back to Main Site</button></a>
         </div>
 
-    
-        <script>
-         $(document).ready(function(){
+    </div>
 
-          $('.ui.dropdown') .dropdown();
 
-        {% for index in range(1,16) %}
-        $('.title_{{index}}').dropdown({
-                onChange:  function(value, text){
-                    if (value == "other"){
+    <script>
+        $(document).ready(function () {
+
+            $('.ui.dropdown').dropdown();
+
+            {% for index in range(1, 16) %}
+            $('.title_{{index}}').dropdown({
+                onChange: function (value, text) {
+                    if (value == "other") {
                         $(this).hide();
                         $('.title_{{index}}_custom').show()
                     }
 
                 }
             });
-        {% endfor %}
+            {% endfor %}
 
         });
-        </script>
-    
-    </body>
-    <html>
+    </script>
+
+</body>
+<html>

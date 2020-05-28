@@ -19,8 +19,9 @@ def create_timed_rotating_log(path):
     logger = logging.getLogger("Rotating Log")
     logger.setLevel(logging.DEBUG)
 
-    formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-    
+    formatter = logging.Formatter(
+        '%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+
     handler = TimedRotatingFileHandler(path,
                                        when="d",
                                        interval=1,
@@ -29,6 +30,7 @@ def create_timed_rotating_log(path):
     logger.addHandler(handler)
 
     return logger
+
 
 logger = create_timed_rotating_log("logs/site_logs.log")
 
@@ -80,6 +82,7 @@ def index():
     img_url = 'static/images/tjc/' + str(random_var) + '.jpg'
 
     return render_template("homepage.html", ip_set=ip_set, j1_set=j1_set, j2_set=j2_set, img_url=img_url)
+
 
 @app.route("/vid")
 def video():
@@ -363,7 +366,8 @@ def update_personal_links(index_number, class_name):
     print(personal_link_list)
 
     Path("./static/personal_link_database/" + class_name).mkdir(exist_ok=True)
-    csv_name = "./static/personal_link_database/" + class_name + "/" + index_number + "_links.csv"
+    csv_name = "./static/personal_link_database/" + \
+        class_name + "/" + index_number + "_links.csv"
     csv_file = open(csv_name, 'w')
 
     with csv_file:
