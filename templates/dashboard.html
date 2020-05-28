@@ -600,7 +600,7 @@
                 if (time_now => first_bell && time_now <= last_bell) {
                     if ((time_now - first_bell) % (1500) == 0) {
                         console.log("Bell Ring " + time_now);
-                        var audio = new Audio('static/audio/bell_audio.mp3');
+                        var audio = new Audio('/static/audio/bell_audio.mp3');
                         audio.play();
                         await new Promise(r => setTimeout(r, 1000));
                     }

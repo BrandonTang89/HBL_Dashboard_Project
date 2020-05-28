@@ -68,7 +68,8 @@ with open(swear_words_file) as f:
 # Logging of Requests
 @app.before_request
 def log_request_info():
-    logger.info(request)
+    if not request.method == "HEAD":
+        logger.info(request)
     if request.method == "POST":
         logger.debug('Body: %s', request.get_data())
 
