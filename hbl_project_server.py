@@ -14,6 +14,7 @@ from logging.handlers import TimedRotatingFileHandler
 # Set up Flask App and Logging
 app = Flask(__name__)
 
+# Rotating Log Files with 5 Day Backup
 def create_timed_rotating_log(path):
     logger = logging.getLogger("Rotating Log")
     logger.setLevel(logging.DEBUG)

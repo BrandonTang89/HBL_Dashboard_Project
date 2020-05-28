@@ -1,0 +1,7 @@
+2020-05-28 13:16:47,516 - Rotating Log - INFO - <Request 'http://localhost:8080/1B20/static/audio/bell_audio.mp3' [GET]>
+2020-05-28 13:16:58,307 - Rotating Log - INFO - <Request 'http://localhost:8080/1B20' [POST]>
+2020-05-28 13:16:58,307 - Rotating Log - DEBUG - Body: b'new_text=Hello+Everyone'
+2020-05-28 13:17:11,585 - Rotating Log - INFO - <Request 'http://localhost:8080/1B20' [POST]>
+2020-05-28 13:17:11,585 - Rotating Log - DEBUG - Body: b'new_text=Fuck+you+too'
+2020-05-28 13:17:24,057 - Rotating Log - INFO - <Request 'http://localhost:8080/1B20' [POST]>
+2020-05-28 13:17:24,058 - Rotating Log - DEBUG - Body: b'new_text='
