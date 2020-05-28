@@ -12,8 +12,9 @@ Summary of Key Features
 5. Virtual Bell (an audio cue that rings every 25 mins, aligned with the periods during lesson)
 6. Class Notepad (a place for nice messages and homework reminders)
 
-Note:
+Notes:
 - The site has been designed for view on computers as most of you will using that during HBL
+- For optimal viewing experience, please use a browser zoom level of 100%
 
 If you feel like the site could benefit you, feel free to use it!
 

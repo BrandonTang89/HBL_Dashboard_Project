@@ -8,9 +8,13 @@ import hashlib
 import random
 import os.path
 import os
+import logging
 
+# Set up Flask App and Logging
 app = Flask(__name__)
+logging.basicConfig(filename='site_logs.log', level=logging.DEBUG, format='%(asctime)s %(levelname)s %(name)s %(threadName)s : %(message)s')
 
+# Define Global Variables
 class_set = ["1A20", "1B20", "1C20", "1D20", "1E20", "2A19", "2B19", "2C19", "2D19", "2E19", "3A20", "3B20", "3C20", "3D20", "3E20", "3F20", "4A19", "4B19", "4C19", "4D19", "4E19", "4F19", "0120", "0220", "0320", "0420", "0520", "0620", "0720", "0820", "0920", "1020", "1120", "1220", "1320",
              "1420", "1520", "1620", "1720", "1820", "1920", "2020", "2120", "2220", "2320", "2420", "0119", "0219", "0319", "0419", "0519", "0619", "0719", "0819", "0919", "1019", "1119", "1219", "1319", "1419", "1519", "1619", "1719", "1819", "1919", "2019", "2119", "2219", "2319", "2419", "2519"]
 
@@ -35,16 +39,22 @@ with open(swear_words_file) as f:
     for line in f:
         pf.append_words([line.strip()])
 
+# Logging of Requests
+@app.before_request
+def log_request_info():
+    app.logger.info(request)
+    if request.method == "POST":
+        app.logger.debug('Body: %s', request.get_data())
+
 # For the homepage
 @app.route("/")
 def index():
+    app.logger.info('Main Site Request')
     random_var = random.randint(1, 39)
     if random_var == 39:
         random_var = random.randint(35, 39)
 
     img_url = 'static/images/tjc/' + str(random_var) + '.jpg'
-
-    print(img_url)
 
     return render_template("homepage.html", ip_set=ip_set, j1_set=j1_set, j2_set=j2_set, img_url=img_url)
 
@@ -238,6 +248,7 @@ def submit_update():
             link_list.append((title, url, desc))
         else:
             break
+
     print(link_list)
     csv_name = "./static/class_link_database/" + class_name + "_links.csv"
     csv_file = open(csv_name, 'w')
