@@ -33,20 +33,26 @@ def create_timed_rotating_log(path):
 logger = create_timed_rotating_log("logs/site_logs.log")
 
 # Define Global Variables
-class_set = ["1A20", "1B20", "1C20", "1D20", "1E20", "2A19", "2B19", "2C19", "2D19", "2E19", "3A20", "3B20", "3C20", "3D20", "3E20", "3F20", "4A19", "4B19", "4C19", "4D19", "4E19", "4F19", "0120", "0220", "0320", "0420", "0520", "0620", "0720", "0820", "0920", "1020", "1120", "1220", "1320",
-             "1420", "1520", "1620", "1720", "1820", "1920", "2020", "2120", "2220", "2320", "2420", "0119", "0219", "0319", "0419", "0519", "0619", "0719", "0819", "0919", "1019", "1119", "1219", "1319", "1419", "1519", "1619", "1719", "1819", "1919", "2019", "2119", "2219", "2319", "2419", "2519"]
+ip_1_set = ["1A20", "1B20", "1C20", "1D20", "1E20"]
+ip_2_set = ["2A19", "2B19", "2C19", "2D19", "2E19"]
+ip_3_set = ["3A20", "3B20", "3C20", "3D20", "3E20", "3F20"]
+ip_4_set = ["4A19", "4B19", "4C19", "4D19", "4E19", "4F19"]
 
-ip_set = ["1A20", "1B20", "1C20", "1D20", "1E20", "2A19", "2B19", "2C19", "2D19", "2E19",
-          "3A20", "3B20", "3C20", "3D20", "3E20", "3F20", "4A19", "4B19", "4C19", "4D19", "4E19", "4F19"]
 j1_set = ["0120", "0220", "0320", "0420", "0520", "0620", "0720", "0820", "0920", "1020", "1120",
           "1220", "1320", "1420", "1520", "1620", "1720", "1820", "1920", "2020", "2120", "2220", "2320", "2420"]
 j2_set = ["0119", "0219", "0319", "0419", "0519", "0619", "0719", "0819", "0919", "1019", "1119", "1219",
           "1319", "1419", "1519", "1619", "1719", "1819", "1919", "2019", "2119", "2219", "2319", "2419", "2519"]
 
+ip_set = ip_1_set + ip_2_set + ip_3_set + ip_4_set
+class_set = ip_set + j1_set + j2_set
+
 attendance_links = {
-    "ip": "",
+    "ip1": "https://bit.ly/IP1HBLCheckin",
+    "ip2": "https://bit.ly/IP2HBLCheckin",
+    "ip3": "https://bit.ly/IP3HBLcheckin",
+    "ip4": "https://bit.ly/IP4HBLcheckin",
     "jc1": "https://tinyurl.com/TJCT3J1att",
-    "jc2": "https://tinyurl.com/TJCT3J2att"
+    "jc2": "https://tinyurl.com/TJCT3J2att",
 }
 
 
@@ -156,8 +162,14 @@ def class_name(class_name, index_number):
             personal_link_list.pop(0)
 
     # Get Attendance Links
-    if class_name in ip_set:
-        attendance_link = attendance_links["ip"]
+    if class_name in ip_1_set:
+        attendance_link = attendance_links["ip1"]
+    elif class_name in ip_2_set:
+        attendance_link = attendance_links["ip2"]
+    elif class_name in ip_3_set:
+        attendance_link = attendance_links["ip3"]
+    elif class_name in ip_4_set:
+        attendance_link = attendance_links["ip4"]
     elif class_name in j1_set:
         attendance_link = attendance_links["jc1"]
     else:
