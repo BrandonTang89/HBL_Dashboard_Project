@@ -9,10 +9,27 @@ import random
 import os.path
 import os
 import logging
+from logging.handlers import TimedRotatingFileHandler
 
 # Set up Flask App and Logging
 app = Flask(__name__)
-logging.basicConfig(filename='site_logs.log', level=logging.DEBUG, format='%(asctime)s %(levelname)s %(name)s %(threadName)s : %(message)s')
+
+def create_timed_rotating_log(path):
+    logger = logging.getLogger("Rotating Log")
+    logger.setLevel(logging.DEBUG)
+
+    formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+    
+    handler = TimedRotatingFileHandler(path,
+                                       when="d",
+                                       interval=1,
+                                       backupCount=5)
+    handler.setFormatter(formatter)
+    logger.addHandler(handler)
+
+    return logger
+
+logger = create_timed_rotating_log("logs/site_logs.log")
 
 # Define Global Variables
 class_set = ["1A20", "1B20", "1C20", "1D20", "1E20", "2A19", "2B19", "2C19", "2D19", "2E19", "3A20", "3B20", "3C20", "3D20", "3E20", "3F20", "4A19", "4B19", "4C19", "4D19", "4E19", "4F19", "0120", "0220", "0320", "0420", "0520", "0620", "0720", "0820", "0920", "1020", "1120", "1220", "1320",
@@ -42,14 +59,13 @@ with open(swear_words_file) as f:
 # Logging of Requests
 @app.before_request
 def log_request_info():
-    app.logger.info(request)
+    logger.info(request)
     if request.method == "POST":
-        app.logger.debug('Body: %s', request.get_data())
+        logger.debug('Body: %s', request.get_data())
 
 # For the homepage
 @app.route("/")
 def index():
-    app.logger.info('Main Site Request')
     random_var = random.randint(1, 39)
     if random_var == 39:
         random_var = random.randint(35, 39)
