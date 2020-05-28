@@ -48,6 +48,12 @@ def index():
 
     return render_template("homepage.html", ip_set=ip_set, j1_set=j1_set, j2_set=j2_set, img_url=img_url)
 
+@app.route("/vid")
+def video():
+
+    return render_template("vid.html")
+
+
 # For the main dashboard
 @app.route('/<class_name>/<index_number>', methods=['GET'])
 def class_name(class_name, index_number):
