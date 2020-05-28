@@ -1,6 +1,8 @@
 # HBL_Dashboard_Project
 
 ## About
+<img src="/static/images/icons/bad_logo.png" width="250">
+
 This project is a community service effort to make home-based learning more convenient and thus effective for students of Temasek Junior College. It is a dynamic web dashboard powered by flask.
 
 Check it out at https://tinyurl.com/TJCDashB.
