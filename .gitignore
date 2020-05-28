@@ -1,5 +1,6 @@
 # Self Written Rules
-site_logs.log
+logs/site_logs.log
+logs/site_logs.log*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
