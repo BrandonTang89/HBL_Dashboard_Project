@@ -12,3 +12,5 @@ for item in (personal_pass_dict.items()):
         f.write(str(index+1) + " " + password + "\n")
 
     f.close()
+
+print(pass_dict)
