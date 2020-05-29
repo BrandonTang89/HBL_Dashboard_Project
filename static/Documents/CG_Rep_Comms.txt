@@ -1,8 +1,8 @@
-Hello everyone, today we present to you TJC Dashboards!
+Hello everyone, today Brandon from 13/19 and Reiden from 08/19 present to you TJC Dashboards!
 
 TJC Dashboards can be found at the url "tinyurl.com/TJCDashB".
 It is a site at which TJC Students can have a convenient place to store and access HBL related links and reference a live timetime. 
-To get a better idea of the various features available and how to use them, we have included a video that showcases the main features :)
+To get a better idea of the various features available and how to use them, we have included a video that showcases the main features at https://tjcdashboards--tjcdashboards.repl.co/vid.
 
 Summary of Key Features
 1. General Links to HBL Related Sites (Standard across all classes)
@@ -15,6 +15,7 @@ Summary of Key Features
 Notes:
 - The site has been designed for view on computers as most of you will using that during HBL
 - For optimal viewing experience, please use a browser zoom level of 100%
+- if you have any queries, please whatsapp them to us at 91112740 (Brandon) or 97230160 (Reiden)
 
 If you feel like the site could benefit you, feel free to use it!
 
