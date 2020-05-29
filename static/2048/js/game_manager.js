@@ -112,7 +112,7 @@ GameManager.prototype.actuate = function () {
   // ============================== Export Score if WIN OR LOSE ============================
   if ((this.over || this.won) && this.sent_class_score == false){
     console.log("Sending Score");
-    this.sent_score = true;
+    this.sent_class_score = true;
     this.send_score((this.score/100)**1.5); // divide by 10 then square (TODO: Improving Scoring System)
   }
   // =======================================================================================
