@@ -70,8 +70,8 @@ with open(swear_words_file) as f:
 def log_request_info():
     if not request.method == "HEAD":
         logger.info(request)
-    if request.method == "POST":
-        logger.debug('Body: %s', request.get_data())
+    #if request.method == "POST":
+    #    logger.debug('Body: %s', request.get_data())
 
 # For the homepage
 @app.route("/")
