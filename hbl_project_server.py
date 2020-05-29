@@ -97,7 +97,7 @@ def class_name(class_name, index_number):
     if not class_name in class_set:
         return ("Invalid Class")
 
-    if (int(index_number) < 0 or int(index_number) > 30):
+    if (int(index_number) < 0 or int(index_number) > 40):
         return ("Invalid Index Number")
 
     csv_name = "./static/class_link_database/" + class_name + "_links.csv"
@@ -343,7 +343,7 @@ def update_personal_links(index_number, class_name):
     if not class_name in class_set:
         return ("INVALID Class")
 
-    if int(index_number) < 1 or int(index_number) > 30:
+    if int(index_number) < 1 or int(index_number) > 40:
         return ("INVALID Index Number")
 
     if not check_password(index_number, class_name, user_pass):
